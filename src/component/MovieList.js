@@ -109,7 +109,6 @@ function MovieList() {
       <Helmet>
         <title>Trang chủ</title>
         <meta name="description" content="Trang chủ" />
-        // <link rel="icon" type="image/x-icon" href="#">
       </Helmet>
 
       {/* swiper thử nghiệm */}
