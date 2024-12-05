@@ -163,7 +163,7 @@ function MovieList() {
           </SwiperSlide>
         ))}
       </Swiper>
-      <h3 className="mb-3 mt-3">Phim mới cập nhật</h3>
+      <h3 className="mb-3 mt-3">Phim mới cập nhật: (test)</h3>
       <div className="carousel-container">
         <button className="btn btn-secondary mx-3" onClick={scrollLeft}>{"<"}</button>
         <div className="row flex-nowrap overflow-auto" ref={carouselRef}>
