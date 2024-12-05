@@ -57,7 +57,7 @@ function SearchMovie() {
     }
 
     return (
-        <div className='bg-dark text-light'>
+        <div className='bg-dark text-light pb-3'>
             <div className='container-fluid' style={{ paddingTop: '80px' }}>
                 <Helmet>
                     <title>Tìm kiếm phim | Từ khóa: {keywordFromURL}</title>
