@@ -109,6 +109,7 @@ function MovieList() {
       <Helmet>
         <title>Trang chủ</title>
         <meta name="description" content="Trang chủ" />
+        // <link rel="icon" type="image/x-icon" href="#">
       </Helmet>
 
       {/* swiper thử nghiệm */}
@@ -116,7 +117,7 @@ function MovieList() {
         modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
         slidesPerView={1}
         pagination={{ clickable: true }}
-        // autoplay={{ delay: 4000 }}
+        autoplay={{ delay: 4000 }}
         onSwiper={(swiper) => console.log(swiper)}
         onSlideChange={handleSlideChange}
         grabCursor={true}
