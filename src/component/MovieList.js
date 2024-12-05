@@ -126,7 +126,7 @@ function MovieList() {
             {/* <div className="position-relative"> */}
             <div className='img-container position-relative swiper--img'>
               <img src={newMovie.poster_url} className="w-100 object-fit-cover" alt={newMovie.name} />
-              <div className="position-absolute mobile-view" style={{ top: '40%', left: '20px' }}>
+              <div className="position-absolute mobile--view" style={{ top: '40%', left: '20px' }}>
                 <div className="text-warp">
                   <p className="text-primary bg-dark opacity-75 h1 rounded p-2" style={{ width: 'fit-content' }}>{movieDetails.name}</p>
                 </div>
