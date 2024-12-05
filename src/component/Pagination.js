@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Pagination = ({ totalPages, currentPage, baseUrl }) => {
     const pageNumbers = [];
-    const maxPagesToShow = 10; //có thể là 10
+    const maxPagesToShow = 5; //có thể là 10
 
     if (totalPages <= maxPagesToShow) {
         for (let i = 1; i <= totalPages; i++) {
