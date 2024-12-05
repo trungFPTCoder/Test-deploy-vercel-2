@@ -92,7 +92,7 @@ function Footer() {
                         <div className="col-md-4 mb-3">
                             <form>
                                 <h5>Đăng ký để nhận thông tin mới nhất</h5>
-                                <p className='text-secondary'>Những khuyến mãi và phần thưởng học tập hấp dẫn đang chờ bạn*</p>
+                                <p className='text-secondary'>Những khuyến mãi và phần thưởng hấp dẫn đang chờ bạn*</p>
                                 <div className="d-flex flex-column flex-sm-row w-100 gap-2 footer-input">
                                     <label for="newsletter1" className="visually-hidden">Địa chỉ Email</label>
                                     <input id="newsletter1" type="text" className="form-control " placeholder="Địa chỉ Email" />
