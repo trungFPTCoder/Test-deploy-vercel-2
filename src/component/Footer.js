@@ -99,7 +99,6 @@ function Footer() {
                                     <button className="btn btn-warning" type="button">Đăng ký</button>
                                 </div>
                             </form>
-                            {/* <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.6423748199345!2d105.79877607555774!3d21.00696798063693!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135aca167ed5101%3A0x50e4d58dbc5f3141!2sHOCMAI!5e0!3m2!1svi!2s!4v1728274897092!5m2!1svi!2s" width="100%" height="200" className='mt-2' allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> */}
                             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7667.867296560544!2d108.21709039309195!3d16.06893258844196!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3142182e92db258b%3A0x1207f994ee77c1fc!2zQ0dWIFZpbmNvbSDEkMOgIE7hurVuZw!5e0!3m2!1svi!2s!4v1733289490849!5m2!1svi!2s" width="100%" height="250" className='mt-2' allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                     </div>
