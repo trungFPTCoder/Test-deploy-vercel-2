@@ -3,6 +3,7 @@ import '../assest/Header.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Link, useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 function Header() {
   const [searchKeyword, setSearchKeyword] = useState('');
@@ -99,7 +100,7 @@ function Header() {
                 </ul>
               </li>
             </ul>
-            
+
             <form className="d-flex" role="search" onSubmit={handleSearchSubmit}>
               <input
                 className="form-control me-2"
