@@ -111,7 +111,7 @@
   height: 80vh;
 }
 @media screen and (min-width: 768px) {
-  .mobile-view{
+  .mobile--view{
     display: block;
   }
 }
