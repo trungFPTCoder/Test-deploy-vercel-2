@@ -138,3 +138,19 @@
   /* max-width: 300px; */
   overflow-wrap: break-word; /* Hỗ trợ bẻ từ trên các trình duyệt khác */
 }
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background-color: #ddd;
+  transition: 0.7s ease;
+}
+div.swiper-button-next,
+div.swiper-button-prev {
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  color: #ff0000;
+  font-size: 20px; /* Adjust the size if needed */
+}
