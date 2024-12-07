@@ -68,7 +68,7 @@ function SearchMovie() {
                 {searchMovies.items.length === 0 ? (
                     <div>
                         <div className='d-flex m-0'>
-                            <img src='/images/snapedit_1729332572486.png' className='w-75' style={{ margin: '0 auto' }}></img>
+                            <img src='/images/snapedit_1729332572486.png' className='w-75' style={{ margin: '0 auto', mixBlendMode: 'multiply' }}></img>
                         </div>
                         <h3 className='text-center fw-bold mt-3 mb-5'>Không tìm thấy kết quả nào</h3>
                     </div>
