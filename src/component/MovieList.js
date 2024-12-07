@@ -164,31 +164,6 @@ function MovieList() {
         ))}
       </Swiper>
       <h3 className="mb-3 mt-3">Phim mới cập nhật:</h3>
-      // <div className="carousel-container">
-      //   <button className="btn btn-secondary mx-3" onClick={scrollLeft}>{"<"}</button>
-      //   <div className="row flex-nowrap overflow-auto" ref={carouselRef}>
-      //     {Array.isArray(newMovies) ? (
-      //       newMovies.map((newMovie) => (
-      //         <div className="col-6 col-md-2 col-sm-3 mb-4" key={newMovie.slug}>
-      //           <div className="card border-0 h-100 d-flex flex-column">
-      //             <div className='img-container overflow-hidden position-relative'>
-      //               <img src={newMovie.thumb_url} className="card-img hover-thumb" height={300} alt={newMovie.name} />
-      //               <div className="play-button">
-      //                 <Link to={`/watch/${newMovie.slug}`}><FontAwesomeIcon icon={faPlayCircle} fontSize={60} color="white" /></Link>
-      //               </div>
-      //             </div>
-      //             <div className='movie--name position-absolute'>
-      //               <h6 className='text-center text-light'>{newMovie.name}</h6>
-      //             </div>
-      //           </div>
-      //         </div>
-      //       ))
-      //     ) : (
-      //       <p>No movies available</p>
-      //     )}
-      //   </div>
-      //   <button className="btn btn-secondary mx-3" onClick={scrollRight}>{">"}</button>
-      // </div>    
         <div>
         <Swiper
           modules={[Navigation, Pagination, Scrollbar, A11y]}
