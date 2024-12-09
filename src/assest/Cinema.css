@@ -92,3 +92,9 @@
         object-fit: cover;
     }
 }
+.category--movie{
+    background-color: #343232;
+}
+.category--movie:hover{
+    color: orange;
+}
