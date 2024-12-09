@@ -75,26 +75,27 @@ function Header() {
                 <ul className="dropdown-menu dropdown-hover bg-dark border-1 border-light">
                   <div className='row'>
                     <div className='col-4'>
-                      <li><Link className="dropdown-item" to={'/danh-sach/chinh-kich'}>Phim chính kịch</Link></li>
-                      <li><Link className="dropdown-item" to={'/danh-sach/hanh-dong'}>Phim hành động</Link></li>
-                      <li><Link className="dropdown-item" to={'/danh-sach/phim-hai'}>Phim hài</Link></li>
-                      <li><Link className="dropdown-item" to={'/danh-sach/lich-su'}>Phim lịch sử</Link></li>
-                      <li><Link className="dropdown-item" to={'/danh-sach/bi-an'}>Phim bí ẩn</Link></li>
-                      <li><Link className="dropdown-item" to={'/danh-sach/gay-can'}>Phim gay cấn</Link></li>
-                      <li><Link className="dropdown-item" to={'/danh-sach/tinh-cam'}>Phim tình cảm</Link></li>
+                      <li><Link className="dropdown-item text-light" to={'/danh-sach/chinh-kich'}>Phim chính kịch</Link></li>
+                      <li><Link className="dropdown-item text-light" to={'/danh-sach/hanh-dong'}>Phim hành động</Link></li>
+                      <li><Link className="dropdown-item text-light" to={'/danh-sach/phim-hai'}>Phim hài</Link></li>
+                      <li><Link className="dropdown-item text-light" to={'/danh-sach/lich-su'}>Phim lịch sử</Link></li>
+                      <li><Link className="dropdown-item text-light" to={'/danh-sach/bi-an'}>Phim bí ẩn</Link></li>
+                      <li><Link className="dropdown-item text-light" to={'/danh-sach/gay-can'}>Phim gay cấn</Link></li>
+                      <li><Link className="dropdown-item text-light" to={'/danh-sach/tinh-cam'}>Phim tình cảm</Link></li>
                     </div>
                     <div className='col-4'>
-                      <li><Link className="dropdown-item" to={'/danh-sach/phieu-luu'}>Phim phiêu lưu</Link></li>
-                      <li><Link className="dropdown-item" to={'/danh-sach/hinh-su'}>Phim hình sự</Link></li>
-                      <li><Link className="dropdown-item" to={'/danh-sach/gia-dinh'}>Phim gia đình</Link></li>
-                      <li><Link className="dropdown-item" to={'/danh-sach/kinh-di'}>Phim kinh dị</Link></li>
-                      <li><Link className="dropdown-item" to={'/danh-sach/lang-man'}>Phim lãng mạn</Link></li>
-                      <li><Link className="dropdown-item" to={'/danh-sach/chien-tranh'}>Phim chiến tranh</Link></li>
-                      <li><Link className="dropdown-item" to={'/danh-sach/hoat-hinh'}>Phim hoạt hình</Link></li>
+                      <li><Link className="dropdown-item text-light" to={'/danh-sach/phieu-luu'}>Phim phiêu lưu</Link></li>
+                      <li><Link className="dropdown-item text-light" to={'/danh-sach/hinh-su'}>Phim hình sự</Link></li>
+                      <li><Link className="dropdown-item text-light" to={'/danh-sach/gia-dinh'}>Phim gia đình</Link></li>
+                      <li><Link className="dropdown-item text-light" to={'/danh-sach/kinh-di'}>Phim kinh dị</Link></li>
+                      <li><Link className="dropdown-item text-light" to={'/danh-sach/lang-man'}>Phim lãng mạn</Link></li>
+                      <li><Link className="dropdown-item text-light" to={'/danh-sach/chien-tranh'}>Phim chiến tranh</Link></li>
+                      <li><Link className="dropdown-item text-light" to={'/danh-sach/hoat-hinh'}>Phim hoạt hình</Link></li>
                     </div>
                     <div className='col-4'>
-                      <li><Link className="dropdown-item" to={'/danh-sach/gia-tuong'}>Phim giả tưởng</Link></li>
-                      <li><Link className="dropdown-item" to={'/danh-sach/tam-ly'}>Phim tâm lý</Link></li>
+                      <li><Link className="dropdown-item text-light" to={'/danh-sach/gia-tuong'}>Phim giả tưởng</Link></li>
+                      <li><Link className="dropdown-item text-light" to={'/danh-sach/tam-ly'}>Phim tâm lý</Link></li>
+                      <li><Link className="dropdown-item text-light" to={'/danh-sach/phim-18'}>Phim 18+</Link></li>
                     </div>
                   </div>
                 </ul>
