@@ -72,7 +72,7 @@ function Header() {
                 <div className="nav-link text-light dropdown-toggle" role="button" aria-expanded="false">
                   Thể loại
                 </div>
-                <ul className="dropdown-menu dropdown-hover">
+                <ul className="dropdown-menu dropdown-hover bg-dark border-1 border-light">
                   <div className='row'>
                     <div className='col-4'>
                       <li><Link className="dropdown-item" to={'/danh-sach/chinh-kich'}>Phim chính kịch</Link></li>
