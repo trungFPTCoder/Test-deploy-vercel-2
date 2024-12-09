@@ -7,8 +7,9 @@ import '../assest/WatchMovie.css';
 import LoadingComponent from './LoadingComponent';
 import { Helmet } from 'react-helmet';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClosedCaptioning, faPlay } from '@fortawesome/free-solid-svg-icons';
+import { faMicrophone, faPlay } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook } from '@fortawesome/free-brands-svg-icons';
+import { faClosedCaptioning } from '@fortawesome/free-regular-svg-icons';
 function WatchMovie() {
     const { slug } = useParams();
     const dispatch = useDispatch();
@@ -60,31 +61,31 @@ function WatchMovie() {
                                 <img src={movieDetails.thumb_url} className='w-50 card-img mx-auto' alt='Movie Thumbnail' />
                                 <h5 className='mt-3'>{movieDetails.name}</h5>
                                 <small className='text-warning'>{movieDetails.original_name}</small>
-                                <div className='d-flex mt-3'>
+                                <div className='d-flex flex-wrap mt-3'>
                                     {movieDetails.category?.[3]?.list?.[0]?.name ? (
-                                        <div className='border border-light border-1 mx-1 p-1 px-2 rounded'>
+                                        <div className='border border-light border-1 mx-1 p-1 px-2 mb-2 rounded'>
                                             {movieDetails.category[3].list[0].name}
                                         </div>
                                     ) : (
                                         <></>
                                     )}
                                     {movieDetails.category?.[1]?.list?.[0]?.name ? (
-                                        <div className='border border-light border-1 mx-1 p-1 px-2 rounded'>
+                                        <div className='border border-light border-1 mx-1 p-1 px-2 mb-2 rounded'>
                                             {movieDetails.category[1].list[0].name}
                                         </div>
                                     ) : (
                                         <></>
                                     )}
-                                    <div className='border border-light border-1 mx-1 p-1 px-2 rounded'>
+                                    <div className='border border-light border-1 mx-1 p-1 px-2 mb-2 rounded'>
                                         {movieDetails.current_episode ? movieDetails.current_episode : 'Đang cập nhật'}
                                     </div>
-                                    <div className='border border-light border-1 mx-1 p-1 px-2 rounded'>
+                                    <div className='border border-light border-1 mx-1 p-1 px-2 mb-2 rounded'>
                                         {convertTime(movieDetails.time) === '' ? convertTime(movieDetails.time) : 'Đang cập nhật'}
                                     </div>
                                 </div>
-                                <div className='d-flex mt-2'>
+                                <div className='d-flex flex-wrap mt-2'>
                                     {movieDetails.category[2].list.map((item) => (
-                                        <div className='category--movie mx-1 p-1 px-2 rounded' key={item.id}>
+                                        <div className='category--movie mx-1 mb-2 p-1 px-2 rounded' key={item.id}>
                                             {item.name}
                                         </div>
                                     ))}
@@ -93,9 +94,9 @@ function WatchMovie() {
                                     <strong>Giới thiệu: </strong> <br />
                                     <small style={{ color: '#ddd' }}>{movieDetails.description}</small> <br />
                                     <p className='mt-3' style={{ color: '#ddd' }}><strong className='text-light'>Quốc gia: </strong>{movieDetails.category[4].list[0].name}</p>
-                                    <p className='mt-3' style={{ color: '#ddd' }}><strong className='text-light'>Đạo diễn: </strong>{movieDetails.director ? movieDetails.director:'Đang cập nhật'}</p>
+                                    <p className='mt-3' style={{ color: '#ddd' }}><strong className='text-light'>Đạo diễn: </strong>{movieDetails.director ? movieDetails.director : 'Đang cập nhật'}</p>
                                     <p className='mt-3' style={{ color: '#ddd' }}><strong className='text-light'>Diễn viên: </strong>{movieDetails.casts ? movieDetails.casts : 'Đang cập nhật'}</p>
-                                    <p className='mt-3' style={{ color: '#ddd' }}><strong className='text-light'>Thời lượng: </strong>{convertTime(movieDetails.time) ==='' ? convertTime(movieDetails.time) : 'Đang cập nhật'}</p>
+                                    <p className='mt-3' style={{ color: '#ddd' }}><strong className='text-light'>Thời lượng: </strong>{convertTime(movieDetails.time) === '' ? convertTime(movieDetails.time) : 'Đang cập nhật'}</p>
                                 </div>
                             </div>
                         </div>
@@ -114,7 +115,7 @@ function WatchMovie() {
                                             <button
                                                 className='btn'
                                                 onClick={() => {
-                                                    const shareUrl =`https://www.facebook.com/sharer/sharer.php?u=https://mycinemavn.vercel.app/watch/${slug}` ;
+                                                    const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=https://test-deploy-vercel-2.vercel.app/watch/${slug}`;
                                                     const popupWidth = 600;
                                                     const popupHeight = 400;
 
@@ -137,7 +138,7 @@ function WatchMovie() {
                                             <button
                                                 className='btn'
                                                 onClick={() => {
-                                                    const shareUrl = `https://twitter.com/intent/tweet?url=https://mycinemavn.vercel.app/watch/${slug}`;
+                                                    const shareUrl = `https://twitter.com/intent/tweet?url=https://test-deploy-vercel-2.vercel.app/watch/${slug}`;
                                                     const popupWidth = 600;
                                                     const popupHeight = 400;
 
@@ -178,43 +179,56 @@ function WatchMovie() {
                                         <div className="tab-pane fade show active" id="description" role="tabpanel">
                                             <div className='mt-5'>
                                                 <h4>Các bản chiếu</h4>
-                                                <Link to={`/watch/cinema/${slug}`} className='text-decoration-none '>
-                                                    <div className='card mt-3 language-hover'>
-                                                        <div className='row g-0'>
-                                                            <div className='col-8 p-3 bg-secondary rounded-start text-light'>
-                                                                <FontAwesomeIcon icon={faClosedCaptioning} fontSize={25} /> &nbsp;
-                                                                {movieDetails.language}
-                                                                <p className='mt-1 fw-bold'>{movieDetails.name}</p>
-                                                                <button type='button' className='btn btn-light p-1 px-2' style={{ fontSize: '14px', fontWeight: '500' }}>Xem bản này</button>
-                                                            </div>
-                                                            <div className='col-4'>
-                                                                <img src={movieDetails.thumb_url} className='w-100 rounded-end language-img'></img>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </Link>
-                                            </div>
-
-                                            {movieDetails.category[1].list[0].name ? (
-                                                <div className='mt-5'>
-                                                    <h4 className='mb-3'>Các tập phim</h4>
-                                                    <div className=''>
-                                                        {movieDetails.episodes.map((episode) => (
-                                                            <div key={episode.id} className='row g-2'>
-                                                                {episode.items.map(item => (
-                                                                    <div className='col-4 col-md-2 mb-1'>
-                                                                        <Link to={`/watch/cinema/${slug}?tap=${item.name}`} className='text-decoration-none text-light'>
-                                                                            <div key={item.id} className='category--movie p-2 px-2 rounded text-center'>
-                                                                                Tập {item.name} &nbsp; <FontAwesomeIcon icon={faPlay}></FontAwesomeIcon>
-                                                                            </div>
+                                                <div className='row'>
+                                                    {movieDetails.episodes.map((episode) => (
+                                                        <div className='col-md-6 col-sm-4' key={episode.id}>
+                                                            <div className='card mt-3 language-hover w-100'>
+                                                                <div className='row g-0'>
+                                                                    <div className='col-8 p-3 bg-secondary rounded-start text-light'>
+                                                                        {episode.server_name.includes('Vietsub') ? (
+                                                                            <FontAwesomeIcon icon={faClosedCaptioning} fontSize={25} style={{ color: '#036bfc' }} />
+                                                                        ) : (
+                                                                            <FontAwesomeIcon icon={faMicrophone} fontSize={25} style={{ color: '#fc7f03' }} />
+                                                                        )} &nbsp;
+                                                                        {episode.server_name}
+                                                                        <p className='mt-1 fw-medium'>{movieDetails.name}</p>
+                                                                        <Link to={`/watch/cinema/${slug}?type=${episode.server_name}`} className='text-decoration-none '>
+                                                                            <button type='button' className='btn btn-light p-1 px-2' style={{ fontSize: '14px', fontWeight: '500' }}>Xem bản này</button>
                                                                         </Link>
                                                                     </div>
-                                                                ))}
+                                                                    <div className='col-4'>
+                                                                        <img src={movieDetails.thumb_url} className='w-100 rounded-end language-img'></img>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                            {movieDetails.category[1].list[0].name ? (
+                                                <div className='mt-5'>
+                                                    <h4 className='mb-3'>Các tập phim: </h4>
+                                                    <div className=''>
+                                                        {movieDetails.episodes.map((episode, index) => (
+                                                            <div key={episode.id}>
+                                                                {index > 0 && <hr />} {/* Add <hr> before each episode group starting from the second one */}
+                                                                <h6>{episode.server_name}</h6>
+                                                                <div className='row g-2 mt-2 mb-2'>
+                                                                    {episode.items.map((item) => (
+                                                                        <div key={item.id} className='col-4 col-md-2 mb-1'>
+                                                                            <Link to={`/watch/cinema/${slug}?tap=${item.name}&type=${episode.server_name}`} className='text-decoration-none text-light'>
+                                                                                <div className='category--movie p-2 px-2 rounded text-center'>
+                                                                                    Tập {item.name} &nbsp; <FontAwesomeIcon icon={faPlay}></FontAwesomeIcon>
+                                                                                </div>
+                                                                            </Link>
+                                                                        </div>
+                                                                    ))}
+                                                                </div>
                                                             </div>
                                                         ))}
                                                     </div>
                                                 </div>
-                                                ) : (
+                                            ) : (
                                                 <div></div>
                                             )}
                                         </div>
@@ -232,7 +246,7 @@ function WatchMovie() {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
 
     )
 }
