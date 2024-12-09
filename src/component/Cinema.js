@@ -145,7 +145,7 @@ function Cinema() {
                         <button
                           className='btn'
                           onClick={() => {
-                            const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=https://test-deploy-vercel-2.vercel.app/watch/${slug}`;
+                            const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=https://mycinemavn.vercel.app/watch/${slug}`;
                             const popupWidth = 600;
                             const popupHeight = 400;
 
@@ -168,7 +168,7 @@ function Cinema() {
                         <button
                           className='btn'
                           onClick={() => {
-                            const shareUrl = `https://twitter.com/intent/tweet?url=https://test-deploy-vercel-2.vercel.app/watch/${slug}`;
+                            const shareUrl = `https://twitter.com/intent/tweet?url=https://mycinemavn.vercel.app/watch/${slug}`;
                             const popupWidth = 600;
                             const popupHeight = 400;
 
