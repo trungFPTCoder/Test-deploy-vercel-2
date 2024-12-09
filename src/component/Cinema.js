@@ -6,10 +6,10 @@ import { fetchMovieDetails } from '../service/MovieService';
 import { Helmet } from 'react-helmet';
 import '../assest/Cinema.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronCircleLeft, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import { faChevronCircleLeft, faMicrophone, faPaperPlane, faPlay } from '@fortawesome/free-solid-svg-icons';
 import LoadingComponent from './LoadingComponent';
 import { faFacebook } from '@fortawesome/free-brands-svg-icons';
-import { faClosedCaptioning } from '@fortawesome/free-solid-svg-icons';
+import { faClosedCaptioning } from '@fortawesome/free-regular-svg-icons';
 import { faCommentDots } from '@fortawesome/free-regular-svg-icons';
 
 function Cinema() {
@@ -34,9 +34,25 @@ function Cinema() {
   const searchParams = new URLSearchParams(location.search);
   const tapFromURL = searchParams.get('tap');
 
-  const firstEmbed = movieDetails.episodes?.[0]?.items?.[0]?.embed;
-  const filteredMovie = movieDetails.episodes?.[0]?.items?.find((item) => item.name === tapFromURL);
-
+  const searchParamsType = new URLSearchParams(location.search);
+  let typeFromURL = searchParamsType.get('type');
+  // const firstEmbed = 
+  let movieInfo = '';
+  if (!tapFromURL) {
+    const typeMovie = movieDetails.episodes?.find(typeMovie => typeMovie.server_name.includes(typeFromURL));
+    if (typeMovie) {
+      movieInfo = typeMovie.items?.[0];
+    }
+  } else {
+    const typeMovie = movieDetails.episodes?.find(typeMovie1 => typeMovie1.server_name.includes(typeFromURL));
+    if (typeMovie) {
+      movieInfo = typeMovie.items?.find(item => item.name === tapFromURL);
+    }
+  }
+  if(!tapFromURL && !typeFromURL){
+    movieInfo = movieDetails.episodes?.[0].items?.[0];
+    typeFromURL = movieDetails.episodes?.[0].server_name;
+  }
   const convertTime = (time) => {
     const minutes = parseInt(time);
     const hours = Math.floor(minutes / 60);
@@ -54,6 +70,9 @@ function Cinema() {
       setCharCount(value.length);
     }
   };
+  const handleEpisodeSelect = ()=>{
+    window.scrollTo(0,0);
+  }
   return (
     <div className='bg-dark'>
       <div className='container' style={{ paddingTop: '80px' }}>
@@ -68,16 +87,13 @@ function Cinema() {
               &nbsp;
             </button>
           </Link>
-            <div className='text-light h5'>Xem phim {movieDetails.name}</div>
+          <div className='text-light h5'>Xem phim {movieDetails.name}</div>
         </div>
+        {/* chiếu phim */}
         <div>
-          {filteredMovie ? (
-            <div>
-              <iframe src={filteredMovie.embed} className='video' title="First Episode" allowFullScreen></iframe>
-            </div>
-          ) : (
-            <iframe src={firstEmbed} className='video' title="First Episode" allowFullScreen></iframe>
-          )}
+          <div>
+            <iframe src={movieInfo.embed} className='video' title="First Episode tm" allowFullScreen></iframe>
+          </div>
         </div>
         <div className='mt-5 border-bottom' style={{ paddingBottom: '10px' }}>
           <div className='row'>
@@ -90,27 +106,27 @@ function Cinema() {
                   <h5 className='text-light'>{movieDetails.name}</h5>
                   <small className='text-warning'>{movieDetails.original_name}</small>
 
-                  <div className='d-flex mt-3 text-light'>
+                  <div className='d-flex flex-wrap mt-3 text-light'>
                     {movieDetails.category?.[1]?.list?.[0]?.name && (
-                      <div className='border border-light border-1 mx-1 p-1 px-2 rounded'>
+                      <div className='border border-light border-1 mx-1 p-1 px-2 mb-2 rounded'>
                         {movieDetails.category[1].list[0].name}
                       </div>
                     )}
                     {movieDetails.category?.[3]?.list?.[0]?.name && (
-                      <div className='border border-light border-1 mx-1 p-1 px-2 rounded'>
+                      <div className='border border-light border-1 mx-1 p-1 px-2 mb-2 rounded'>
                         {movieDetails.category[3].list[0].name}
                       </div>
                     )}
-                    <div className='border border-light border-1 mx-1 p-1 px-2 rounded'>
-                      {movieDetails.current_episode}
+                    <div className='border border-light border-1 mx-1 p-1 px-2 mb-2 rounded'>
+                      Tập {tapFromURL ? tapFromURL : '1'}
                     </div>
-                    <div className='border border-light border-1 mx-1 p-1 px-2 rounded'>
+                    <div className='border border-light border-1 mx-1 p-1 px-2 mb-2 rounded'>
                       {convertTime(movieDetails.time) || 'Đang cập nhật'}
                     </div>
                   </div>
-                  <div className='d-flex mt-2 text-light'>
+                  <div className='d-flex flex-wrap mt-2 text-light'>
                     {movieDetails.category?.[2]?.list?.map((item) => (
-                      <div className='mx-1 p-1 px-2 rounded' style={{ backgroundColor: '#343232' }} key={item.id}>
+                      <div className='mx-1 p-1 px-2 mb-2 rounded' style={{ backgroundColor: '#343232' }} key={item.id}>
                         {item.name}
                       </div>
                     ))}
@@ -129,7 +145,7 @@ function Cinema() {
                         <button
                           className='btn'
                           onClick={() => {
-                            const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=https://mycinemavn.vercel.app/watch/${slug}`;
+                            const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=https://test-deploy-vercel-2.vercel.app/watch/${slug}`;
                             const popupWidth = 600;
                             const popupHeight = 400;
 
@@ -152,7 +168,7 @@ function Cinema() {
                         <button
                           className='btn'
                           onClick={() => {
-                            const shareUrl = `https://twitter.com/intent/tweet?url=https://mycinemavn.vercel.app/watch/${slug}`;
+                            const shareUrl = `https://twitter.com/intent/tweet?url=https://test-deploy-vercel-2.vercel.app/watch/${slug}`;
                             const popupWidth = 600;
                             const popupHeight = 400;
 
@@ -178,28 +194,65 @@ function Cinema() {
             </div>
           </div>
         </div>
-        <div>
-          <div className='mt-2 text-light'>
-            <h4>Các bản chiếu</h4>
-            <Link to={`/watch/cinema/${slug}`} className='text-decoration-none '>
-              <div className='card mt-3 language-hover'>
-                <div className='row g-0'>
-                  <div className='col-8 p-3 bg-secondary rounded-start text-light'>
-                    <FontAwesomeIcon icon={faClosedCaptioning} fontSize={25} /> &nbsp;
-                    {movieDetails.language}
-                    <p className='mt-4 mb-4 fw-bold'>{movieDetails.name}</p>
-                    <button type='button' className='btn btn-light p-1 px-2' style={{ fontSize: '14px', fontWeight: '500' }}>
-                      Đang xem
-                    </button>
-                  </div>
-                  <div className='col-4'>
-                    <img src={movieDetails.thumb_url} className='w-100 rounded-end language-img'></img>
+        {/* test ngon*/}
+        <div className='mt-5 text-light'>
+          <h4>Các bản chiếu</h4>
+          <div className='row'>
+            {movieDetails.episodes.map((episode) => (
+              <div className='col-md-6 col-sm-4' key={episode.id}>
+                <div className='card mt-3 language-hover w-100'>
+                  <div className='row g-0'>
+                    <div className='col-8 p-3 bg-secondary rounded-start text-light'>
+                      {episode.server_name.includes('Vietsub') ? (
+                        <FontAwesomeIcon icon={faClosedCaptioning} fontSize={25} style={{ color: '#036bfc' }} />
+                      ) : (
+                        <FontAwesomeIcon icon={faMicrophone} fontSize={25} style={{ color: '#fc7f03' }} />
+                      )} &nbsp;
+                      {episode.server_name}
+                      <p className='mt-1 fw-medium'>{movieDetails.name}</p>
+                      {/* test ngon */}
+                      {episode.server_name.includes(typeFromURL) ? (
+                        <button type='button' className='btn btn-warning p-1 px-2' disabled style={{ fontSize: '14px', fontWeight: '500', boxShadow: '0 0 15px blue' }}>Đang xem</button>
+                      ) : (
+                        <Link to={`/watch/cinema/${slug}?type=${episode.server_name}`} className='text-decoration-none ' onClick={handleEpisodeSelect()}>
+                          <button type='button' className='btn btn-light p-1 px-2' style={{ fontSize: '14px', fontWeight: '500' }}>Xem bản này</button>
+                        </Link>
+                      )}
+                    </div>
+                    <div className='col-4'>
+                      <img src={movieDetails.thumb_url} className='w-100 rounded-end language-img'></img>
+                    </div>
                   </div>
                 </div>
               </div>
-            </Link>
+            ))}
           </div>
         </div>
+        {movieDetails.category[1].list[0].name ? (
+          <div className='mt-5 text-light'>
+            <h4 className='mb-3'>Các tập phim: </h4>
+            {movieDetails.episodes
+              .filter(episode => episode.server_name.includes(typeFromURL))
+              .map((episode) => (
+                <div key={episode.id}>
+                  <h6>{episode.server_name}</h6>
+                  <div className='row g-2 mt-2 mb-2'>
+                    {episode.items.map((item) => (
+                      <div key={item.id} className='col-4 col-md-2 mb-1'>
+                        <Link to={`/watch/cinema/${slug}?tap=${item.name}&type=${episode.server_name}`} className='text-decoration-none text-light' onClick={handleEpisodeSelect()}>
+                          <div className='category--movie p-2 px-2 rounded text-center'>
+                            Tập {item.name} &nbsp; <FontAwesomeIcon icon={faPlay}></FontAwesomeIcon>
+                          </div>
+                        </Link>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+          </div>
+        ) : (
+          <div></div>
+        )}
         <div className='mt-5 pb-3 text-light'>
           <div className='d-flex align-items-center'>
             <FontAwesomeIcon icon={faCommentDots} style={{ fontSize: '40px' }} color='white' />
@@ -218,7 +271,7 @@ function Cinema() {
               {charCount}/1000
             </div>
             <div className='mt-4 mb-4'></div>
-            <div className='position-absolute' style={{bottom:'5px', right:'5px'}}>
+            <div className='position-absolute' style={{ bottom: '5px', right: '5px' }}>
               <button className='send-btn text-warning'>Gửi &nbsp;<FontAwesomeIcon icon={faPaperPlane} /></button>
             </div>
           </div>
