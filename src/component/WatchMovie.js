@@ -61,14 +61,22 @@ function WatchMovie() {
                                 <h5 className='mt-3'>{movieDetails.name}</h5>
                                 <small className='text-warning'>{movieDetails.original_name}</small>
                                 <div className='d-flex mt-3'>
+                                    {movieDetails.category?.[3]?.list?.[0]?.name ? (
+                                        <div className='border border-light border-1 mx-1 p-1 px-2 rounded'>
+                                            {movieDetails.category[3].list[0].name}
+                                        </div>
+                                    ) : (
+                                        <></>
+                                    )}
+                                    {movieDetails.category?.[1]?.list?.[0]?.name ? (
+                                        <div className='border border-light border-1 mx-1 p-1 px-2 rounded'>
+                                            {movieDetails.category[1].list[0].name}
+                                        </div>
+                                    ) : (
+                                        <></>
+                                    )}
                                     <div className='border border-light border-1 mx-1 p-1 px-2 rounded'>
-                                        {movieDetails.category[3].list[0].name}
-                                    </div>
-                                    <div className='border border-light border-1 mx-1 p-1 px-2 rounded'>
-                                        {movieDetails.category[1].list[0].name}
-                                    </div>
-                                    <div className='border border-light border-1 mx-1 p-1 px-2 rounded'>
-                                        {movieDetails.current_episode}
+                                        {movieDetails.current_episode ? movieDetails.current_episode : 'Đang cập nhật'}
                                     </div>
                                     <div className='border border-light border-1 mx-1 p-1 px-2 rounded'>
                                         {convertTime(movieDetails.time) === '' ? convertTime(movieDetails.time) : 'Đang cập nhật'}
