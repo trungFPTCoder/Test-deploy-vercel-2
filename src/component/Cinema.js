@@ -214,7 +214,7 @@ function Cinema() {
                       {episode.server_name.includes(typeFromURL) ? (
                         <button type='button' className='btn btn-warning p-1 px-2' disabled style={{ fontSize: '14px', fontWeight: '500', boxShadow: '0 0 15px blue' }}>Đang xem</button>
                       ) : (
-                        <Link to={`/watch/cinema/${slug}?type=${episode.server_name}`} className='text-decoration-none ' onClick={handleEpisodeSelect()}>
+                        <Link to={`/watch/cinema/${slug}?type=${episode.server_name}`} className='text-decoration-none ' onClick={handleEpisodeSelect}>
                           <button type='button' className='btn btn-light p-1 px-2' style={{ fontSize: '14px', fontWeight: '500' }}>Xem bản này</button>
                         </Link>
                       )}
@@ -239,7 +239,7 @@ function Cinema() {
                   <div className='row g-2 mt-2 mb-2'>
                     {episode.items.map((item) => (
                       <div key={item.id} className='col-4 col-md-2 mb-1'>
-                        <Link to={`/watch/cinema/${slug}?tap=${item.name}&type=${episode.server_name}`} className='text-decoration-none text-light' onClick={handleEpisodeSelect()}>
+                        <Link to={`/watch/cinema/${slug}?tap=${item.name}&type=${episode.server_name}`} className='text-decoration-none text-light' onClick={handleEpisodeSelect}>
                           <div className='category--movie p-2 px-2 rounded text-center'>
                             Tập {item.name} &nbsp; <FontAwesomeIcon icon={faPlay}></FontAwesomeIcon>
                           </div>
