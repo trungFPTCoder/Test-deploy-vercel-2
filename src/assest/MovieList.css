@@ -12,8 +12,24 @@
 
 .hover-thumb {
   transition: transform 0.5s;
+  /* height: 350px; */
 }
-
+@media screen and (min-width: 768px) {
+  .movie--width img {
+    height: 350px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .movie--width img {
+    height: 200px;
+  }
+  .cate--movie--text{
+    font-size: 16px;
+  }
+  .mobile--header{
+    padding-top: 80px;
+  }
+}
 .img-container:hover .hover-thumb {
   transform: scale(1.1);
 }
@@ -74,12 +90,7 @@
   opacity: 0.7;
 }
 
-@media screen and (max-width: 768px) {
-  .hover-thumb {
-    height: 200px;
-  }
 
-}
 .movie--name {
   bottom: 0;
   background-color: black;
@@ -138,6 +149,7 @@
   /* max-width: 300px; */
   overflow-wrap: break-word; /* Hỗ trợ bẻ từ trên các trình duyệt khác */
 }
+/* MovieList.css */
 .swiper-button-next:hover,
 .swiper-button-prev:hover {
   background-color: #ddd;
@@ -152,5 +164,56 @@ div.swiper-button-prev {
 .swiper-button-next::after,
 .swiper-button-prev::after {
   color: #ff0000;
-  font-size: 20px; /* Adjust the size if needed */
+  font-size: 20px;
+}
+.list--movie{
+  background-color: #333232;
+  color: white;
+}
+.icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #2d2d2d; /* Màu nền của nút */
+  padding: 10px;
+  border-radius: 50px; /* Viền tròn */
+  cursor: pointer;
+  width: 40px; /* Chiều rộng mặc định (chỉ chứa icon) */
+  height: 40px;
+  transition: width 0.3s ease;
+  border: 1px solid #fff; /* Màu viền */
+}
+
+.icon-container .tooltip-text {
+  visibility: hidden;
+  opacity: 0;
+  color: #f9d342; /* Màu vàng cho chữ "Xem thêm" */
+  margin-left: -350%;
+  /* margin-right: 16%; */
+  font-size: 14px;
+  font-weight: bold;
+  white-space: nowrap;
+  transition: opacity 0.3s ease, visibility 0.3s ease, margin-left 0.3s ease;
+}
+
+.icon-container:hover {
+  width: auto; /* Mở rộng chiều rộng khi hover */
+}
+
+.icon-container:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+  margin-left: 10px; /* Khoảng cách giữa văn bản và icon */
+}
+@media screen and (max-width: 768px) {
+  .icon-container {
+    width: 30px;
+    height: 30px;
+    
+  }
+  .icon-container .tooltip-text {
+    font-size: 12px;
+    margin-left: -650%;
+  }
+  
 }

@@ -19,8 +19,8 @@
 .hover-thumb {
   transition: transform 0.5s;
   border-radius: 5px;
-  height: 300px;
 }
+
 
 .img-container:hover .hover-thumb {
   transform: scale(1.1);
@@ -93,7 +93,7 @@
   padding: 5px 10px;
   border-radius: 5px;
   position: absolute;
-  top:308px;
+  top:356px;
   left: 50%;
   transform: translateX(-50%);
   white-space: normal; /* Cho phép nội dung tự động xuống dòng */
@@ -118,16 +118,33 @@
   visibility: visible;
   opacity: 1;
 }
-.page-link{
-  background-color: #212529;
-  color: white;
+.page-link {
+  background-color: #212529 !important;
+  color: white !important;
 }
-.page-link:hover{
-  background-color: #ddd;
-  color: black;
+
+.page-link:hover {
+  background-color: #ddd !important;
+  color: black !important;
 }
+
 .active-page .page-link {
-  background-color: red; /* Change this to your desired color */
-  color: white; /* Change this to your desired text color */
-  border-color: red; /* Change this to your desired border color */
+  background-color: red !important;
+  /* Change this to your desired color */
+  color: white !important;
+  /* Change this to your desired text color */
+  border-color: red !important;
+  /* Change this to your desired border color */
+}
+li.page-item.disabled .page-link{
+  background-color: #ddd !important;
+  color: #ddd;
+}
+@media screen and (max-width: 768px) {
+  .hover-thumb{
+    height: 250px;
+  } 
+  .tooltip-content{
+    top: 257px;
+  }
 }

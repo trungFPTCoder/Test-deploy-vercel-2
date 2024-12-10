@@ -57,7 +57,7 @@ function SearchMovie() {
     }
 
     return (
-        <div className='bg-dark text-light pb-3'>
+        <div className='bg-dark text-light'>
             <div className='container-fluid' style={{ paddingTop: '80px' }}>
                 <Helmet>
                     <title>Tìm kiếm phim | Từ khóa: {keywordFromURL}</title>
@@ -66,11 +66,11 @@ function SearchMovie() {
                 <h4 className='mb-3'>Kết quả tìm kiếm cho: {keywordFromURL}</h4>
                 <hr></hr>
                 {searchMovies.items.length === 0 ? (
-                    <div>
+                    <div className='pb-3'>
                         <div className='d-flex m-0'>
                             <img src='/images/searchNoBG.png' className='w-75' style={{ margin: '0 auto' }}></img>
                         </div>
-                        <h3 className='text-center fw-bold mt-3 mb-5'>Không tìm thấy kết quả nào</h3>
+                        <h4 className='text-center fw-bold mt-3 mb-5'>Không tìm thấy kết quả nào</h4>
                     </div>
                 ) : (
                     <div>
@@ -83,7 +83,7 @@ function SearchMovie() {
                                                 src={movie.thumb_url}
                                                 alt={movie.name}
                                                 className='hover-thumb w-100'
-                                                height={300}
+                                                height={350}
                                             />
                                             <div className="play-button">
                                                 <Link to={`/watch/${movie.slug}`}>

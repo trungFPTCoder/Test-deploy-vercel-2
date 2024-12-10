@@ -2,23 +2,22 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation, useParams } from 'react-router-dom';
-import { fetchMovieCate } from '../service/MovieService';
-import { setCategoryMovies } from './MovieStore';
-import '../assest/MovieCate.css';
+import { fetchMovieCate, fetchMovieCountry, fetchNewMovies } from '../../service/MovieService';
+import { setCategoryMovies, setCountryMovies, setNewMovies } from '../MovieStore';
+import '../../assest/MovieCate.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlayCircle } from '@fortawesome/free-regular-svg-icons';
-import LoadingComponent from './LoadingComponent';
-import Pagination from './Pagination'; // Import the Pagination component
+import LoadingComponent from '../LoadingComponent';
+import Pagination from '../Pagination'; // Import the Pagination component
 import { Helmet } from 'react-helmet';
 
-function MovieCate() {
+function CountryMovie() {
 
-    const { cate } = useParams();
+    const { country } = useParams();
     const location = useLocation();
     const dispatch = useDispatch();
     const [currentPage, setCurrentPage] = useState(1);
     const [loading, setLoading] = useState(true);
-
     useEffect(() => {
         const query = new URLSearchParams(location.search);
         const page = query.get('page') || 1;
@@ -26,32 +25,30 @@ function MovieCate() {
     }, [location.search]);
 
     useEffect(() => {
-        const loadMovieCate = async () => {
+        const loadCountryMovie = async () => {
             setLoading(true);
-            const moviesCateData = await fetchMovieCate(cate, currentPage);
-            dispatch(setCategoryMovies(moviesCateData));
+            const newMoviesData = await fetchMovieCountry(country,currentPage);
+            dispatch(setCountryMovies(newMoviesData));
             setLoading(false);
         };
-        loadMovieCate();
-    }, [dispatch, cate, currentPage]);
+        loadCountryMovie();
+    }, [dispatch, country, currentPage]);
 
-    const categoryMovies = useSelector((state) => state.categoryMovies);
+    const countryMovies = useSelector((state) => state.countryMovies);
 
     if (loading) {
         return <LoadingComponent />; // Render LoadingComponent when loading
     }
-    if (!categoryMovies.cat) {
-        return <LoadingComponent />;
-    }
+   
     return (
         <div className='container-fluid bg-dark text-light' style={{paddingTop:'80px'}}>
             <Helmet>
-                <title>{categoryMovies.cat.name.includes('Phim')?categoryMovies.cat.name:'Phim '+categoryMovies.cat.name}</title>
-                <meta name="description" content={categoryMovies.cat.name.includes('Phim')?categoryMovies.cat.name:'Phim '+categoryMovies.cat.name} />
+                <title>Phim {countryMovies.cat.title}</title>
+                <meta name="description" content={countryMovies.cat.title} />
             </Helmet>
-            <h4>Danh sách {categoryMovies.cat.name.includes('Phim')?categoryMovies.cat.name:'Phim '+categoryMovies.cat.name}</h4>
+            <h4>Danh sách Phim {countryMovies.cat.title}</h4>  {/*để tạm*/}
             <div className='row'>
-                {categoryMovies.items.map((movie) => (
+                {countryMovies.items.map((movie) => (
                     <div className='col-6 col-md-2 col-sm-4 mb-3'>
                         <div className='card position-relative tooltip-wrapper border-0'>
                             <div className='img-container position-relative overflow-hidden'>
@@ -78,12 +75,12 @@ function MovieCate() {
                 ))}
             </div>
             <Pagination
-                totalPages={categoryMovies.paginate.total_page}
+                totalPages={countryMovies.paginate.total_page}
                 currentPage={currentPage}
-                baseUrl={`/danh-sach/${categoryMovies.cat.slug}`}
+                baseUrl={`/danh-sach/quoc-gia/${country}`}
             />
         </div>
     );
 }
 
-export default MovieCate;
+export default CountryMovie;

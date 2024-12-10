@@ -38,7 +38,9 @@
 .dropdown-hover li a {
     width: fit-content;
 }
-
+.dropdown-hover li a:focus {
+    background-color: inherit;
+}
 .dropdown-hover li a:hover {
     background-color: orange;
     color: white;

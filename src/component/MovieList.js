@@ -19,6 +19,15 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
+import ChinaMovie from "./MovieCountry/ChinaMovie";
+import KoreanMovie from "./MovieCountry/KoreanMovie";
+import EuropeMovie from "./MovieCountry/EuropeMovie";
+import AdventureMovie from "./MovieCategory/AdventureMovie";
+import HorrifiedMovie from "./MovieCategory/HorrifiedMovie";
+import ActionMovie from "./MovieCategory/ActionMovie";
+import ComedyMovie from "./MovieCategory/ComedyMovie";
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+
 function MovieList() {
   const newMovies = useSelector((state) => state.newMovies);
   const dispatch = useDispatch();
@@ -37,75 +46,48 @@ function MovieList() {
     };
     loadMovies();
   }, [dispatch]);
+
   useEffect(() => {
     const loadMovieDetails = async () => {
       if (slug) {
-        // setLoading(true);
         const moviesDetailData = await fetchMovieDetails(slug);
         dispatch(setMovieDetails(moviesDetailData));
-        // setLoading(false);
       }
     };
     loadMovieDetails();
   }, [dispatch, slug]);
+
   useEffect(() => {
-    if (newMovies.length > 0) {
-      setSlug(newMovies[0].slug); // Set initial slug to the first movie's slug
+    if (newMovies.items && newMovies.items.length > 0) {
+      setSlug(newMovies.items[0].slug); // Set initial slug to the first movie's slug
     }
   }, [newMovies]);
+
   const handleSlideChange = (swiper) => {
     const currentSlideIndex = swiper.activeIndex;
-    const currentMovie = newMovies[currentSlideIndex];
+    const currentMovie = newMovies.items[currentSlideIndex];
     if (currentMovie) {
       setSlug(currentMovie.slug);
     }
   };
-  /////////////////////////////////////////////////////////////////////////////
 
-  useEffect(() => {
-    // Calculate the width of two columns
-    const handleResize = () => {
-      if (carouselRef.current) {
-        const column = carouselRef.current.querySelector('.col-6');
-        if (column) {
-          const columnWidth = column.offsetWidth;
-          setScrollDistance(columnWidth * 2);
-        }
-      }
-    };
-
-    // Call handleResize after a short delay to ensure DOM is fully rendered
-    const timeoutId = setTimeout(handleResize, 100);
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      clearTimeout(timeoutId);
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
-  const scrollLeft = () => {
-    carouselRef.current.scrollBy({ left: -scrollDistance, behavior: 'smooth' });
-  };
-
-  const scrollRight = () => {
-    carouselRef.current.scrollBy({ left: scrollDistance, behavior: 'smooth' });
-  };
   const convertTime = (time) => {
     const minutes = parseInt(time);
     const hours = Math.floor(minutes / 60);
     const remainingMinutes = minutes % 60;
     return `${hours}h ${remainingMinutes}m`;
   };
-  if (!newMovies) {
+
+  if (!newMovies.items) {
     return <LoadingComponent />
   }
+
   if (loading) {
     return <LoadingComponent />
   }
+
   return (
-    <div className="container-fluid bg-dark text-light pb-3" >
+    <div className="container-fluid bg-dark text-light pb-3">
       <Helmet>
         <title>Trang chủ</title>
         <meta name="description" content="Trang chủ" />
@@ -117,14 +99,12 @@ function MovieList() {
         slidesPerView={1}
         pagination={{ clickable: true }}
         autoplay={{ delay: 4000 }}
-        onSwiper={(swiper) => console.log(swiper)}
         onSlideChange={handleSlideChange}
         grabCursor={true}
       >
-        {newMovies.map((newMovie) => (
+        {newMovies.items.map((newMovie) => (
           <SwiperSlide key={newMovie.slug}>
-            {/* <div className="position-relative"> */}
-            <div className='img-container position-relative swiper--img'>
+            <div className='img-container position-relative swiper--img mobile--header'>
               <img src={newMovie.poster_url} className="w-100 object-fit-cover" alt={newMovie.name} />
               <div className="position-absolute mobile--view" style={{ top: '40%', left: '20px' }}>
                 <div className="text-warp">
@@ -159,58 +139,180 @@ function MovieList() {
                 <Link to={`/watch/${newMovie.slug}`}><FontAwesomeIcon icon={faPlayCircle} fontSize={60} color="white" /></Link>
               </div>
             </div>
-            {/* </div> */}
           </SwiperSlide>
         ))}
       </Swiper>
-      <h3 className="mb-3 mt-3">Phim mới cập nhật:</h3>
+      <div className="card p-3 list--movie mt-3">
+        {/* done */}
+        <div className="d-flex align-items-center mb-3">
+          <h4 className="cate--movie--text">Phim mới cập nhật:</h4>
+          <Link to="/danh-sach/phim-moi-cap-nhat" className="text-decoration-none">
+            <div className="icon-container mx-2">
+              <FontAwesomeIcon
+                icon={faChevronRight}
+                fontSize={20}
+                color="white"
+                className="icon"
+              />
+              <span className="tooltip-text">Xem thêm</span>
+            </div>
+          </Link>
+        </div>
+
         <div>
-        <Swiper
-          modules={[Navigation, Pagination, Scrollbar, A11y]}
-          spaceBetween={10}
-          slidesPerView={6}
-          navigation
-          grabCursor={true}
-          autoplay={{ delay: 4000 }}
-          onSwiper={(swiper) => console.log(swiper)}
-          onSlideChange={() => console.log('slide change')}
-          breakpoints={{
-            // when window width is >= 320px
-            320: {
-              slidesPerView: 3,
-              spaceBetween: 5,
-              slidesPerGroup: 1
-            },
-            // when window width is >= 640px
-            1024: {
-              slidesPerView: 6,
-              spaceBetween: 10,
-              slidesPerGroup: 3
-            },
-            // when window width is >= 540px
-            768: {
-              slidesPerView: 4,
-              spaceBetween: 10,
-              slidesPerGroup: 2
-            }
-          }}
-        >
-          {newMovies.map((newMovie) => (
-            <SwiperSlide>
-              <div className="card border-0">
-                <div className='img-container overflow-hidden position-relative'>
-                  <img src={newMovie.thumb_url} className="card-img hover-thumb" height={350} alt={newMovie.name} />
-                  <div className="play-button">
-                    <Link to={`/watch/${newMovie.slug}`}><FontAwesomeIcon icon={faPlayCircle} fontSize={60} color="white" /></Link>
+          <Swiper
+            modules={[Navigation, Pagination, Scrollbar, A11y]}
+            spaceBetween={10}
+            slidesPerView={6}
+            navigation
+            grabCursor={true}
+            autoplay={{ delay: 4000 }}
+            breakpoints={{
+              320: {
+                slidesPerView: 3,
+                spaceBetween: 5,
+                slidesPerGroup: 1
+              },
+              1024: {
+                slidesPerView: 6,
+                spaceBetween: 10,
+                slidesPerGroup: 3
+              },
+              768: {
+                slidesPerView: 4,
+                spaceBetween: 10,
+                slidesPerGroup: 2
+              }
+            }}
+          >
+            {newMovies.items.map((newMovie) => (
+              <SwiperSlide key={newMovie.id}>
+                <div className="card border-0 movie--width">
+                  <div className='img-container overflow-hidden position-relative w-100'>
+                    <img src={newMovie.thumb_url} className="card-img w-100 hover-thumb" alt={newMovie.name} />
+                    <div className="play-button">
+                      <Link to={`/watch/${newMovie.slug}`}><FontAwesomeIcon icon={faPlayCircle} fontSize={60} color="white" /></Link>
+                    </div>
+                  </div>
+                  <div className='movie--name position-absolute'>
+                    <h6 className='text-center text-light'>{newMovie.name}</h6>
                   </div>
                 </div>
-                <div className='movie--name position-absolute'>
-                  <h6 className='text-center text-light'>{newMovie.name}</h6>
-                </div>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+
+        {/* phim trung quốc */}
+        {/* done */}
+        <div className="d-flex align-items-center mb-3 mt-3">
+          <h4 className="cate--movie--text">Phim Trung Quốc:</h4>
+          <Link to={'/danh-sach/quoc-gia/trung-quoc'} className="text-decoration-none">
+            <div className="icon-container mx-2">
+              <FontAwesomeIcon
+                icon={faChevronRight}
+                fontSize={20}
+                color="white"
+                className="icon"
+              />
+              <span className="tooltip-text">Xem thêm</span>
+            </div>
+          </Link>
+        </div>
+        <ChinaMovie country="trung-quoc" />
+        {/* phim hàn quốc */}
+        <div className="d-flex align-items-center mb-3 mt-3">
+          <h4 className="cate--movie--text">Phim Hàn Quốc:</h4>
+          <Link to={'/danh-sach/quoc-gia/han-quoc'} className="text-decoration-none">
+            <div className="icon-container mx-2">
+              <FontAwesomeIcon
+                icon={faChevronRight}
+                fontSize={20}
+                color="white"
+                className="icon"
+              />
+              <span className="tooltip-text">Xem thêm</span>
+            </div>
+          </Link>
+        </div>
+        <KoreanMovie country="han-quoc" />
+        {/* Phim âu mỹ */}
+        <div className="d-flex align-items-center mb-3 mt-3">
+          <h4 className="cate--movie--text">Phim Âu Mỹ:</h4>
+          <Link to={'/danh-sach/quoc-gia/au-my'} className="text-decoration-none">
+            <div className="icon-container mx-2">
+              <FontAwesomeIcon
+                icon={faChevronRight}
+                fontSize={20}
+                color="white"
+                className="icon"
+              />
+              <span className="tooltip-text">Xem thêm</span>
+            </div>
+          </Link>
+        </div>
+        <EuropeMovie country="au-my" />
+        {/* Phim phiêu lưu */}
+        <div className="d-flex align-items-center mb-3 mt-3">
+          <h4 className="cate--movie--text">&#x2694;Đắm mình vào thế giới phiêu lưu kì ảo:&#x1FA84;</h4>
+          <Link to={'/danh-sach/phieu-luu'} className="text-decoration-none">
+            <div className="icon-container mx-2">
+              <FontAwesomeIcon
+                icon={faChevronRight}
+                fontSize={20}
+                color="white"
+                className="icon"
+              />
+              <span className="tooltip-text">Xem thêm</span>
+            </div>
+          </Link>
+        </div>
+        <AdventureMovie cate="phieu-luu" />
+        <div className="d-flex align-items-center mb-3 mt-3">
+          <h4 className="cate--movie--text">&#x1F383;Rùng mình với màn đêm cất giấu những bí ẩn kinh hoàng!&#x1F47B;&#x1F578;</h4>
+          <Link to={'/danh-sach/kinh-di'} className="text-decoration-none">
+            <div className="icon-container mx-2">
+              <FontAwesomeIcon
+                icon={faChevronRight}
+                fontSize={20}
+                color="white"
+                className="icon"
+              />
+              <span className="tooltip-text">Xem thêm</span>
+            </div>
+          </Link>
+        </div>
+        <HorrifiedMovie cate="kinh-di" />
+        <div className="d-flex align-items-center mb-3 mt-3">
+          <h4 className="cate--movie--text">&#x1F4A5;Hành động đỉnh cao, bùng nổ mọi cảm xúc!&#x2694;&#x1F525;:</h4>
+          <Link to={'/danh-sach/hanh-dong'} className="text-decoration-none">
+            <div className="icon-container mx-2">
+              <FontAwesomeIcon
+                icon={faChevronRight}
+                fontSize={20}
+                color="white"
+                className="icon"
+              />
+              <span className="tooltip-text">Xem thêm</span>
+            </div>
+          </Link>
+        </div>
+        <ActionMovie cate="hanh-dong" />
+        <div className="d-flex align-items-center mb-3 mt-3">
+          <h4 className="cate--movie--text">&#x1F602;Cuối tuần, cười sảng khoái, quên hết muộn phiền!&#x1F923;:</h4>
+          <Link to={'/danh-sach/phim-hai'} className="text-decoration-none">
+            <div className="icon-container mx-2">
+              <FontAwesomeIcon
+                icon={faChevronRight}
+                fontSize={20}
+                color="white"
+                className="icon"
+              />
+              <span className="tooltip-text">Xem thêm</span>
+            </div>
+          </Link>
+        </div>
+        <ComedyMovie cate="phim-hai" />
       </div>
     </div>
   );

@@ -29,10 +29,12 @@
     display: block;
     position: relative;
     padding: 0.2em 0;
+    width: fit-content;
 }
 
 .nav-item1 a:hover {
     color: gold;
+    background-color: inherit;
 }
 
 .hover-dropdown:hover .dropdown-menu {

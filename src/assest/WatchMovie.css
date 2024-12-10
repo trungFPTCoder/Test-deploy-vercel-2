@@ -111,7 +111,7 @@
     100% { background-position: 0 0; }
 }
 .link-glow{
-    width: 20%;
+    width: 25%;
 }
 
 .nav--link {
@@ -155,11 +155,8 @@
 .sharing--text{
     color: #fff;
 }
-.language-hover{
-    width: 35%;
-}
+
 .language-img{
-    width: 100%;
     height: 100%;
     object-fit: cover;
 }

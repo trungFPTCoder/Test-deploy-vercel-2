@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
 const Pagination = ({ totalPages, currentPage, baseUrl }) => {
     const pageNumbers = [];
     const maxPagesToShow = 5; //có thể là 10
