@@ -95,7 +95,6 @@ function Header() {
                     <div className='col-4'>
                       <li><Link className="dropdown-item text-light" to={'/danh-sach/gia-tuong'}>Phim giả tưởng</Link></li>
                       <li><Link className="dropdown-item text-light" to={'/danh-sach/tam-ly'}>Phim tâm lý</Link></li>
-                      <li><Link className="dropdown-item text-light" to={'/danh-sach/phim-18'}>Phim 18+</Link></li>
                     </div>
                   </div>
                 </ul>
