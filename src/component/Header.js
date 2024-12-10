@@ -19,6 +19,7 @@ function Header() {
     if (searchKeyword.trim()) {
       navigate(`/tim-kiem?keyword=${searchKeyword}`);
     }
+    setSearchKeyword('');
   };
 
   const handleScroll = () => {
