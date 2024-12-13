@@ -27,6 +27,7 @@ import HorrifiedMovie from "./MovieCategory/HorrifiedMovie";
 import ActionMovie from "./MovieCategory/ActionMovie";
 import ComedyMovie from "./MovieCategory/ComedyMovie";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import VietNamMovie from "./MovieCountry/VietNamMovie";
 
 function MovieList() {
   const newMovies = useSelector((state) => state.newMovies);
@@ -252,6 +253,21 @@ function MovieList() {
           </Link>
         </div>
         <EuropeMovie country="au-my" />
+        <div className="d-flex align-items-center mb-3 mt-3">
+          <h4 className="cate--movie--text">Phim Việt Nam:</h4>
+          <Link to={'/danh-sach/quoc-gia/viet-nam'} className="text-decoration-none">
+            <div className="icon-container mx-2">
+              <FontAwesomeIcon
+                icon={faChevronRight}
+                fontSize={20}
+                color="white"
+                className="icon"
+              />
+              <span className="tooltip-text">Xem thêm</span>
+            </div>
+          </Link>
+        </div>
+        <VietNamMovie country="viet-nam" />
         {/* Phim phiêu lưu */}
         <div className="d-flex align-items-center mb-3 mt-3">
           <h4 className="cate--movie--text">&#x2694;Đắm mình vào thế giới phiêu lưu kì ảo:&#x1FA84;</h4>
