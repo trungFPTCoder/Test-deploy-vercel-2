@@ -72,6 +72,15 @@ const europeMoviesSlice = createSlice({
         }
     }
 });
+const vietNamMoviesSlice = createSlice({
+    name: 'vietNamMovies',
+    initialState: {},
+    reducers: {
+        setVietNamMovies(state, action) {
+            return action.payload;
+        }
+    }
+});
 const adventureMovieSlice = createSlice({
     name: 'adventureMovies',
     initialState: {},
@@ -122,6 +131,7 @@ export const { setAdventureMovies } = adventureMovieSlice.actions;
 export const { setHorrifiedMovies } = horrifiedMovieSlice.actions;
 export const { setActionMovies } = actionMovieSlice.actions;
 export const { setComedyMovies } = comedyMovieSlice.actions;
+export const { setVietNamMovies } = vietNamMoviesSlice.actions;
 const store = configureStore({
     reducer: {
         newMovies: newMovieSlice.reducer,
@@ -133,6 +143,7 @@ const store = configureStore({
         chinaMovies: chinaMoviesSlice.reducer,
         koreanMovies: koreanMoviesSlice.reducer,
         europeMovies: europeMoviesSlice.reducer,
+        vietNamMovies: vietNamMoviesSlice.reducer,
         adventureMovies: adventureMovieSlice.reducer,
         horrifiedMovies: horrifiedMovieSlice.reducer,
         actionMovies: actionMovieSlice.reducer,
