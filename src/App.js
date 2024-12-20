@@ -6,6 +6,7 @@ import Header from './component/Header';
 import Footer from './component/Footer';
 import { lazy, Suspense } from 'react';
 import LoadingComponent from './component/LoadingComponent';
+import Introduction from './component/Introduction';
 const WatchMovie = lazy(() => import('./component/WatchMovie'));
 const MovieList = lazy(() => import('./component/MovieList'));
 const Cinema = lazy(() => import('./component/Cinema'));
@@ -27,6 +28,7 @@ function App() {
             <Route path='/tim-kiem' element={<SearchMovie />} /> 
             <Route path='/watch/:slug' element={<WatchMovie />} />
             <Route path='/watch/cinema/:slug' element={<Cinema />} />
+            <Route path='/introduction' element={<Introduction />} />
           </Routes>
           <Footer></Footer>
         </BrowserRouter>
