@@ -64,7 +64,7 @@ function ChinaMovie({ country }) {
             >
                 {chinaMovies.items.map((chinaMovie) => (
                     <SwiperSlide>
-                        <div className="card border-0 movie--width">
+                        <div className="card border-0 movie--width" style={{height:"350px"}}>
                             <div className='img-container overflow-hidden position-relative'>
                                 <img src={chinaMovie.thumb_url} className="card-img hover-thumb" alt={chinaMovie.name} />
                                 <div className="play-button">
