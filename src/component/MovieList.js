@@ -188,7 +188,7 @@ function MovieList() {
           >
             {newMovies.items.map((newMovie) => (
               <SwiperSlide key={newMovie.id}>
-                <div className="card border-0 movie--width">
+                <div className="card border-0 movie--width" style={{height:"350px"}}>
                   <div className='img-container overflow-hidden position-relative w-100'>
                     <img src={newMovie.thumb_url} className="card-img w-100 hover-thumb" alt={newMovie.name} />
                     <div className="play-button">
