@@ -50,7 +50,7 @@ function CountryMovie() {
             <div className='row'>
                 {countryMovies.items.map((movie) => (
                     <div className='col-6 col-md-2 col-sm-4 mb-3'>
-                        <div className='card position-relative tooltip-wrapper border-0 w-100 movie--width'>
+                        <div className='card position-relative tooltip-wrapper border-0 w-100'>
                             <div className='img-container position-relative overflow-hidden'>
                                 <img
                                     src={movie.thumb_url}
