@@ -104,7 +104,7 @@ function WatchMovie() {
                             <div className='card p-4 bg-dark'>
                                 <div className='d-flex'>
                                     <Link to={`/watch/cinema/${slug}`} className='link-glow'>
-                                        <button className='glow-on-hover position-relative'>
+                                        <button className='glow-on-hover position-relative' disabled={movieDetails.episodes.length === 0}>
                                             Xem phim
                                             <FontAwesomeIcon icon={faPlay} className='position-absolute' style={{ right: '18%', top: '18px' }} />
                                         </button>
