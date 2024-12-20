@@ -30,6 +30,7 @@ function Footer() {
                                 <li className="nav-item nav-item1 mb-2"><a href="#" className="nav-link p-0">Giới thiệu về My Cinema VN</a></li>
                                 <li className="nav-item nav-item1 mb-2"><a href="#" className="nav-link p-0">Quy chế hoạt động</a></li>
                                 <li className="nav-item nav-item1 mb-2"><a href="#" className="nav-link p-0">Câu hỏi thường gặp</a></li>
+                                <li className="nav-item nav-item1 mb-2"><a href="https://phim.nguonc.com/" className="nav-link p-0" target="_blank" rel="noopener noreferrer">API</a></li>
                             </ul>
                         </div>
                         {/* mobile view */}
@@ -61,6 +62,7 @@ function Footer() {
                                             <li className="nav-item nav-item1 mb-2"><a href="#" className="nav-link p-0">Giới thiệu về My Cinema VN</a></li>
                                             <li className="nav-item nav-item1 mb-2"><a href="#" className="nav-link p-0">Quy chế hoạt động</a></li>
                                             <li className="nav-item nav-item1 mb-2"><a href="#" className="nav-link p-0">Câu hỏi thường gặp</a></li>
+                                            <li className="nav-item nav-item1 mb-2"><a href="https://phim.nguonc.com/" className="nav-link p-0" target="_blank" rel="noopener noreferrer">API</a></li>
                                         </ul>
                                     </div>
                                 </div>
