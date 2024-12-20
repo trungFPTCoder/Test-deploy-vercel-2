@@ -140,11 +140,9 @@ li.page-item.disabled .page-link{
   background-color: #ddd !important;
   color: #ddd;
 }
-.movie--width{
-  height: 350px;
-}
+
 @media screen and (max-width: 768px) {
-  .hover-thumb, .movie--width{
+  .hover-thumb{
     height: 250px;
   }
 
