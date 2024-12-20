@@ -123,7 +123,7 @@ function Cinema() {
                           : (tapFromURL ? tapFromURL : 'Full')}
                     </div>
                     <div className='border border-light border-1 mx-1 p-1 px-2 mb-2 rounded'>
-                      {convertTime(movieDetails.time) || 'Đang cập nhật'}
+                      {convertTime(movieDetails.time) ==='' ? convertTime(movieDetails.time) : 'Đang cập nhật'}
                     </div>
                   </div>
                   <div className='d-flex flex-wrap mt-2 text-light'>
