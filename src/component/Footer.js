@@ -1,4 +1,6 @@
+import { Link } from 'react-router-dom';
 import '../assest/Footer.css';
+
 function Footer() {
     return (
         <div className='text-light' style={{ backgroundColor: '#001' }}>
