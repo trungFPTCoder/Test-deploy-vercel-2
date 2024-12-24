@@ -32,7 +32,7 @@ function Cinema() {
   }, [dispatch, slug]);
 
   const searchParams = new URLSearchParams(location.search);
-  const tapFromURL = searchParams.get('tap');
+  let tapFromURL = searchParams.get('tap');
 
   const searchParamsType = new URLSearchParams(location.search);
   let typeFromURL = searchParamsType.get('type');
