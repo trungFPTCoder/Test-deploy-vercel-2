@@ -49,16 +49,22 @@ function Cinema() {
       movieInfo = typeMovie.items?.find(item => item.name === tapFromURL);
     }
   }
-  if(!tapFromURL && !typeFromURL){
+  if (!tapFromURL && !typeFromURL) {
     movieInfo = movieDetails.episodes?.[0].items?.[0];
     typeFromURL = movieDetails.episodes?.[0].server_name;
     //24/12/2024 có thể có lỗi trong tương lai
-    if(movieDetails.episodes?.[0].items?.[0].name === 'Full') {
-    tapFromURL = 'Full';
+    if (movieDetails.episodes?.[0].items?.[0].name.toLowerCase() === 'full') {
+      tapFromURL = 'full';
     } else {
       tapFromURL = '1';
     }
     ///
+  } else if (!tapFromURL && typeFromURL) {
+    if (movieDetails.episodes?.[0].items?.[0].name.toLowerCase() === 'full') {
+      tapFromURL = 'full';
+    } else {
+      tapFromURL = '1';
+    }
   }
   const convertTime = (time) => {
     const minutes = parseInt(time);
@@ -127,7 +133,7 @@ function Cinema() {
                     <div className='border border-light border-1 mx-1 p-1 px-2 mb-2 rounded'>
                       Tập { movieDetails.category?.[1]?.list?.[0]?.name.includes('Phim bộ')
                           ? (tapFromURL ? tapFromURL : '1')
-                          : (tapFromURL ? tapFromURL : 'Full')}
+                          : (tapFromURL ? tapFromURL.toUpperCase() : 'FULL')
                     </div>
                     <div className='border border-light border-1 mx-1 p-1 px-2 mb-2 rounded'>
                       {convertTime(movieDetails.time) ==='' ? convertTime(movieDetails.time) : 'Đang cập nhật'}
@@ -248,10 +254,10 @@ function Cinema() {
                   <div className='row g-2 mt-2 mb-2'>
                     {episode.items.map((item) => (
                       <div key={item.id} className='col-4 col-md-2 mb-1'>
-                        {/* 24/12/2024 có thể lỗi trong tương lai*/}
-                        {item.name === tapFromURL ? (
-                          <Link to={`/watch/cinema/${slug}?tap=${item.name}&type=${episode.server_name}`} className='text-decoration-none text-light' onClick={handleEpisodeSelect}>
-                            <div className='category--movie p-2 px-2 rounded text-center category--movie--checked'>
+                        {/* 24/12/2024 */}
+                        {item.name.toLowerCase() === tapFromURL ? (
+                           <Link to={`/watch/cinema/${slug}?tap=${item.name}&type=${episode.server_name}`} className='text-decoration-none text-light' onClick={handleEpisodeSelect}>
+                            <div className='p-2 px-2 rounded text-center category--movie--checked'>
                               Tập {item.name} &nbsp; <FontAwesomeIcon icon={faPlay}></FontAwesomeIcon>
                             </div>
                           </Link>//nếu đang coi tập này
