@@ -52,6 +52,13 @@ function Cinema() {
   if(!tapFromURL && !typeFromURL){
     movieInfo = movieDetails.episodes?.[0].items?.[0];
     typeFromURL = movieDetails.episodes?.[0].server_name;
+    //24/12/2024 có thể có lỗi trong tương lai
+    if(movieDetails.episodes?.[0].items?.[0].name === 'Full') {
+    tapFromURL = 'Full';
+    } else {
+      tapFromURL = '1';
+    }
+    ///
   }
   const convertTime = (time) => {
     const minutes = parseInt(time);
@@ -241,11 +248,21 @@ function Cinema() {
                   <div className='row g-2 mt-2 mb-2'>
                     {episode.items.map((item) => (
                       <div key={item.id} className='col-4 col-md-2 mb-1'>
-                        <Link to={`/watch/cinema/${slug}?tap=${item.name}&type=${episode.server_name}`} className='text-decoration-none text-light' onClick={handleEpisodeSelect}>
-                          <div className='category--movie p-2 px-2 rounded text-center'>
-                            Tập {item.name} &nbsp; <FontAwesomeIcon icon={faPlay}></FontAwesomeIcon>
-                          </div>
-                        </Link>
+                        {/* 24/12/2024 có thể lỗi trong tương lai*/}
+                        {item.name === tapFromURL ? (
+                          <Link to={`/watch/cinema/${slug}?tap=${item.name}&type=${episode.server_name}`} className='text-decoration-none text-light' onClick={handleEpisodeSelect}>
+                            <div className='category--movie p-2 px-2 rounded text-center category--movie--checked'>
+                              Tập {item.name} &nbsp; <FontAwesomeIcon icon={faPlay}></FontAwesomeIcon>
+                            </div>
+                          </Link>//nếu đang coi tập này
+                        ) : (
+                          <Link to={`/watch/cinema/${slug}?tap=${item.name}&type=${episode.server_name}`} className='text-decoration-none text-light' onClick={handleEpisodeSelect}>
+                            <div className='category--movie p-2 px-2 rounded text-center'>
+                              Tập {item.name} &nbsp; <FontAwesomeIcon icon={faPlay}></FontAwesomeIcon>
+                            </div>
+                          </Link>//chưa coi tập này
+                        )}
+                        {/*  */}
                       </div>
                     ))}
                   </div>
