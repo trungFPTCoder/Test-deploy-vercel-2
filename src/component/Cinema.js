@@ -133,7 +133,7 @@ function Cinema() {
                     <div className='border border-light border-1 mx-1 p-1 px-2 mb-2 rounded'>
                       Tập { movieDetails.category?.[1]?.list?.[0]?.name.includes('Phim bộ')
                           ? (tapFromURL ? tapFromURL : '1')
-                          : (tapFromURL ? tapFromURL.toUpperCase() : 'FULL')
+                          : (tapFromURL ? tapFromURL.toUpperCase() : 'FULL')}
                     </div>
                     <div className='border border-light border-1 mx-1 p-1 px-2 mb-2 rounded'>
                       {convertTime(movieDetails.time) ==='' ? convertTime(movieDetails.time) : 'Đang cập nhật'}
