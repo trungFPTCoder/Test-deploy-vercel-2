@@ -98,3 +98,6 @@
 .category--movie:hover{
     color: orange;
 }
+.category--movie--checked{
+    background-color: orange;
+}
