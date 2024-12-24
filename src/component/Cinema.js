@@ -105,7 +105,7 @@ function Cinema() {
         {/* chiếu phim */}
         <div>
           <div>
-            <iframe src={movieInfo.embed} className='video' title="First Episode tm" allowFullScreen></iframe>
+            <iframe src={movieInfo.embed} className='video' allowFullScreen></iframe>
           </div>
         </div>
         <div className='mt-5 border-bottom' style={{ paddingBottom: '10px' }}>
