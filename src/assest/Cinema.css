@@ -62,7 +62,7 @@
     transform: scale(1.1);
     transition: 0.5s ease;
     box-shadow: 0 0 10px 5px rgba(255, 165, 0, 0.5);
-    z-index: 999;
+    z-index: 80;
 }
 .comment-box{
     background-color: rgba(2, 2, 15, 0.652);
