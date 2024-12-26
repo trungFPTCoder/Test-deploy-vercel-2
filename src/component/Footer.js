@@ -10,8 +10,8 @@ function Footer() {
                         <div className="col-6 col-md-2 mb-3 desktop-view">
                             <h5>Tổng đài miễn phí</h5>
                             <ul className="nav flex-column">
-                                {/* <li className="nav-item nav-item1 mb-2">Tư vấn sản phẩm(Miễn phí)<br />1800.6601 (nhánh 1)</li> */}
-                                <li className="nav-item nav-item1 mb-2">Góp ý, khiếu nại<br></br> 1800.6616 (8h00 - 22h00)</li>
+                                {/* <li className="nav-item nav-item1 mb-2">Tư vấn sản phẩm(Miễn phí)<br />9999.9601 (nhánh 1)</li> */}
+                                <li className="nav-item nav-item1 mb-2">Góp ý, khiếu nại<br></br> 9999.9601 (8h00 - 22h00)</li>
                             </ul>
                         </div>
 
@@ -47,7 +47,7 @@ function Footer() {
                                     <div class="accordion-body">
                                         <ul className="nav flex-column">
                                             {/* <li className="nav-item nav-item1 mb-2">Tư vấn mua hàng (Miễn phí)<br /><a href="#" className="nav-link p-0 fw-bold">1800.6601 (nhánh 1)</a></li> */}
-                                            <li className="nav-item nav-item1 mb-2">Góp ý, khiếu nại<a href="#" className="nav-link p-0 fw-bold">1800.6616 (8h00 - 22h00)</a></li>
+                                            <li className="nav-item nav-item1 mb-2">Góp ý, khiếu nại<a href="#" className="nav-link p-0 fw-bold">9999.9601 (8h00 - 22h00)</a></li>
                                         </ul>
                                     </div>
                                 </div>
