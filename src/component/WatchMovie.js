@@ -53,6 +53,12 @@ function WatchMovie() {
                 <Helmet>
                     <title>Xem phim {movieDetails.name}</title>
                     <meta name="description" content={movieDetails.name} />
+
+                    <meta property="og:title" content={movieDetails.name} />
+                    <meta property="og:description" content={movieDetails.description} />
+                    <meta property="og:image" content={movieDetails.thumb_url} />
+                    <meta property="og:url" content={`https://mycinemavn.vercel.app/watch/${slug}`} />
+                    <meta property="og:type" content="website" />
                 </Helmet>
                 <div style={{ marginTop: '-30vh' }}>
                     <div className='row g-2'>
