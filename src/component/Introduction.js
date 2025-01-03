@@ -1,13 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 function Introduction() {
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768)
+        }
+        window.addEventListener('resize', handleResize)
+        return () => {
+            window.removeEventListener('resize', handleResize)
+        }
+    }, [])
     const IntroText = {
         color: '#aba8a8'
     }
     return (
         <div className="bg-dark" style={{ paddingTop: '60px' }}>
-            <div className="container pb-5">
-                <div style={{ padding: '0 15%' }}>
+            <div className={isMobile ? "container-fluid pb-5" : "container pb-5"}>
+                <div style={isMobile ? { padding: '0 5%' }:{padding:'0 15%'}}>
                     <div className="text-light">
                         <h4 className="pb-3 pt-5">MyCinemaVN - Nền Tảng Xem Phim Trực Tuyến Miễn Phí
                         </h4>
