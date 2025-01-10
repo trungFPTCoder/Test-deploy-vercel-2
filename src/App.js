@@ -20,7 +20,7 @@ function App() {
     <Suspense fallback={<LoadingComponent></LoadingComponent>}>
       <Provider store={store}>
         <BrowserRouter>
-          // <Header></Header>
+          {/* <Header /> */}
           <NewHeader/>
           <Routes>
             <Route path='/' element={<MovieList />} />
