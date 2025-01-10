@@ -7,6 +7,7 @@ import Footer from './component/Footer';
 import { lazy, Suspense } from 'react';
 import LoadingComponent from './component/LoadingComponent';
 import Introduction from './component/Introduction';
+import NewHeader from './component/NewHeader';
 const WatchMovie = lazy(() => import('./component/WatchMovie'));
 const MovieList = lazy(() => import('./component/MovieList'));
 const Cinema = lazy(() => import('./component/Cinema'));
@@ -19,7 +20,8 @@ function App() {
     <Suspense fallback={<LoadingComponent></LoadingComponent>}>
       <Provider store={store}>
         <BrowserRouter>
-          <Header></Header>
+          // <Header></Header>
+          <NewHeader/>
           <Routes>
             <Route path='/' element={<MovieList />} />
             <Route path='/danh-sach/:cate' element={<MovieCate />} />
