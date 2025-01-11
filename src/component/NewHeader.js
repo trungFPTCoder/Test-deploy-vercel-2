@@ -1,4 +1,4 @@
-import { faBars, faSearch, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faSearch, faUser, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
@@ -7,6 +7,8 @@ function NewHeader() {
     const [navbarBg, setNavbarBg] = useState('bg-dark opacity-75');
     const [searchKeyword, setSearchKeyword] = useState('');
     const [searchInput, setSearchInput] = useState('d-none');
+    const [isSearchActive, setIsSearchActive] = useState(false);
+
     const navigate = useNavigate();
     const handleScroll = () => {
         if (window.scrollY > 30) {
@@ -24,8 +26,10 @@ function NewHeader() {
     }, []);
     const handleSearch = () => {
         if (searchInput === 'd-none') {
+            setIsSearchActive(!isSearchActive);
             setSearchInput('d-block');
         } else {
+            setIsSearchActive(false);
             setSearchInput('d-none');
         }
     }
@@ -253,11 +257,17 @@ function NewHeader() {
                             </Link>
                         </div>
                         <div className={`${searchInput} search-container`} style={{ width: '90%' }}>
-                            <input type="text" placeholder="Tìm kiếm phim..." className="form-control search-input p-2 px-3" />
+                            <form role="search" onSubmit={handleSearchSubmit}>
+                                <input type="search" placeholder="Tìm kiếm phim..."
+                                    className="form-control search-input p-2 px-3"
+                                    aria-label="Search"
+                                    value={searchKeyword}
+                                    onChange={handleSearchChange} />
+                            </form>
                         </div>
                         <div style={{ marginLeft: 'auto' }}>
                             <button type='button' className='search-button' onClick={handleSearch}>
-                                <FontAwesomeIcon icon={faSearch} className='text-light' />
+                                <FontAwesomeIcon icon={isSearchActive ? faTimes : faSearch} className={isSearchActive ? `text-danger` : `text-light`} />
                             </button>
                         </div>
                     </div>
