@@ -96,7 +96,9 @@
     background-color: #343232;
 }
 .category--movie:hover{
-    color: orange;
+    color: white;
+    background-color: orange;
+    transition: 0.7s ease;
 }
 .category--movie--checked{
     background-color: orange;
