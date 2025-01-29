@@ -1,6 +1,6 @@
 import { faBars, faSearch, faUser, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import '../assest/NewNavbar.css'
 function NewHeader() {
@@ -8,7 +8,7 @@ function NewHeader() {
     const [searchKeyword, setSearchKeyword] = useState('');
     const [searchInput, setSearchInput] = useState('d-none');
     const [isSearchActive, setIsSearchActive] = useState(false);
-
+    const searchInputRef = useRef(null);
     const navigate = useNavigate();
     const handleScroll = () => {
         if (window.scrollY > 30) {
@@ -28,6 +28,11 @@ function NewHeader() {
         if (searchInput === 'd-none') {
             setIsSearchActive(!isSearchActive);
             setSearchInput('d-block');
+            if (!isSearchActive) {
+                setTimeout(() => {
+                  searchInputRef.current.focus();
+                }, 100); // Delay to ensure the input is visible before focusing
+              }
         } else {
             setIsSearchActive(false);
             setSearchInput('d-none');
@@ -262,6 +267,7 @@ function NewHeader() {
                                     className="form-control search-input p-2 px-3"
                                     aria-label="Search"
                                     value={searchKeyword}
+                                    ref={searchInputRef}
                                     onChange={handleSearchChange} />
                             </form>
                         </div>
