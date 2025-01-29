@@ -25,9 +25,11 @@ function NewHeader() {
         };
     }, []);
     const handleSearch = () => {
+        var searchButton = document.getElementById("searchInput");
         if (searchInput === 'd-none') {
             setIsSearchActive(!isSearchActive);
             setSearchInput('d-block');
+            searchButton.focus();
         } else {
             setIsSearchActive(false);
             setSearchInput('d-none');
@@ -262,6 +264,7 @@ function NewHeader() {
                                     className="form-control search-input p-2 px-3"
                                     aria-label="Search"
                                     value={searchKeyword}
+                                    id='searchInput'
                                     onChange={handleSearchChange} />
                             </form>
                         </div>
