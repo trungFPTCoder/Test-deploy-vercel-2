@@ -243,7 +243,6 @@ function Cinema() {
             ))}
           </div>
         </div>
-        {movieDetails.category[1].list[0].name ? (
           <div className='mt-5 text-light'>
             <h4 className='mb-3'>Các tập phim: </h4>
             {movieDetails.episodes
@@ -275,9 +274,6 @@ function Cinema() {
                 </div>
               ))}
           </div>
-        ) : (
-          <div></div>
-        )}
         <div className='mt-5 pb-3 text-light'>
           <div className='d-flex align-items-center'>
             <FontAwesomeIcon icon={faCommentDots} style={{ fontSize: '40px' }} color='white' />
