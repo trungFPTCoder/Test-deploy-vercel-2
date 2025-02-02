@@ -211,7 +211,7 @@ function WatchMovie() {
                                                     ))}
                                                 </div>
                                             </div>
-                                            {movieDetails.category[1].list[0].name ? (
+                                            
                                                 <div className='mt-5'>
                                                     <h4 className='mb-3'>Các tập phim: </h4>
                                                     <div className=''>
@@ -234,9 +234,7 @@ function WatchMovie() {
                                                         ))}
                                                     </div>
                                                 </div>
-                                            ) : (
-                                                <div></div>
-                                            )}
+                                            
                                         </div>
                                         <div className="tab-pane fade" id="details" role="tabpanel">
                                             <p>{movieDetails.description}</p>
