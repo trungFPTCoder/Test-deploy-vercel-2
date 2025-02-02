@@ -116,7 +116,7 @@ function Cinema() {
             <div className='col-md-10'>
               <div className='row'>
                 <div className='col-md-5 border-end'>
-                  <h5 className='text-light'>{movieDetails.name}</h5>
+                  <h5 className='text-light mt-2'>{movieDetails.name}</h5>
                   <small className='text-warning'>{movieDetails.original_name}</small>
 
                   <div className='d-flex flex-wrap mt-3 text-light'>
