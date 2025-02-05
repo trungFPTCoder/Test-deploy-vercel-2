@@ -17,7 +17,12 @@ const Pagination = ({ totalPages, currentPage, baseUrl }) => {
             pageNumbers.push(1, '...', currentPage - 1, currentPage, currentPage + 1, '...', totalPages);
         }
     }
-
+    const handleGotoTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
+    }
     return (
         <div className='pb-3 pt-3'>
             {totalPages === 1 ? (
@@ -28,7 +33,7 @@ const Pagination = ({ totalPages, currentPage, baseUrl }) => {
                 <nav aria-label="Page navigation example">
                     <ul className="pagination justify-content-center">
                         <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
-                            <Link className="page-link" to={`${baseUrl}?page=${currentPage - 1}`} aria-label="Previous">
+                            <Link className="page-link" to={`${baseUrl}?page=${currentPage - 1}`} aria-label="Previous" onClick={handleGotoTop}>
                                 <span aria-hidden="true">&laquo;</span>
                             </Link>
                         </li>
@@ -37,14 +42,14 @@ const Pagination = ({ totalPages, currentPage, baseUrl }) => {
                                 {page === '...' ? (
                                     <span className="page-link bg-dark text-light">...</span>
                                 ) : (
-                                    <Link className="page-link" to={`${baseUrl}?page=${page}`}>
+                                    <Link className="page-link" to={`${baseUrl}?page=${page}`} onClick={handleGotoTop}>
                                         {page}
                                     </Link>
                                 )}
                             </li>
                         ))}
                         <li className={`page-item ${currentPage === totalPages ? 'disabled' : ''}`}>
-                            <Link className="page-link" to={`${baseUrl}?page=${currentPage + 1}`} aria-label="Next">
+                            <Link className="page-link" to={`${baseUrl}?page=${currentPage + 1}`} aria-label="Next" onClick={handleGotoTop}>
                                 <span aria-hidden="true">&raquo;</span>
                             </Link>
                         </li>
