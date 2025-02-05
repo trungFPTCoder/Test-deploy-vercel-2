@@ -31,7 +31,7 @@ function NewHeader() {
             if (!isSearchActive) {
                 setTimeout(() => {
                   searchInputRef.current.focus();
-                }, 90); // Delay to ensure the input is visible before focusing
+                }, 90); 
               }
         } else {
             setIsSearchActive(false);
