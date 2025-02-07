@@ -2,7 +2,10 @@
     border-radius: 10px;
     padding: 5px 10px;
 }
-
+.nav-item-hover a:hover {
+    background: orange;
+    transition: 0.5s ease;
+}
 .nav-item.active{
     background: orange;
     border-radius: 10px;
