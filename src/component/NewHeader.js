@@ -77,13 +77,13 @@ function NewHeader() {
                                     </button>
                                 </form>
                             </div>
-                            <div className="nav-item mx-2">
+                            <div className="nav-item nav-item-hover mx-2">
                                 <Link to={`/danh-sach/phim-le`} className="nav-link">Phim lẻ</Link>
                             </div>
-                            <div className="nav-item mx-2">
+                            <div className="nav-item nav-item-hover mx-2">
                                 <Link to={`/danh-sach/phim-bo`} className="nav-link">Phim bộ</Link>
                             </div>
-                            <div className="nav-item mx-2">
+                            <div className="nav-item nav-item-hover mx-2">
                                 <Link to={`/danh-sach/phim-dang-chieu`} className="nav-link">Phim đang chiếu</Link>
                             </div>
                             <div className="nav-item dropdown mx-3">
@@ -286,13 +286,13 @@ function NewHeader() {
                                 <FontAwesomeIcon icon={faUser} /> &nbsp; Đăng nhập (Future)
                             </button>
                         </div>
-                        <div className="nav-item mb-2">
+                        <div className="nav-item nav-item-hover mb-2">
                             <Link to={`/danh-sach/phim-le`} className="nav-link">Phim lẻ</Link>
                         </div>
-                        <div className="nav-item mb-2">
+                        <div className="nav-item nav-item-hover mb-2">
                             <Link to={`/danh-sach/phim-bo`} className="nav-link">Phim bộ</Link>
                         </div>
-                        <div className="nav-item mb-2">
+                        <div className="nav-item nav-item-hover mb-2">
                             <Link to={`/danh-sach/phim-dang-chieu`} className="nav-link">Phim đang chiếu</Link>
                         </div>
                         <div className="nav-item dropdown mb-3" style={{ paddingLeft: '10px' }}>
