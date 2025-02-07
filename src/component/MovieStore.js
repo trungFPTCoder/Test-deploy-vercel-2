@@ -35,6 +35,15 @@ const searchMovieSlide = createSlice({
         }
     }
 });
+const searchMovieSlideSuggest = createSlice({
+    name: 'SearchMoviesSuggest',
+    initialState: {},
+    reducers: {
+        setSearchMoviesSuggest(state, action) {
+            return action.payload;
+        }
+    }
+});
 const countryMoviesSlice = createSlice({
     name: 'countryMovies',
     initialState: {},
@@ -117,11 +126,25 @@ const comedyMovieSlice = createSlice({
         }
     }
 });
+// Thử nghiệm login
+const accountSlice = createSlice({
+    name: 'account',
+    initialState: {},
+    reducers: {
+        setAccount(state, action) {
+            return action.payload;
+        },
+        addAccount(state, action) {
+            state.push(action.payload);//thực hiện action add thì push 
+        }
+    }
+});
 //////////
 export const { setNewMovies } = newMovieSlice.actions;
 export const { setMovieDetails } = movieDetailsSlice.actions;
 export const { setCategoryMovies } = categoryMoviesSlice.actions;
 export const { setSearchMovies } = searchMovieSlide.actions;
+export const { setSearchMoviesSuggest } = searchMovieSlideSuggest.actions;
 export const { setCountryMovies } = countryMoviesSlice.actions;
 // test
 export const { setChinaMovies } = chinaMoviesSlice.actions;
@@ -132,12 +155,15 @@ export const { setHorrifiedMovies } = horrifiedMovieSlice.actions;
 export const { setActionMovies } = actionMovieSlice.actions;
 export const { setComedyMovies } = comedyMovieSlice.actions;
 export const { setVietNamMovies } = vietNamMoviesSlice.actions;
+// Thử nghiệm login
+export const { setAccount, addAccount } = accountSlice.actions;
 const store = configureStore({
     reducer: {
         newMovies: newMovieSlice.reducer,
         movieDetails: movieDetailsSlice.reducer,
         categoryMovies: categoryMoviesSlice.reducer,
         searchMovies: searchMovieSlide.reducer,
+        searchMoviesSuggest: searchMovieSlideSuggest.reducer,
         countryMovies: countryMoviesSlice.reducer,
         // test
         chinaMovies: chinaMoviesSlice.reducer,
@@ -147,7 +173,9 @@ const store = configureStore({
         adventureMovies: adventureMovieSlice.reducer,
         horrifiedMovies: horrifiedMovieSlice.reducer,
         actionMovies: actionMovieSlice.reducer,
-        comedyMovies: comedyMovieSlice.reducer
+        comedyMovies: comedyMovieSlice.reducer,
+        // Thử nghiệm login
+        account: accountSlice.reducer
     }
 });
 
