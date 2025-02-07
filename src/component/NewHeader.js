@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import '../assest/NewNavbar.css'
 function NewHeader() {
-    const [navbarBg, setNavbarBg] = useState('bg-dark opacity-75 pt-2 pb-2');
+    const [navbarBg, setNavbarBg] = useState('background-navbar pt-2 pb-2');
     const [searchKeyword, setSearchKeyword] = useState('');
     const [searchInput, setSearchInput] = useState('d-none');
     const [isSearchActive, setIsSearchActive] = useState(false);
@@ -12,9 +12,9 @@ function NewHeader() {
     const navigate = useNavigate();
     const handleScroll = () => {
         if (window.scrollY > 30) {
-            setNavbarBg('bg-dark tran-nav');
+            setNavbarBg('background-navbar-2 tran-nav');
         } else {
-            setNavbarBg('bg-dark opacity-75 tran-nav pt-2 pb-2');
+            setNavbarBg('background-navbar tran-nav pt-2 pb-2');
         }
     };
 
