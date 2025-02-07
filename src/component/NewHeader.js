@@ -2,19 +2,22 @@ import { faBars, faSearch, faUser, faTimes } from '@fortawesome/free-solid-svg-i
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import SearchSuggest from './SearchSuggest';
 import '../assest/NewNavbar.css'
 function NewHeader() {
-    const [navbarBg, setNavbarBg] = useState('bg-dark opacity-75 pt-2 pb-2');
+    const [navbarBg, setNavbarBg] = useState('background-navbar pt-2 pb-2');
     const [searchKeyword, setSearchKeyword] = useState('');
     const [searchInput, setSearchInput] = useState('d-none');
     const [isSearchActive, setIsSearchActive] = useState(false);
+    const [display, setDisplay] = useState("d-none");
    const searchInputRef = useRef(null);
+    const searchRef = useRef([]);
     const navigate = useNavigate();
     const handleScroll = () => {
         if (window.scrollY > 30) {
-            setNavbarBg('bg-dark tran-nav');
+            setNavbarBg('background-navbar-2 tran-nav');
         } else {
-            setNavbarBg('bg-dark opacity-75 tran-nav pt-2 pb-2');
+            setNavbarBg('background-navbar tran-nav pt-2 pb-2');
         }
     };
 
@@ -39,10 +42,6 @@ function NewHeader() {
             setSearchInput('d-none');
         }
     }
-    const handleSearchChange = (e) => {
-        setSearchKeyword(e.target.value);
-    };
-
     const handleSearchSubmit = (e) => {
         e.preventDefault();
         if (searchKeyword.trim()) {
@@ -50,6 +49,29 @@ function NewHeader() {
         }
         setSearchKeyword('');
     };
+    const handleInputChange = (e) => {
+        setSearchKeyword(e.target.value);
+        setDisplay("d-block");
+    };
+    const handleDisplay = () => {
+        if (searchKeyword) {
+            setDisplay("d-block");
+        } else {
+            setDisplay("d-none");
+        }
+    }
+    const handleClickOutside = (event) => {
+        if (searchRef.current.every(ref => ref && !ref.contains(event.target))) {
+            setDisplay("d-none");
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
     return (
         <div>
             {/* desktop navbar */}
@@ -68,14 +90,17 @@ function NewHeader() {
                                     </div>
                                 </Link>
                             </div>
-                            <div className="position-relative mx-2">
+                            <div className="position-relative mx-2" ref={el => searchRef.current[0] = el}>
                                 <form role='search' onSubmit={handleSearchSubmit}>
                                     <input type="text" placeholder="Tìm kiếm phim..." className="form-control search-input" size="45"
-                                        style={{ paddingLeft: '40px' }} value={searchKeyword} onChange={handleSearchChange} />
+                                        style={{ paddingLeft: '40px' }} value={searchKeyword} onClick={handleDisplay} onChange={handleInputChange} />
                                     <button className='search-btn'>
-                                        <FontAwesomeIcon icon={faSearch} className="position-absolute " />
+                                        <FontAwesomeIcon icon={faSearch} color='white' className="position-absolute " />
                                     </button>
                                 </form>
+                                <div className={`${display}`}>
+                                    <SearchSuggest keywordFromURL={searchKeyword} />
+                                </div>
                             </div>
                             <div className="nav-item nav-item-hover mx-2">
                                 <Link to={`/danh-sach/phim-le`} className="nav-link">Phim lẻ</Link>
@@ -262,14 +287,17 @@ function NewHeader() {
                                 </div>
                             </Link>
                         </div>
-                        <div className={`${searchInput} search-container`} style={{ width: '90%' }}>
+                        <div className={`${searchInput} search-container`} style={{ width: '90%' }} ref={el => searchRef.current[1] = el}>
                             <form role="search" onSubmit={handleSearchSubmit}>
                                 <input type="search" placeholder="Tìm kiếm phim..."
                                     className="form-control search-input p-2 px-3"
                                     aria-label="Search"
                                     value={searchKeyword}
                                     ref={searchInputRef}
-                                    onChange={handleSearchChange} />
+                                    onChange={handleInputChange} />
+                                <div className={`${display}`}>
+                                    <SearchSuggest keywordFromURL={searchKeyword} />
+                                </div>
                             </form>
                         </div>
                         <div style={{ marginLeft: 'auto' }}>
