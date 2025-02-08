@@ -8,7 +8,7 @@ function NewHeader() {
     const [searchKeyword, setSearchKeyword] = useState('');
     const [searchInput, setSearchInput] = useState('d-none');
     const [isSearchActive, setIsSearchActive] = useState(false);
-    const searchInputRef = useRef(null);
+    // const searchInputRef = useRef(null);
     const navigate = useNavigate();
     const handleScroll = () => {
         if (window.scrollY > 30) {
@@ -28,11 +28,11 @@ function NewHeader() {
         if (searchInput === 'd-none') {
             setIsSearchActive(!isSearchActive);
             setSearchInput('d-block');
-            if (!isSearchActive) {
-                setTimeout(() => {
-                  searchInputRef.current.focus();
-                }, 90); 
-              }
+            // if (!isSearchActive) {
+            //     setTimeout(() => {
+            //       searchInputRef.current.focus();
+            //     }, 90); 
+            //   }
         } else {
             setIsSearchActive(false);
             setSearchInput('d-none');
@@ -267,7 +267,7 @@ function NewHeader() {
                                     className="form-control search-input p-2 px-3"
                                     aria-label="Search"
                                     value={searchKeyword}
-                                    ref={searchInputRef}
+{/*ref={searchInputRef}*/}
                                     onChange={handleSearchChange} />
                             </form>
                         </div>
