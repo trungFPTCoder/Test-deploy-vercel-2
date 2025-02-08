@@ -267,7 +267,7 @@ function NewHeader() {
                                     className="form-control search-input p-2 px-3"
                                     aria-label="Search"
                                     value={searchKeyword}
-{/*ref={searchInputRef}*/}
+// ref={searchInputRef}
                                     onChange={handleSearchChange} />
                             </form>
                         </div>
