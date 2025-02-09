@@ -63,7 +63,18 @@ function MovieList() {
       setSlug(newMovies.items[0].slug); // Set initial slug to the first movie's slug
     }
   }, [newMovies]);
-
+  //09/02/2025
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768)
+        }
+        window.addEventListener('resize', handleResize)
+        return () => {
+            window.removeEventListener('resize', handleResize)
+        }
+    }, [])
+  //////////////////////////////////////////////////////////////
   const handleSlideChange = (swiper) => {
     const currentSlideIndex = swiper.activeIndex;
     const currentMovie = newMovies.items[currentSlideIndex];
@@ -88,7 +99,7 @@ function MovieList() {
   }
 
   return (
-    <div className="container-fluid bg-dark text-light pb-3">
+    <div className={isMobile ? "container-fluid bg-dark text-light pb-5 px-0" : "container-fluid bg-dark text-light pb-5"}>
       <Helmet>
         <title>Trang chủ</title>
         <meta name="description" content="Trang chủ" />
