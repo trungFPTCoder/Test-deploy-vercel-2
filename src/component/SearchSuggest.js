@@ -58,7 +58,7 @@ function SearchSuggest({ keywordFromURL }) {
         const remainingMinutes = minutes % 60;
         return `${hours}h ${remainingMinutes}m`;
     };
-    console.log('2' + searchMovies.items);
+    // console.log('2' + searchMovies.items);
     return (
         <div className='text-light'>
             <div className='position-relative'>
