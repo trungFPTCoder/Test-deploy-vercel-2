@@ -1,30 +1,47 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { setSearchMovies, setSearchMoviesSuggest } from './MovieStore';
 import { fetchSearchMovie } from '../service/MovieService';
 import { useDispatch, useSelector } from 'react-redux';
 import LoadingComponent from './LoadingComponent';
 import '../assest/SearchSuggest.css';
 import { Link } from 'react-router-dom';
+import debounce from 'lodash.debounce';
 function SearchSuggest({ keywordFromURL }) {
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // useEffect(() => {
+    //     const loadMovieSearch = async () => {
+    //         try {
+    //             setLoading(true);
+    //             const searchMovieData = await fetchSearchMovie(keywordFromURL, currentPage);
+    //             dispatch(setSearchMoviesSuggest(searchMovieData));
+    //             setLoading(false);
+    //         } catch (error) {
+    //             // console.log(error);
+    //             setLoading(false);
+    //             return <div>Not found</div>
+    //         }
+    //     };
+    //     loadMovieSearch();
+    // }, [dispatch, keywordFromURL, currentPage]);
+    const loadMovieSearch = useCallback(debounce(async (keyword, page) => {
+        try {
+            setLoading(true);
+            const searchMovieData = await fetchSearchMovie(keyword, page);
+            dispatch(setSearchMoviesSuggest(searchMovieData));
+            setLoading(false);
+        } catch (error) {
+            setLoading(false);
+            console.error('Error fetching movie data:', error);
+        }
+    }, 300), [dispatch]);
     useEffect(() => {
-        const loadMovieSearch = async () => {
-            try {
-                setLoading(true);
-                const searchMovieData = await fetchSearchMovie(keywordFromURL, currentPage);
-                dispatch(setSearchMoviesSuggest(searchMovieData));
-                setLoading(false);
-            } catch (error) {
-                // console.log(error);
-                setLoading(false);
-                return <div>Not found</div>
-            }
-        };
-        loadMovieSearch();
-    }, [dispatch, keywordFromURL, currentPage]);
+        if (keywordFromURL) {
+            loadMovieSearch(keywordFromURL, currentPage);
+        }
+    }, [keywordFromURL, currentPage, loadMovieSearch]);
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     const searchMovies = useSelector((state) => state.searchMoviesSuggest);
@@ -41,7 +58,7 @@ function SearchSuggest({ keywordFromURL }) {
         const remainingMinutes = minutes % 60;
         return `${hours}h ${remainingMinutes}m`;
     };
-
+    console.log('2' + searchMovies.items);
     return (
         <div className='text-light'>
             <div className='position-relative'>
