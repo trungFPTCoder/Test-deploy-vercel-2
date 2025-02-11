@@ -1,3 +1,4 @@
+Link To Test: https://my-cinema-new-git-test-trungs-projects-cd561454.vercel.app/
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
