@@ -2,6 +2,8 @@ import './App.css';
 import { Provider } from 'react-redux';
 import store from './component/MovieStore';
 import { BrowserRouter, Navigate, Route, Router, Routes } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
+
 
 import Footer from './component/Footer';
 import { lazy, Suspense } from 'react';
@@ -15,8 +17,10 @@ const MovieCate = lazy(() => import('./component/MovieCate'));
 const SearchMovie = lazy(() => import('./component/SearchMovie'));
 const NewMovie = lazy(() => import('./component/MovieCate/NewMovie'));
 const CountryMovie = lazy(() => import('./component/MovieCate/CountryMovie'));
+
 function App() {
   return (
+    <HelmetProvider>
     <Suspense fallback={<LoadingComponent></LoadingComponent>}>
       <Provider store={store}>
         <BrowserRouter>
@@ -36,6 +40,7 @@ function App() {
         </BrowserRouter>
       </Provider>
     </Suspense>
+  </HelmetProvider>
   );
 }
 
