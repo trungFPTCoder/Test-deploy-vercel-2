@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setMovieDetails } from './MovieStore';
 import '../assest/WatchMovie.css';
 import LoadingComponent from './LoadingComponent';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMicrophone, faPlay } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook } from '@fortawesome/free-brands-svg-icons';
