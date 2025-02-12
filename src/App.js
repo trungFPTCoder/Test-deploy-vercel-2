@@ -2,7 +2,6 @@ import './App.css';
 import { Provider } from 'react-redux';
 import store from './component/MovieStore';
 import { BrowserRouter, Navigate, Route, Router, Routes } from 'react-router-dom';
-import Header from './component/Header';
 import Footer from './component/Footer';
 import { lazy, Suspense } from 'react';
 import LoadingComponent from './component/LoadingComponent';
@@ -20,7 +19,7 @@ function App() {
     <Suspense fallback={<LoadingComponent></LoadingComponent>}>
       <Provider store={store}>
         <BrowserRouter>
-          {/* <Header /> */}
+          
           <NewHeader/>
           <Routes>
             <Route path='/' element={<MovieList />} />
