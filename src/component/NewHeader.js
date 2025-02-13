@@ -191,12 +191,12 @@ function NewHeader() {
                                     </div>
                                 </ul>
                             </div>
-                            <div className="nav-item dropdown mx-3">
+                            <div className="nav-item dropdown dropdown-hover mx-3">
                                 <div className="nav-link dropdown-toggle" id="navbarDropdown" role="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
                                     Quốc gia
                                 </div>
-                                <ul className="dropdown-menu bg-dark p-2 border-1 border-light" style={{ width: '300px' }}
+                                <ul className="dropdown-menu dropdown-menu-hover bg-dark p-2 border-1 border-light" style={{ width: '300px' }}
                                     aria-labelledby="navbarDropdown">
                                     <div className='row'>
                                         <div className='col-6'>
