@@ -269,7 +269,7 @@ function NewHeader() {
 
             {/* mobile, small desktop, tablet version (smaller than 1024px)*/}
             <div className="mobile-view position-fixed w-100" style={{ zIndex: '1100' }}>
-                <div className={`container-fluid ${navbarBg} text-light`}>
+                <div className={`container-fluid ${navbarBg} text-light pt-2 pb-2`}>
                     <div className="d-flex align-items-center position-relative">
                         <button className="btn btn-dark menu-toggle" type="button" data-bs-toggle="collapse"
                             data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
