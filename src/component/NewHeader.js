@@ -565,7 +565,7 @@ function NewHeader() {
                                     data-bs-toggle="dropdown" aria-expanded="false">
                                     Thể loại
                                 </div>
-                                <ul className="dropdown-menu bg-dark p-2 border-1 border-light" style={{ width: '500px' }}
+                                <ul className="dropdown-menu dropdown-menu-hover bg-dark p-2 border-1 border-light" style={{ width: '500px' }}
                                     aria-labelledby="navbarDropdown">
                                     <div className='row'>
                                         <div className='col-4'>
