@@ -1,39 +1,53 @@
 import { Link } from 'react-router-dom';
 import '../assest/Footer.css';
-
+import { useEffect, useState } from 'react';
 function Footer() {
+    const [isTablet, setIsTablet] = useState(window.innerWidth < 1024)
+    useEffect(() => {
+        const handleResize = () => {
+            setIsTablet(window.innerWidth < 1024)
+        }
+        window.addEventListener('resize', handleResize)
+        return () => {
+            window.removeEventListener('resize', handleResize)
+        }
+    }, [])
     return (
         <div className='text-light' style={{ backgroundColor: '#001' }}>
             <div className="container">
                 <footer className="py-5">
                     <div className="row">
-                        <div className="col-6 col-md-2 mb-3 desktop-view">
-                            <h5>Tổng đài miễn phí</h5>
-                            <ul className="nav flex-column">
-                                {/* <li className="nav-item nav-item1 mb-2">Tư vấn sản phẩm(Miễn phí)<br />9999.9601 (nhánh 1)</li> */}
-                                <li className="nav-item nav-item1 mb-2">Góp ý, khiếu nại<br></br> 9999.9601 (8h00 - 22h00)</li>
-                            </ul>
-                        </div>
+                        <div className='col-8'>
+                            <div className='row'>
+                                <div className="col-md-4 mb-3 desktop-view">
+                                    <h5>Tổng đài miễn phí</h5>
+                                    <ul className="nav flex-column">
+                                        {/* <li className="nav-item nav-item1 mb-2">Tư vấn sản phẩm(Miễn phí)<br />1800.6601 (nhánh 1)</li> */}
+                                        <li className="nav-item nav-item1 mb-2">Góp ý, khiếu nại<br></br> 1800.6616 (8h00 - 22h00)</li>
+                                    </ul>
+                                </div>
 
-                        <div className="col-6 col-md-3 mb-3 desktop-view">
-                            <h5>Chính sách</h5>
-                            <ul className="nav flex-column">
-                                {/* <li className="nav-item nav-item1 mb-2"><a href="#" className="nav-link p-0">Chính sách đổi trả</a></li> */}
-                                <li className="nav-item nav-item1 mb-2"><a href="#" className="nav-link p-0">Chính sách bảo mật</a></li>
-                                <li className="nav-item nav-item1 mb-2"><a href="#" className="nav-link p-0">Chính sách thu thập & xử lý dữ liệu cá nhân</a></li>
-                                <li className="nav-item nav-item1 mb-2"><a href="#" className="nav-link p-0">Chính sách về thông tin và quyền riêng tư</a></li>
-                                <li className="nav-item nav-item1 mb-2"><a href="#" className="nav-link p-0">Chính sách về phim</a></li>
-                            </ul>
-                        </div>
+                                <div className="col-md-4 mb-3 desktop-view">
+                                    <h5>Chính sách</h5>
+                                    <ul className="nav flex-column">
+                                        {/* <li className="nav-item nav-item1 mb-2"><a href="#" className="nav-link p-0">Chính sách đổi trả</a></li> */}
+                                        <li className="nav-item nav-item1 mb-2"><a href="#" className="nav-link p-0">Chính sách bảo mật</a></li>
+                                        <li className="nav-item nav-item1 mb-2"><a href="#" className="nav-link p-0">Chính sách thu thập & xử lý dữ liệu cá nhân</a></li>
+                                        <li className="nav-item nav-item1 mb-2"><a href="#" className="nav-link p-0">Chính sách về thông tin và quyền riêng tư</a></li>
+                                        <li className="nav-item nav-item1 mb-2"><a href="#" className="nav-link p-0">Chính sách về phim</a></li>
+                                    </ul>
+                                </div>
 
-                        <div className="col-6 col-md-3 mb-3 desktop-view">
-                            <h5>Về chúng tôi</h5>
-                            <ul className="nav flex-column">
-                                <li className="nav-item nav-item1 mb-2"><Link to={'/introduction'} className="nav-link p-0">Giới thiệu về My Cinema VN</Link></li>
-                                <li className="nav-item nav-item1 mb-2"><a href="#" className="nav-link p-0">Quy chế hoạt động</a></li>
-                                <li className="nav-item nav-item1 mb-2"><a href="#" className="nav-link p-0">Câu hỏi thường gặp</a></li>
-                                <li className="nav-item nav-item1 mb-2"><a href="https://phim.nguonc.com/" className="nav-link p-0" target="_blank" rel="noopener noreferrer">API</a></li>
-                            </ul>
+                                <div className="col-md-4 mb-3 desktop-view">
+                                    <h5>Về chúng tôi</h5>
+                                    <ul className="nav flex-column">
+                                        <li className="nav-item nav-item1 mb-2"><Link to={'/introduction'} className="nav-link p-0">Giới thiệu về My Cinema VN</Link></li>
+                                        <li className="nav-item nav-item1 mb-2"><a href="#" className="nav-link p-0">Quy chế hoạt động</a></li>
+                                        <li className="nav-item nav-item1 mb-2"><a href="#" className="nav-link p-0">Câu hỏi thường gặp</a></li>
+                                        <li className="nav-item nav-item1 mb-2"><a href="https://phim.nguonc.com/" className="nav-link p-0" target="_blank" rel="noopener noreferrer">API</a></li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                         {/* mobile view */}
                         <div class="accordion mobile-view mb-3" id="accordionPanelsStayOpenExample" data-bs-theme="dark">
@@ -47,7 +61,7 @@ function Footer() {
                                     <div class="accordion-body">
                                         <ul className="nav flex-column">
                                             {/* <li className="nav-item nav-item1 mb-2">Tư vấn mua hàng (Miễn phí)<br /><a href="#" className="nav-link p-0 fw-bold">1800.6601 (nhánh 1)</a></li> */}
-                                            <li className="nav-item nav-item1 mb-2">Góp ý, khiếu nại<a href="#" className="nav-link p-0 fw-bold">9999.9601 (8h00 - 22h00)</a></li>
+                                            <li className="nav-item nav-item1 mb-2">Góp ý, khiếu nại<a href="#" className="nav-link p-0 fw-bold">1800.6616 (8h00 - 22h00)</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -88,7 +102,7 @@ function Footer() {
                             </div>
                             <hr />
                         </div>
-                        <div className="col-md-4 mb-3">
+                        <div className={isTablet ? 'col-12 mb-3' : 'col-4 mb-3'}>
                             <form>
                                 <h5>Đăng ký để nhận thông tin mới nhất</h5>
                                 <p className='text-secondary'>Những bộ phim hấp dẫn đang chờ bạn*</p>
@@ -103,7 +117,7 @@ function Footer() {
                     </div>
 
                     <div className="d-flex flex-column flex-sm-row justify-content-between border-top">
-                        <p>&copy; 2024 Company, Inc. All rights reserved.</p>
+                        <p>&copy; 2024 My Cinema VN, Inc. All rights reserved.</p>
                     </div>
                 </footer>
             </div>
