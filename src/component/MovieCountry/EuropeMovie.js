@@ -16,12 +16,26 @@ function EuropeMovie({ country }) {
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(true);
     const europeMovies = useSelector((state) => state.europeMovies);
+    // useEffect(() => {
+    //     const loadEuropeMovies = async () => {
+    //         setLoading(true);
+    //         const movieData = await fetchMovieCountry(country);
+    //         dispatch(setEuropeMovies(movieData));
+    //         setLoading(false);
+    //     }
+    //     loadEuropeMovies();
+    // }, [dispatch, country]);
     useEffect(() => {
         const loadEuropeMovies = async () => {
-            setLoading(true);
-            const movieData = await fetchMovieCountry(country);
-            dispatch(setEuropeMovies(movieData));
-            setLoading(false);
+            try {
+                setLoading(true);
+                const movieData = await fetchMovieCountry(country);
+                dispatch(setEuropeMovies(movieData));
+            } catch (error) {
+                console.error('Failed to fetch Europe movies:', error);
+            } finally {
+                setLoading(false);
+            }
         }
         loadEuropeMovies();
     }, [dispatch, country]);
