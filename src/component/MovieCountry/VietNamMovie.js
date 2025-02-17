@@ -16,12 +16,26 @@ function VietNamMovie({ country }) {
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(true);
     const vietNamMovies = useSelector((state) => state.vietNamMovies);
+    // useEffect(() => {
+    //     const loadVietNamMovies = async () => {
+    //         setLoading(true);
+    //         const movieData = await fetchMovieCountry(country);
+    //         dispatch(setVietNamMovies(movieData));
+    //         setLoading(false);
+    //     }
+    //     loadVietNamMovies();
+    // }, [dispatch, country]);
     useEffect(() => {
         const loadVietNamMovies = async () => {
-            setLoading(true);
-            const movieData = await fetchMovieCountry(country);
-            dispatch(setVietNamMovies(movieData));
-            setLoading(false);
+            try {
+                setLoading(true);
+                const movieData = await fetchMovieCountry(country);
+                dispatch(setVietNamMovies(movieData));
+            } catch (error) {
+                console.error('Failed to load Vietnam movies:', error);
+            } finally {
+                setLoading(false);
+            }
         }
         loadVietNamMovies();
     }, [dispatch, country]);
