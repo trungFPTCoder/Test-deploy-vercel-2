@@ -16,12 +16,26 @@ function AdventureMovie({ cate }) {
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(true);
     const adventureMovies = useSelector((state) => state.adventureMovies);
+    // useEffect(() => {
+    //     const loadAdventureMovies = async () => {
+    //         setLoading(true);
+    //         const movieData = await fetchMovieCate(cate);
+    //         dispatch(setAdventureMovies(movieData));
+    //         setLoading(false);
+    //     }
+    //     loadAdventureMovies();
+    // }, [dispatch, cate]);
     useEffect(() => {
         const loadAdventureMovies = async () => {
-            setLoading(true);
-            const movieData = await fetchMovieCate(cate);
-            dispatch(setAdventureMovies(movieData));
-            setLoading(false);
+            try {
+                setLoading(true);
+                const movieData = await fetchMovieCate(cate);
+                dispatch(setAdventureMovies(movieData));
+            } catch (error) {
+                console.error('Failed to fetch adventure movies:', error);
+            } finally {
+                setLoading(false);
+            }
         }
         loadAdventureMovies();
     }, [dispatch, cate]);
