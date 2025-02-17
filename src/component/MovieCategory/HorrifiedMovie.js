@@ -16,12 +16,26 @@ function HorrifiedMovie({ cate }) {
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(true);
     const horrifiedMovies = useSelector((state) => state.horrifiedMovies);
+    // useEffect(() => {
+    //     const loadHorrifiedMovies = async () => {
+    //         setLoading(true);
+    //         const movieData = await fetchMovieCate(cate);
+    //         dispatch(setHorrifiedMovies(movieData));
+    //         setLoading(false);
+    //     }
+    //     loadHorrifiedMovies();
+    // }, [dispatch, cate]);
     useEffect(() => {
         const loadHorrifiedMovies = async () => {
-            setLoading(true);
-            const movieData = await fetchMovieCate(cate);
-            dispatch(setHorrifiedMovies(movieData));
-            setLoading(false);
+            try {
+                setLoading(true);
+                const movieData = await fetchMovieCate(cate);
+                dispatch(setHorrifiedMovies(movieData));
+            } catch (error) {
+                console.error('Failed to fetch horrified movies:', error);
+            } finally {
+                setLoading(false);
+            }
         }
         loadHorrifiedMovies();
     }, [dispatch, cate]);
