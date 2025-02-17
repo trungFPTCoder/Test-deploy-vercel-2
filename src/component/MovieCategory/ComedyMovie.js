@@ -16,12 +16,26 @@ function ComedyMovie({ cate }) {
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(true);
     const comedyMovies = useSelector((state) => state.comedyMovies);
+    // useEffect(() => {
+    //     const loadComedyMovies = async () => {
+    //         setLoading(true);
+    //         const movieData = await fetchMovieCate(cate);
+    //         dispatch(setComedyMovies(movieData));
+    //         setLoading(false);
+    //     }
+    //     loadComedyMovies();
+    // }, [dispatch, cate]);
     useEffect(() => {
         const loadComedyMovies = async () => {
-            setLoading(true);
-            const movieData = await fetchMovieCate(cate);
-            dispatch(setComedyMovies(movieData));
-            setLoading(false);
+            try {
+                setLoading(true);
+                const movieData = await fetchMovieCate(cate);
+                dispatch(setComedyMovies(movieData));
+            } catch (error) {
+                console.error('Failed to fetch comedy movies:', error);
+            } finally {
+                setLoading(false);
+            }
         }
         loadComedyMovies();
     }, [dispatch, cate]);
