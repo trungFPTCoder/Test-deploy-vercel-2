@@ -16,12 +16,26 @@ function KoreanMovie({ country }) {
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(true);
     const koreanMovies = useSelector((state) => state.koreanMovies);
+    // useEffect(() => {
+    //     const loadKoreanMovies = async () => {
+    //         setLoading(true);
+    //         const movieData = await fetchMovieCountry(country);
+    //         dispatch(setKoreanMovies(movieData));
+    //         setLoading(false);
+    //     }
+    //     loadKoreanMovies();
+    // }, [dispatch, country]);
     useEffect(() => {
         const loadKoreanMovies = async () => {
-            setLoading(true);
-            const movieData = await fetchMovieCountry(country);
-            dispatch(setKoreanMovies(movieData));
-            setLoading(false);
+            try {
+                setLoading(true);
+                const movieData = await fetchMovieCountry(country);
+                dispatch(setKoreanMovies(movieData));
+            } catch (error) {
+                console.error('Failed to fetch Korean movies:', error);
+            } finally {
+                setLoading(false);
+            }
         }
         loadKoreanMovies();
     }, [dispatch, country]);
