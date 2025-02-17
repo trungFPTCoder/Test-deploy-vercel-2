@@ -92,7 +92,7 @@
         object-fit: cover;
     }
 }
-.category--movie{
+/* .category--movie{
     background-color: #343232;
 }
 .category--movie:hover{
@@ -102,6 +102,18 @@
 }
 .category--movie--checked{
     background-color: orange;
+} */
+.category--movie1 {
+    background-color: #343232;
+}
+
+.category--movie--checked {
+    background-color: orange;
+}
+
+.category--movie1:hover {
+    color: orange;
+    transition: 0.7s ease;
 }
 /* add new 17/02/2025 thử nghiệm */
 
