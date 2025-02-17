@@ -136,8 +136,7 @@
   }
 }
 .category--movie{
-  background-color: #343232;
-  opacity: 0.7;
+  background-color: rgb(65, 65, 65, 0.8);
 }
 .category--movie:hover{
   color: orange;
@@ -216,4 +215,7 @@ div.swiper-button-prev {
     margin-left: -650%;
   }
   
+}
+.intro-container {
+  background-color: rgba(23, 23, 23, 0.8);
 }
