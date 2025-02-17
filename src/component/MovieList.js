@@ -118,35 +118,37 @@ function MovieList() {
           <SwiperSlide key={newMovie.slug}>
             <div className='img-container position-relative swiper--img mobile--header'>
               <img src={newMovie.poster_url} className="w-100 object-fit-cover" alt={newMovie.name} />
-              <div className="position-absolute mobile--view" style={{ top: '40%', left: '20px' }}>
-                <div className="text-warp">
-                  <p className="text-primary bg-dark opacity-75 h1 rounded p-2" style={{ width: 'fit-content' }}>{movieDetails.name}</p>
-                </div>
-                <div className='d-flex mt-3'>
-                  <div className='border border-light border-1 mx-1 p-1 px-2 rounded' style={{ backgroundColor: '#343232', opacity: '0.7' }}>
-                    {movieDetails.category?.[3].list[0].name}
+              <div className="position-absolute mobile--view " style={{ top: '40%', left: '20px' }}>
+                  <div className="text-warp">
+                    <p className="text-primary intro-container h1 rounded p-2" style={{ width: 'fit-content' }}>{movieDetails.name}</p>
                   </div>
-                  <div className='border border-light border-1 mx-1 p-1 px-2 rounded' style={{ backgroundColor: '#343232', opacity: '0.7' }}>
-                    {movieDetails.category?.[1].list[0].name}
-                  </div>
-                  <div className='border border-light border-1 mx-1 p-1 px-2 rounded' style={{ backgroundColor: '#343232', opacity: '0.7' }}>
-                    {movieDetails.current_episode}
-                  </div>
-                  <div className='border border-light border-1 mx-1 p-1 px-2 rounded' style={{ backgroundColor: '#343232', opacity: '0.7' }}>
-                    {convertTime(movieDetails.time) === '' ? convertTime(movieDetails.time) : 'Đang cập nhật'}
-                  </div>
-                </div>
-                <div className='d-flex mt-2'>
-                  {movieDetails.category?.[2].list.map((item) => (
-                    <div className='category--movie mx-1 p-1 px-2 rounded' key={item.id}>
-                      {item.name}
+                  <div className='d-flex mt-3'>
+                    <div className='border border-light border-1 mx-1 p-1 px-2 rounded intro-container'>
+                      {movieDetails.category?.[3].list[0].name}
                     </div>
-                  ))}
+                    <div className='border border-light border-1 mx-1 p-1 px-2 rounded intro-container'>
+                      {movieDetails.category?.[1].list[0].name}
+                    </div>
+                    <div className='border border-light border-1 mx-1 p-1 px-2 rounded intro-container'>
+                      {movieDetails.current_episode}
+                    </div>
+                    <div className='border border-light border-1 mx-1 p-1 px-2 rounded intro-container'>
+                      {convertTime(movieDetails.time) === '' ? convertTime(movieDetails.time) : 'Đang cập nhật'}
+                    </div>
+                  </div>
+                  <div className='d-flex mt-2'>
+                    {movieDetails.category?.[2].list.map((item) => (
+                      <div className='category--movie mx-1 p-1 px-2 rounded' key={item.id}>
+                        {item.name}
+                      </div>
+                    ))}
+                  </div>
+                  <div className={isTablet ? "d-none" : "d-block"}>
+                    <div className="mt-2 des-movie">
+                      <p className='text-light intro-container rounded p-1'>{movieDetails.description}</p>
+                    </div>
+                  </div>
                 </div>
-                <div className="mt-2 des-movie">
-                  <p className='text-light bg-dark opacity-75 rounded p-1'>{movieDetails.description}</p>
-                </div>
-              </div>
               <div className="play-button">
                 <Link to={`/watch/${newMovie.slug}`}><FontAwesomeIcon icon={faPlayCircle} fontSize={60} color="white" /></Link>
               </div>
