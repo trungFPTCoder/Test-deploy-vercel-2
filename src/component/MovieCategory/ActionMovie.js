@@ -16,12 +16,26 @@ function ActionMovie({ cate }) {
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(true);
     const actionMovies = useSelector((state) => state.actionMovies);
+    // useEffect(() => {
+    //     const loadActionMovies = async () => {
+    //         setLoading(true);
+    //         const movieData = await fetchMovieCate(cate);
+    //         dispatch(setActionMovies(movieData));
+    //         setLoading(false);
+    //     }
+    //     loadActionMovies();
+    // }, [dispatch, cate]);
     useEffect(() => {
         const loadActionMovies = async () => {
             setLoading(true);
-            const movieData = await fetchMovieCate(cate);
-            dispatch(setActionMovies(movieData));
-            setLoading(false);
+            try {
+                const movieData = await fetchMovieCate(cate);
+                dispatch(setActionMovies(movieData));
+            } catch (error) {
+                console.error('Failed to fetch action movies:', error);
+            } finally {
+                setLoading(false);
+            }
         }
         loadActionMovies();
     }, [dispatch, cate]);
