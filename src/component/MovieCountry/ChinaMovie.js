@@ -18,10 +18,15 @@ function ChinaMovie({ country }) {
     const chinaMovies = useSelector((state) => state.chinaMovies);
     useEffect(() => {
         const loadChinaMovies = async () => {
-            setLoading(true);
-            const movieData = await fetchMovieCountry(country);
-            dispatch(setChinaMovies(movieData));
-            setLoading(false);
+            try {
+                setLoading(true);
+                const movieData = await fetchMovieCountry(country);
+                dispatch(setChinaMovies(movieData));
+            } catch (error) {
+                console.error('Failed to fetch China movies:', error);
+            } finally {
+                setLoading(false);
+            }
         }
         loadChinaMovies();
     }, [dispatch, country]);
