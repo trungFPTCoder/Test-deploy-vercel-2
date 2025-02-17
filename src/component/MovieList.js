@@ -38,21 +38,48 @@ function MovieList() {
   const movieDetails = useSelector((state) => state.movieDetails);
   const [slug, setSlug] = useState(null);
 
+  // useEffect(() => {
+  //   const loadMovies = async () => {
+  //     setLoading(true);
+  //     const moviesData = await fetchNewMovies();
+  //     dispatch(setNewMovies(moviesData));
+  //     setLoading(false);
+  //   };
+  //   loadMovies();
+  // }, [dispatch]);
   useEffect(() => {
     const loadMovies = async () => {
-      setLoading(true);
-      const moviesData = await fetchNewMovies();
-      dispatch(setNewMovies(moviesData));
-      setLoading(false);
+      try {
+        setLoading(true);
+        const moviesData = await fetchNewMovies();
+        dispatch(setNewMovies(moviesData));
+      } catch (error) {
+        console.error("Failed to load movies:", error);
+      } finally {
+        setLoading(false);
+      }
     };
     loadMovies();
   }, [dispatch]);
 
+  // useEffect(() => {
+  //   const loadMovieDetails = async () => {
+  //     if (slug) {
+  //       const moviesDetailData = await fetchMovieDetails(slug);
+  //       dispatch(setMovieDetails(moviesDetailData));
+  //     }
+  //   };
+  //   loadMovieDetails();
+  // }, [dispatch, slug]);
   useEffect(() => {
     const loadMovieDetails = async () => {
-      if (slug) {
-        const moviesDetailData = await fetchMovieDetails(slug);
-        dispatch(setMovieDetails(moviesDetailData));
+      try {
+        if (slug) {
+          const moviesDetailData = await fetchMovieDetails(slug);
+          dispatch(setMovieDetails(moviesDetailData));
+        }
+      } catch (error) {
+        console.error("Failed to load movie details:", error);
       }
     };
     loadMovieDetails();
