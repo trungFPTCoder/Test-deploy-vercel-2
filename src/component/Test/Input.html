@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Card</title>
+    <link rel="stylesheet" href="../../../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* min-height: 100vh; */
+        }
+
+        .movie-card {
+            position: relative;
+            width: 90%;
+            height: 550px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .movie-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://phim.nguonc.com/public/images/Post/2/sat-thu-ve-vuon.jpg');
+            /* Thay ảnh nền */
+            background-size: cover;
+            background-position: center;
+            /* filter: blur(5px); Làm mờ background */
+            z-index: 1;
+        }
+
+        .movie-card .content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.3));
+            padding: 20px;
+            color: white;
+            z-index: 2;
+        }
+
+        .movie-card h2 {
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .movie-card .details {
+            font-size: 14px;
+            opacity: 0.8;
+            margin: 5px 0;
+        }
+
+        .movie-card .rating {
+            color: #ff4d79;
+            font-size: 16px;
+        }
+
+        .movie-card p {
+            font-size: 14px;
+            margin-top: 10px;
+            opacity: 0.9;
+        }
+
+        .movie-card .watch-btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            border: 1px solid white;
+            border-radius: 6px;
+            text-decoration: none;
+            color: white;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .movie-card .watch-btn:hover {
+            background: white;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="movie-card">
+        <div class="content pt-5">
+            <h2>Sát thủ về vườn</h2>
+            <small class="text-warning">Sakamoto Days</small>
+            <!-- <p class="details">92 min ⭐ 5</p> -->
+            <div class="d-flex flex-wrap mt-2 text-light">
+                <div class='border border-light border-1 p-1 px-2 mb-2 rounded mx-1'>
+                    Phim bộ
+                </div>
+                <div class='border border-light border-1 p-1 px-2 mb-2 rounded mx-1'>
+                    2025
+                </div>
+                <div class='border border-light border-1 p-1 px-2 mb-2 rounded mx-1'>
+                    Tập 1
+                </div>
+                <div class='border border-light border-1 p-1 px-2 mb-2 rounded mx-1'>
+                    Đang cập nhật
+                </div>
+            </div>
+            <div class='d-flex flex-wrap mt-2 text-light'>
+                <div class='mx-1 p-1 px-2 mb-2 rounded' style="background-color: #343232;">
+                    Hành động
+                </div>
+                <div class='mx-1 p-1 px-2 mb-2 rounded' style="background-color: #343232;">
+                    Hoạt hình
+                </div>
+                <div class='mx-1 p-1 px-2 mb-2 rounded' style="background-color: #343232;">
+                    Phim hài
+                </div>
+            </div>
+            <p>Taro Sakamoto là sát thủ huyền thoại , được các nhân vật phản diện khiếp sợ và các sát thủ ngưỡng mộ.
+                Nhưng một ngày ... anh đã yêu! Giải nghệ, kết hôn, làm cha và sau đó ... Sakamoto đã trở thành con lợn
+                sề ! Anh chàng mũm mĩm điều hành cửa hàng hàng xóm thực sự là một cựu sát thủ huyền thoại giấu nghề !
+                Liệu anh ấy có thể bảo vệ gia đình mình khỏi nguy hiểm?</p>
+            <a href="#" class="watch-btn">WATCH MOVIE</a>
+        </div>
+    </div>
+
+</body>
+
+</html>

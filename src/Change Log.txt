@@ -1,0 +1,267 @@
+==================================================================================================================  
+                                                    20/12/2024                          Status: Depolyed in web, test success!
+thay đổi line 108 tại WatchMovie.js
+add disabled={movieDetails.episodes.length === 0}
+thay đổi css
+.glow-on-hover:disabled::after {
+    background: #c7c7c7;
+    color: #fff;
+    cursor: not-allowed;
+}
+.glow-on-hover:disabled::before {
+    background: none;
+    color: #fff;
+    cursor: not-allowed;
+}
+
+==================================================================================================================
+                                                    10/1/2025                           Status: Depolyed in web, test success!
+Cập nhật thanh navbar mới
+10/1/2025 (10:16 AM)
+hoàn tất cập nhật navbar mới deploy web
+
+=================================================================================================================
+                                                    20/01/2025                          Status: Not deployed, test done!
+Thử nghiệm tạo chức năng login
+Add:
+json-server/Account.json   |  db ảo                 |       http://localhost:9999/accounts (link db ảo)
+Auth-function/Login.js     |  màn hình login
+
+
+Chú ý trỏ terminal tới folder json-server
+Lệnh chạy json-server: json-server -p 9999 Account.json
+
+Change:
+sevice/MovieService.js     |    line: 5, line: 29-30
+App.js                     |    Line: 25, line: 45
+
+==================================================================================================================
+                                                    15h23p 20/01/2025                   Status: Not deployed, test done!
+Add:
+Auth-function/Login.js                  |   Done
+Assest/Login.css                            
+Auth-function/SignIn.js                 |   Done
+Assest/SignIn.css   
+Auth-function/Forget.js                 |   Done
+Assest/Forget.css
+Auth-function/ResetPass.js              |   Done
+Assest/ResetPass.css
+
+Thêm thư viện sweetalert2                       |                npm install sweetalert2                   |            IMPORTANCE      
+
+==================================================================================================================
+                                                        21/01/2025                      Status: Not deployed, test done!
+Change:
+Auth-function/ResetPass.js          |       thêm hàm để đếm ngược nút gửi lại           |   Done
+Assest/ResetPass.css                |       Thêm css
+
+Tiến hành backup dạng file zip      |   Done
+
+chú ý:
+login with google
+client Id: 119806128486-3lfec60l96p63ac557mfasmqlrp5323q.apps.googleusercontent.com
+hoàn thiện chức năng login google
+Add component
+Auth-function/LoginGoogle.js
+=================================================================================================================
+                                        26/01/2025                      Status: Not deployed, test done!
+Hoàn tất giao diện login trong trang chủ 
+Change: 
+NewHeader.js                | Line 233-272          |   Line 320-349
+NewNavbar.css               | Line 103-150
+Add:
+images/icons8-google-48.png
+images/jack-reacher-star-wars-interstellar-movie-john-wick-wallpaper-preview.jpg
+images/defaultImage.png
+
+Hoàn thành chức năng đăng ký và login
+
+Component Effected: NewHeader.js
+Add:                     |           Reason: css chung bị ảnh hưởng đến những tính năng khác trong tương lai
+Line: 100, 180           |           dropdown -> dropdown-hover
+Line: 105, 185           |           dropdown-menu -> dropdown-menu-hover
+
+Install new library                                 |               !Important
+npm install express mongoose cors dotenv body-parser
+
+=================================================================================================================
+                                        29/01/2025                          Status: Deployed to web and test success!  (!Cái này đang nghi bị lỗi khiến cho không thể load được web)
+
+Thêm chức năng bật keyboard ở dạng mobile khi nhấn nút search và hiện thanh input đồng thời hiện keyboard để nhập
+Component Effected: NewHeader.js
+Update:
+Line: 3         |           import React, { useEffect, useRef, useState } from 'react'
+
+Add:
+Line: 11        |              const searchInputRef = useRef(null);
+
+Line: 32 - 36   |           if (!isSearchActive) {
+                                setTimeout(() => {
+                                    searchInputRef.current.focus();
+                                }, 100); // Delay to ensure the input is visible before focusing
+                            }
+
+Line: 322       |           ref={searchInputRef}
+
+====================================================================================================================
+                                        02/02/2025                          Status: Deployed to web and test success!
+Lỗi khi category[1] chỉ có group mà không có list
+Component Effected: WatchMovie.js
+Lỗi dòng 209
+Solution:
+Loại bỏ dòng 209 và 232-234 (không cần thiết những function này)
+Component Effected: Cinema.js
+Lỗi dòng 275 
+Solution:
+Loại bỏ dòng 275 và 307-309 (không cần thiết những function này)
+====================================================================================================================
+                                        05/02/2025                          Status: Deployed to web and test success!
+Component Effected: [ Pagination.js | PaginationSearch]     |       Reason: Improve experience when change page 
+Add: Line 20 | Pagination.js
+     Line 21 | PaginationSearch.js
+
+const handleGotoTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
+    }
+
+Add event handler at Line 37, 46, 53 | Pagination.js
+                     Line 36, 43, 52 | PaginationSearch.js
+
+====================================================================================================================
+                                        06/02/2025                          Status: Deployed to web and test success!
+thay đổi css cho khung search 
+Component Effected: NewHeader.js
+change in: NewNavbar.css    |   Line: 13
+.search-btn {
+    background-color: unset;
+    border: none;
+    border-radius: 5px;
+    color: #495057;
+    cursor: pointer;
+    padding: 9px;
+    position: absolute;
+    top: 6px;
+    left: 2px;
+    transition: background-color 0.2s;
+}
+
+.search-input {
+    background-color: #313132 !important;
+    color: white !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    border-color: #313132 !important;
+}
+.search-input::placeholder{
+    color: white !important;
+}
+
+.search-input:focus {
+    outline: none;
+    box-shadow: none!important;
+    border-color: white !important;
+}
+====================================================================================================================
+                                        07/02/2025                                                                          Status: deploy at test branch, test success in suggestion function
+Delete: function handleSearchChange         |       Reason: No need this function, reduce experience    |   !Important
+
+
+
+Thay đổi css navbar             |       Component Effected: NewHeader.js            |   bỏ bg-dark và opacity-75
+const [navbarBg, setNavbarBg] = useState('background-navbar pt-2 pb-2');
+const handleScroll = () => {
+        if (window.scrollY > 30) {
+            setNavbarBg('background-navbar-2 tran-nav');
+        } else {
+            setNavbarBg('background-navbar tran-nav pt-2 pb-2');
+        }
+    };
+///////////////////////////////////////////**NewNavbar.css**//////////////////////////////
+.background-navbar{
+    /* background-color: rgba(52, 58, 64, 0.4); */
+    background-color: rgba(23, 23, 23, 0.5);
+
+}
+.background-navbar-2{
+    /* background-color: rgba(52, 58, 64); */
+    background-color: rgba(23, 23, 23);
+}
+
+Add:                            |       Component Effected: NewHeader.js            |       updated
+import SearchSuggest from './SearchSuggest';        |       Import at Line 5
+
+const [display, setDisplay] = useState("d-none");   |       Add at line 13
+const searchRef = useRef([]);                       |       Add at line 15
+////////////////////////////////////////////////////////////////////////////                |       Add more function to display list suggestion        |   updated
+const handleInputChange = (e) => {
+        setSearchKeyword(e.target.value);
+        setDisplay("d-block");
+    };
+    const handleDisplay = () => {
+        if (searchKeyword) {
+            setDisplay("d-block");
+        } else {
+            setDisplay("d-none");
+        }
+    }
+    const handleClickOutside = (event) => {
+        if (searchRef.current.every(ref => ref && !ref.contains(event.target))) {
+            setDisplay("d-none");
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
+
+////////////////////////////////////////////////////////////////////////////                |       Change css for nav-item -> nav-item-hover           |   Reason: trùng css với navbar cũ deploy chưa xóa     |       updated
+
+.menu-toggle{                               |      Thêm do trùng với button navbar cũ       |   updated
+    background-color: unset !important;
+    border: none !important;
+}
+
+Change:                                                     |                       ! Important
+///////////////////////////////////////////**** For Desktop version ****//////////////////////////////////////////////////////              |   updated
+
+<div className="position-relative mx-2" ref={el => searchRef.current[0] = el}>
+    <form role='search' onSubmit={handleSearchSubmit}>
+        <input type="text" placeholder="Tìm kiếm phim..." className="form-control search-input" size="45"
+            style={{ paddingLeft: '40px' }} value={searchKeyword} onClick={handleDisplay} onChange={handleInputChange} />
+            <button className='search-btn'>
+                <FontAwesomeIcon icon={faSearch} color='white' className="position-absolute " />
+            </button>
+    </form>
+    <div className={`${display}`}>
+        <SearchSuggest keywordFromURL={searchKeyword} />
+    </div>
+</div>
+
+///////////////////////////////////////////**** For Mobile version ****//////////////////////////////////////////////////////               |   updated
+                        <div className={`${searchInput} search-container`} style={{ width: '90%' }} ref={el => searchRef.current[1] = el}>
+                            <form role="search" onSubmit={handleSearchSubmit}>
+                                <input type="search" placeholder="Tìm kiếm phim..."
+                                    className="form-control search-input p-2 px-3"
+                                    aria-label="Search"
+                                    value={searchKeyword}
+                                    ref={searchInputRef}
+                                    onChange={handleInputChange} />
+                                <div className={`${display}`}>
+                                    <SearchSuggest keywordFromURL={searchKeyword} />
+                                </div>
+                            </form>
+                        </div>
+
+
+Add new Component: SearchSuggest.js         |       SearchSuggest.css
+
+
+
+
+

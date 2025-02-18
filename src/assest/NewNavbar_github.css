@@ -1,0 +1,140 @@
+.nav-item a {
+    border-radius: 10px;
+    padding: 5px 10px;
+}
+
+.nav-item.active{
+    background: orange;
+    border-radius: 10px;
+}
+/* .search-btn {
+    background-color: #f8f9fa;
+    border: none;
+    border-radius: 5px;
+    color: #495057;
+    cursor: pointer;
+    padding: 9px;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    transition: background-color 0.2s;
+}
+
+.search-input {
+    background-color: #f8f9fa;
+    padding: 10px;
+}
+
+.search-input:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: black;
+} */
+.search-btn {
+    background-color: unset;
+    border: none;
+    border-radius: 5px;
+    color: #495057;
+    cursor: pointer;
+    padding: 9px;
+    position: absolute;
+    top: 6px;
+    left: 2px;
+    transition: background-color 0.2s;
+}
+
+.search-input {
+    background-color: #313132 !important;
+    color: white !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    border-color: #313132 !important;
+}
+.search-input::placeholder{
+    color: white !important;
+}
+
+.search-input:focus {
+    outline: none;
+    box-shadow: none!important;
+    border-color: white !important;
+}
+
+.dropdown-menu li a {
+    width: fit-content;
+}
+.dropdown-menu li a:focus {
+    background-color: inherit;
+}
+.dropdown-menu li a:hover {
+    background-color: orange;
+    color: white;
+    border-radius: 30px;
+}
+@media screen and (min-width: 1024px) {
+    .dropdown:hover .dropdown-menu {
+        display: block;
+    }    
+    .desktop-view{
+        display: block;
+    }
+    .mobile-view{
+        display: none;
+    }
+}
+@media screen and (max-width: 1024px) {
+    .desktop-view{
+        display: none;
+    }
+    .mobile-view{
+        display: block;
+    }
+
+}
+/* mobile nav */
+.menu-toggle{
+    background-color: unset !important;
+    border: none !important;
+}
+.menu-toggle:focus{
+    background-color: unset;
+    border-color: #212529 ;
+}
+
+.search-container {
+    position: absolute;
+    left: 0;
+    z-index: 1000;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.search-container.d-none {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.search-container.d-block {
+    opacity: 1;
+    visibility: visible;
+}
+.search-button{
+    transition: 0.5s ease;
+    background-color: inherit;
+    box-shadow: none;
+    border: none;
+}
+.tran-nav{
+    transition: 0.5s ease;
+}
+/* new change at 07/02/2025 */
+.background-navbar{
+    /* background-color: rgba(52, 58, 64, 0.4); */
+    background-color: rgba(23, 23, 23, 0.5);
+
+}
+.background-navbar-2{
+    /* background-color: rgba(52, 58, 64); */
+    background-color: rgba(23, 23, 23);
+}

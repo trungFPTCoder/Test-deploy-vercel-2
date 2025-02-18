@@ -1,0 +1,27 @@
+.google {
+    /* color: #555; */
+    background-image: url('../../public/images/icons8-google-48.png');
+    background-repeat: no-repeat;
+    background-size: 35px;
+    background-position: 10px;
+}
+.btn-login {
+    width: 100%;
+    font-size: 16px;
+    padding: 13px;
+    border-radius: 50px;
+    border: 1px solid #777;
+    margin-bottom: 0.7rem;
+    background-color: #fff;
+    color: black;
+    font-weight: 600;
+}
+.btn-login:hover{
+    border: 1px solid #777;
+    background-color: #ddd;
+}
+.btn-login:focus{
+    /* border: 1px solid #777; */
+    background-color: #c6c2c2 !important;
+    color: black !important;
+}
