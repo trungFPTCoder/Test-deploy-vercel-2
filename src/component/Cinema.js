@@ -249,10 +249,14 @@ function Cinema() {
                   ))}
                 </div>
                 <h6 className='fw-bold m-0'>Giới thiệu: </h6>
-                <p style={{ textAlign: 'justify' }}>{movieDetails.description}</p>
+                <p className='movie-description' style={{ textAlign: 'justify' }}>{movieDetails.description}</p>
+                <div className='border-2 border-bottom border-top border-light pb-2 pt-2 text-center'>
+                  <Link to={`/watch/${movieDetails.slug}`} className='text-decoration-none text-warning h6'>{'<'} Xem thêm thông tin phim {'>'}</Link>
+                </div>
+                
 
                 <div className='d-flex align-items-center'>
-                  <h6 className='text-warning'>Chia sẻ phim {'-->'}</h6>
+                  <h6 className='text-light'>Chia sẻ phim {'-->'}</h6>
                   <div className='sharing d-flex' style={{ marginLeft: 'auto' }}>
                     {/* <h6 className='sharing--text'>Chia sẻ phim: </h6> &emsp; */}
                     <div className='facebook-share-container'>
