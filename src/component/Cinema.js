@@ -255,7 +255,7 @@ function Cinema() {
                 </div>
                 
 
-                <div className='d-flex align-items-center'>
+                <div className='d-flex align-items-center pt-2'>
                   <h6 className='text-light'>Chia sẻ phim {'-->'}</h6>
                   <div className='sharing d-flex' style={{ marginLeft: 'auto' }}>
                     {/* <h6 className='sharing--text'>Chia sẻ phim: </h6> &emsp; */}
