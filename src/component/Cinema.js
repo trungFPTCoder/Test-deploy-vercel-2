@@ -6,7 +6,7 @@ import { fetchMovieDetails } from '../service/MovieService';
 import { Helmet } from 'react-helmet';
 import '../assest/Cinema.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronCircleLeft, faMicrophone, faPaperPlane, faPlay } from '@fortawesome/free-solid-svg-icons';
+import { faBackward, faChevronCircleLeft, faForward, faMicrophone, faPaperPlane, faPlay } from '@fortawesome/free-solid-svg-icons';
 import LoadingComponent from './LoadingComponent';
 import { faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { faClosedCaptioning } from '@fortawesome/free-regular-svg-icons';
