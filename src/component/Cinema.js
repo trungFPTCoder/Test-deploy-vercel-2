@@ -145,7 +145,7 @@ function Cinema() {
             )}
           </div>
         </div>
-        <div className='mt-5 border-bottom' style={{ paddingBottom: '10px' }}>
+        <div className='mt-4 border-bottom' style={{ paddingBottom: '10px' }}>
           <div className='row desktop-cinema-view'>
             <div className='col-md-2'>
               <img src={movieDetails.thumb_url} className='w-100 rounded intro-img' alt={movieDetails.name}></img>
