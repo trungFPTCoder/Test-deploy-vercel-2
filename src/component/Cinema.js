@@ -85,7 +85,10 @@ function Cinema() {
   const handleEpisodeSelect = () => {
     window.scrollTo(0, 0);
   }
-
+  const getEpisodeName = () => {
+    const episode = movieDetails.episodes.find(episode => episode.server_name.includes(typeFromURL));
+    return episode ? episode.items.slice(-1)[0]?.name : null;
+  }
   return (
     <div className='bg-dark'>
       <div className='container' style={{ paddingTop: '80px' }}>
@@ -110,6 +113,27 @@ function Cinema() {
         {/* chiếu phim */}
         <div>
           <iframe src={movieInfo.embed} className='video' allowFullScreen></iframe>
+          <div>
+            {movieDetails.episodes?.[0].items?.[0].name.toLowerCase() === 'full' ? (
+              <>
+              </>
+            ) : (
+              <>
+                <div className='d-flex align-items-center function-zone p-3'>
+                  <button className='switch-episode-btn rounded-start' disabled={parseInt(tapFromURL) === 1}>
+                    <Link to={`/watch/cinema/${movieDetails.slug}?tap=${parseInt(tapFromURL) - 1}&type=${typeFromURL}`} onClick={handleEpisodeSelect} className='d-flex align-items-center text-decoration-none'>
+                      <FontAwesomeIcon icon={faBackward}></FontAwesomeIcon> &nbsp; Tập trước
+                    </Link>
+                  </button>
+                  <button className='switch-episode-btn border-start border-light rounded-end' disabled={parseInt(tapFromURL) === parseInt(getEpisodeName())}>
+                    <Link to={`/watch/cinema/${movieDetails.slug}?tap=${parseInt(tapFromURL) + 1}&type=${typeFromURL}`} onClick={handleEpisodeSelect} className='d-flex align-items-center text-decoration-none'>
+                      Tập tiếp theo &nbsp; <FontAwesomeIcon icon={faForward}></FontAwesomeIcon>
+                    </Link>
+                  </button>
+                </div>
+              </>
+            )}
+          </div>
         </div>
         <div className='mt-5 border-bottom' style={{ paddingBottom: '10px' }}>
           <div className='row desktop-cinema-view'>
