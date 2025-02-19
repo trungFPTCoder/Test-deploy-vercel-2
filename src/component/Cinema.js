@@ -101,7 +101,7 @@ function Cinema() {
   }
   return (
     <div className='bg-dark'>
-      <div className='container' style={{ paddingTop: '80px' }}>
+      <div className='container' style={{ paddingTop: '85px' }}>
         <Helmet>
           <title>{movieDetails.name}</title>
           <meta name="description" content={movieDetails.name} />
