@@ -20,7 +20,17 @@ function Cinema() {
   const [loading, setLoading] = useState(true);
   const [comment, setComment] = useState('');
   const [charCount, setCharCount] = useState(0);
-
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    window.addEventListener('resize', handleResize)
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
+  
   useEffect(() => {
     const loadMovieDetails = async () => {
       setLoading(true);
@@ -119,7 +129,7 @@ function Cinema() {
               </>
             ) : (
               <>
-                <div className='d-flex align-items-center function-zone p-3'>
+                <div className={isMobile ? 'd-flex justify-content-center align-items-center function-zone p-3' : 'd-flex align-items-center function-zone p-3'}>
                   <button className='switch-episode-btn rounded-start' disabled={parseInt(tapFromURL) === 1}>
                     <Link to={`/watch/cinema/${movieDetails.slug}?tap=${parseInt(tapFromURL) - 1}&type=${typeFromURL}`} onClick={handleEpisodeSelect} className='d-flex align-items-center text-decoration-none'>
                       <FontAwesomeIcon icon={faBackward}></FontAwesomeIcon> &nbsp; Tập trước
