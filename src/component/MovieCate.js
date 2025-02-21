@@ -52,7 +52,7 @@ function MovieCate() {
             <h4>Danh sách {categoryMovies.cat.name.includes('Phim')?categoryMovies.cat.name:'Phim '+categoryMovies.cat.name}</h4>
             <div className='row'>
                 {categoryMovies.items.map((movie) => (
-                    <div className='col-6 col-md-2 col-sm-4 mb-3'>
+                    <div className='col-6 col-md-3 col-sm-4 col-xl-2 mb-3'>
                         <div className='card position-relative tooltip-wrapper border-0 w-100'>
                             <div className='img-container position-relative overflow-hidden'>
                                 <img
