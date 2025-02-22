@@ -130,16 +130,16 @@ function Cinema() {
             ) : (
               <>
                 <div className={isMobile ? 'd-flex justify-content-center align-items-center function-zone p-3' : 'd-flex align-items-center function-zone p-3'}>
-                  <button className='switch-episode-btn rounded-start' disabled={parseInt(tapFromURL) === 1}>
-                    <Link to={`/watch/cinema/${movieDetails.slug}?tap=${parseInt(tapFromURL) - 1}&type=${typeFromURL}`} onClick={handleEpisodeSelect} className='d-flex align-items-center text-decoration-none'>
+                  <Link to={`/watch/cinema/${movieDetails.slug}?tap=${parseInt(tapFromURL) - 1}&type=${typeFromURL}`} onClick={handleEpisodeSelect} className='d-flex align-items-center text-decoration-none'>
+                    <button className='switch-episode-btn rounded-start' disabled={parseInt(tapFromURL) === 1}>
                       <FontAwesomeIcon icon={faBackward}></FontAwesomeIcon> &nbsp; Tập trước
-                    </Link>
-                  </button>
-                  <button className='switch-episode-btn border-start border-light rounded-end' disabled={parseInt(tapFromURL) === parseInt(getEpisodeName())}>
-                    <Link to={`/watch/cinema/${movieDetails.slug}?tap=${parseInt(tapFromURL) + 1}&type=${typeFromURL}`} onClick={handleEpisodeSelect} className='d-flex align-items-center text-decoration-none'>
+                    </button>
+                  </Link>
+                  <Link to={`/watch/cinema/${movieDetails.slug}?tap=${parseInt(tapFromURL) + 1}&type=${typeFromURL}`} onClick={handleEpisodeSelect} className='d-flex align-items-center text-decoration-none'>
+                    <button className='switch-episode-btn border-start border-light rounded-end' disabled={parseInt(tapFromURL) === parseInt(getEpisodeName())}>
                       Tập tiếp theo &nbsp; <FontAwesomeIcon icon={faForward}></FontAwesomeIcon>
-                    </Link>
-                  </button>
+                    </button>
+                  </Link>
                 </div>
               </>
             )}
