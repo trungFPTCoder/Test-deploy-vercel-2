@@ -220,11 +220,13 @@
     box-shadow: none;
     border: none;
     padding: 5px 20px;
-}
-.switch-episode-btn a{
     color: white;
 }
-.switch-episode-btn a:hover{
+.switch-episode-btn:hover{
     color: orange;
     transition: 0.5s ease;
 }
+.switch-episode-btn:disabled{
+    color: gray;
+}
+
