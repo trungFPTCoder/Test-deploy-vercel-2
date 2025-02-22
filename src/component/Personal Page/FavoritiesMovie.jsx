@@ -19,7 +19,7 @@ function FavoritiesMovie() {
     loadFavoMovies();
   }, [dispatch]);
   // console.log(favoMovies);
-  const FavoriteMovie = favoMovies.
+  // const FavoriteMovie = favoMovies.
   return (
     <div>
       <div className='border border-light-1 text-light'>
