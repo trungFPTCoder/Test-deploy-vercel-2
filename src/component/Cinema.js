@@ -251,8 +251,8 @@ function Cinema() {
           <div className='tablet-cinema-view'>
             <div className="movie-card" style={{ backgroundImage: `url(${movieDetails.thumb_url})` }}>
               <div className="content pt-5">
-                <h2>{movieDetails.name}</h2>
-                <small className="text-warning">{movieDetails.original_name}</small>
+                <h2 className="original-movie-name">{movieDetails.name}</h2>
+                <small className="text-warning original-movie-name">{movieDetails.original_name}</small>
                 <div className="d-flex flex-wrap mt-2 text-light">
                   {movieDetails.category?.[1]?.list?.[0]?.name && (
                     <div className='border border-light border-1 mx-1 p-1 px-2 mb-2 rounded'>
@@ -287,8 +287,6 @@ function Cinema() {
                 <div className='border-2 border-bottom border-top border-light pb-2 pt-2 text-center'>
                   <Link to={`/watch/${movieDetails.slug}`} className='text-decoration-none text-warning h6'>{'<'} Xem thêm thông tin phim {'>'}</Link>
                 </div>
-                
-
                 <div className='d-flex align-items-center pt-2'>
                   <h6 className='text-light'>Chia sẻ phim {'-->'}</h6>
                   <div className='sharing d-flex' style={{ marginLeft: 'auto' }}>
