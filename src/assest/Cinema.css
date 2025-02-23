@@ -229,4 +229,11 @@
 .switch-episode-btn:disabled{
     color: gray;
 }
-
+.original-movie-name{
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    /* line-clamp: 6; */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
