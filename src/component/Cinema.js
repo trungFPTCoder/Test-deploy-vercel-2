@@ -250,7 +250,7 @@ function Cinema() {
           {/* add new 17/02/2025 thử nghiệm  */}
           <div className='tablet-cinema-view'>
             <div className="movie-card" style={{ backgroundImage: `url(${movieDetails.thumb_url})` }}>
-              <div className="content pt-5">
+              <div className="content pt-4">
                 <h2 className="original-movie-name">{movieDetails.name}</h2>
                 <small className="text-warning original-movie-name">{movieDetails.original_name}</small>
                 <div className="d-flex flex-wrap mt-2 text-light">
