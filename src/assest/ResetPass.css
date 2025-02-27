@@ -30,9 +30,11 @@ section:before {
     border: 2px solid rgba(255, 255, 255, 0.5);
     border-radius: 20px;
     backdrop-filter: blur(15px);
-    padding: 40px;
+    padding: 40px 0;
 }
-
+.form-value{
+    width: 80%;
+}
 .form-value h3 {
     color: #fff;
     text-align: center;
@@ -207,7 +209,7 @@ input:valid~label {
     border: none;
     color: orange;
     margin: 0 auto;
-    width: 25%;
+    width: 30%;
 }
 .resend:hover{
     background-color: orange;
