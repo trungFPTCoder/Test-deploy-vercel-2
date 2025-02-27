@@ -24,7 +24,7 @@ section:before {
     justify-content: center;
     align-items: center;
     position: relative;
-    /* width: 400px; */
+    width: 600px;
     height: auto;
     background: transparent;
     border: 2px solid rgba(255, 255, 255, 0.5);
