@@ -109,11 +109,11 @@ function ResetPass() {
                                 <label>Mã OTP</label>
                                 {/* <button type="button" className="resend p-0">Gửi lại</button> */}
                                 {isButtonDisabled ? (
-                                    <button type="button" className="resend p-0 border-start border-end border-top rounded-top-3" disabled>
+                                    <button type="button" className="resend p-1 border-start border-end border-top rounded-top-3" disabled>
                                         Chờ {countdown}s
                                     </button>
                                 ) : (
-                                    <button type="button" className="resend p-0 border-start border-end border-top rounded-top-3" onClick={handleResendClick}>
+                                    <button type="button" className="resend p-1 border-start border-end border-top rounded-top-3" onClick={handleResendClick}>
                                         Gửi lại
                                     </button>
                                 )}
