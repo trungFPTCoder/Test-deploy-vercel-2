@@ -151,19 +151,21 @@
 /* MovieList.css */
 .swiper-button-next:hover,
 .swiper-button-prev:hover {
-  background-color: #ddd;
+  background-color: rgba(65, 65, 65);
   transition: 0.7s ease;
 }
 div.swiper-button-next,
 div.swiper-button-prev {
-  padding: 20px;
-  border-radius: 10px;
+  width: 50px;
+  height: 50px;
+  background-color: rgba(65, 65, 65, 0.8);
+  border-radius: 50%;
 }
 
 .swiper-button-next::after,
 .swiper-button-prev::after {
-  color: #ff0000;
-  font-size: 20px;
+  color: white;
+  font-size: 30px !important;
 }
 .list--movie{
   background-color: #333232;
