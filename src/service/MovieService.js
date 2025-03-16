@@ -2,7 +2,7 @@ import axios from "axios";
 
 // const API_URL_NEWMOVIES = 'https://phim.nguonc.com/api/films/phim-moi-cap-nhat';
 // thử nghiệm login
-const API_URL_ACCOUNTS = 'http://localhost:9000';
+const API_URL_ACCOUNTS = 'https://mycinemaapi.vercel.app';
 // const API_URL_ACCOUNTS = 'http://localhost:9999/accounts'
 
 export const fetchNewMovies = async (page = 1) => {
