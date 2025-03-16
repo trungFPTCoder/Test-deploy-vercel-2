@@ -1,195 +1,378 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../../node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <style>
-        .intro--text {
-            color: #aba8a8;
+
+        *,
+        *:before,
+        *:after {
+            position: relative;
+            /* box-sizing: border-box; */
         }
 
-        .body {
-            display: flex;
-            justify-content: center;
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .like-button {
+            font-size: 35vmin;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            border: none;
+            border-radius: 50%;
+            background: white;
+            width: 1em;
+            height: 1em;
+            padding: 0;
+            margin: 0;
+            outline: none;
+            z-index: 2;
+            -webkit-transition: -webkit-transform .5s cubic-bezier(.7, 0, .3, 1);
+            ;
+            transition: -webkit-transform .5s cubic-bezier(.7, 0, .3, 1);
+            ;
+            transition: transform .5s cubic-bezier(.7, 0, .3, 1);
+            ;
+            transition: transform .5s cubic-bezier(.7, 0, .3, 1), -webkit-transform .5s cubic-bezier(.7, 0, .3, 1);
+            cursor: pointer;
+        }
+
+        .like-button:before {
+            z-index: -1;
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            box-shadow: 0 0.3em 0.6em rgba(0, 0, 0, 0.3);
+            border-radius: inherit;
+            -webkit-transition: inherit;
+            transition: inherit;
+        }
+
+        .like-button:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            border-radius: inherit;
+            z-index: -1;
+        }
+
+        .like-button:active:before {
+            -webkit-animation: depress-shadow .5s cubic-bezier(.7, 0, .3, 1) both;
+            animation: depress-shadow .5s cubic-bezier(.7, 0, .3, 1) both;
+        }
+
+        .like-button:focus:after {
+            -webkit-animation: depress .5s cubic-bezier(.7, 0, .3, 1) both;
+            animation: depress .5s cubic-bezier(.7, 0, .3, 1) both;
+        }
+
+        @-webkit-keyframes depress {
+
+            from,
+            to {
+                -webkit-transform: none;
+                transform: none;
+            }
+
+            50% {
+                -webkit-transform: translateY(5%) scale(0.9);
+                transform: translateY(5%) scale(0.9);
+            }
+        }
+
+        @keyframes depress {
+
+            from,
+            to {
+                -webkit-transform: none;
+                transform: none;
+            }
+
+            50% {
+                -webkit-transform: translateY(5%) scale(0.9);
+                transform: translateY(5%) scale(0.9);
+            }
+        }
+
+        @-webkit-keyframes depress-shadow {
+
+            from,
+            to {
+                -webkit-transform: none;
+                transform: none;
+            }
+
+            50% {
+                -webkit-transform: scale(0.5);
+                transform: scale(0.5);
+            }
+        }
+
+        @keyframes depress-shadow {
+
+            from,
+            to {
+                -webkit-transform: none;
+                transform: none;
+            }
+
+            50% {
+                -webkit-transform: scale(0.5);
+                transform: scale(0.5);
+            }
+        }
+
+        .like-wrapper {
+            display: grid;
+            -webkit-box-align: center;
             align-items: center;
-            height: 100vh;
-            background-color: #f0f0f0;
-            font-family: Arial, sans-serif;
+            -webkit-box-pack: center;
+            justify-content: center;
+            z-index: 1;
         }
 
-        .icon {
-            font-size: 40px;
-            /* Kích thước chữ */
-            padding: 20px;
-            border: 2px solid #333;
-            /* Viền cho nổi bật */
-            border-radius: 10px;
-            /* Bo góc */
-            text-align: center;
-            animation: shake 0.5s infinite;
-            /* Áp dụng hiệu ứng lắc */
+        .like-wrapper>* {
+            margin: auto;
+            grid-area: 1 / 1;
         }
 
-        @keyframes shake {
-            0% {
-                transform: translate(0, 0);
+        .heart {
+            width: .5em;
+            height: .5em;
+            display: block;
+            -webkit-transform-origin: center 80%;
+            transform-origin: center 80%;
+        }
+
+        .heart>path {
+            stroke: #EA442B;
+            stroke-width: 2;
+            fill: transparent;
+            -webkit-transition: fill .5s cubic-bezier(.7, 0, .3, 1);
+            transition: fill .5s cubic-bezier(.7, 0, .3, 1);
+        }
+
+        .like-button:focus .heart>path {
+            fill: #EA442B;
+        }
+
+        .like-button:focus .heart {
+            -webkit-animation: heart-bounce .5s cubic-bezier(.7, 0, .3, 1);
+            animation: heart-bounce .5s cubic-bezier(.7, 0, .3, 1);
+        }
+
+        @-webkit-keyframes heart-bounce {
+            40% {
+                -webkit-transform: scale(0.7);
+                transform: scale(0.7);
             }
 
-            25% {
-                transform: translate(-5px);
+            0%,
+            80%,
+            100% {
+                -webkit-transform: scale(1);
+                transform: scale(1);
+            }
+        }
+
+        @keyframes heart-bounce {
+            40% {
+                -webkit-transform: scale(0.7);
+                transform: scale(0.7);
             }
 
+            0%,
+            80%,
+            100% {
+                -webkit-transform: scale(1);
+                transform: scale(1);
+            }
+        }
+
+        /* Added wrapper to prevent layout jank with resizing particles */
+        .particles {
+            width: 1px;
+            height: 1px;
+        }
+
+        .particle {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: .1em;
+            width: .1em;
+            border-radius: .05em;
+            background-color: var(--color);
+            --percentage: calc(var(--i) / var(--total-particles));
+            --Θ: calc(var(--percentage) * 1turn);
+            -webkit-transform: translate(-50%, -50%) rotate(var(--Θ)) translateY(0) scaleY(0);
+            transform: translate(-50%, -50%) rotate(var(--Θ)) translateY(0) scaleY(0);
+            -webkit-transition: all .5s cubic-bezier(.7, 0, .3, 1);
+            transition: all .5s cubic-bezier(.7, 0, .3, 1);
+        }
+
+        .like-button:focus .particle {
+            -webkit-animation: particles-out calc(.5s * 1.2) cubic-bezier(.7, 0, .3, 1) forwards;
+            animation: particles-out calc(.5s * 1.2) cubic-bezier(.7, 0, .3, 1) forwards;
+        }
+
+        @-webkit-keyframes particles-out {
             50% {
-                transform: translate(5px, 0);
+                height: .3em;
             }
 
-            75% {
-                transform: translate(-5px, 0);
+            50%,
+            60% {
+                height: .3em;
+                -webkit-transform: translate(-50%, -50%) rotate(var(--Θ)) translateY(0.8em) scale(1);
+                transform: translate(-50%, -50%) rotate(var(--Θ)) translateY(0.8em) scale(1);
+            }
+
+            60% {
+                height: .2em;
             }
 
             100% {
-                transform: translate(0, 0);
+                -webkit-transform: translate(-50%, -50%) rotate(var(--Θ)) translateY(1em) scale(0);
+                transform: translate(-50%, -50%) rotate(var(--Θ)) translateY(1em) scale(0);
             }
+        }
+
+        @keyframes particles-out {
+            50% {
+                height: .3em;
+            }
+
+            50%,
+            60% {
+                height: .3em;
+                -webkit-transform: translate(-50%, -50%) rotate(var(--Θ)) translateY(0.8em) scale(1);
+                transform: translate(-50%, -50%) rotate(var(--Θ)) translateY(0.8em) scale(1);
+            }
+
+            60% {
+                height: .2em;
+            }
+
+            100% {
+                -webkit-transform: translate(-50%, -50%) rotate(var(--Θ)) translateY(1em) scale(0);
+                transform: translate(-50%, -50%) rotate(var(--Θ)) translateY(1em) scale(0);
+            }
+        }
+
+        .ripple {
+            height: 1em;
+            width: 1em;
+            border-radius: 50%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .ripple:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0.4em solid #EA442B;
+            border-radius: inherit;
+            -webkit-transform: scale(0);
+            transform: scale(0);
+        }
+
+        .like-button:focus .ripple:before {
+            -webkit-animation: ripple-out .5s cubic-bezier(.7, 0, .3, 1);
+            animation: ripple-out .5s cubic-bezier(.7, 0, .3, 1);
+        }
+
+        @-webkit-keyframes ripple-out {
+            from {
+                -webkit-transform: scale(0);
+                transform: scale(0);
+            }
+
+            to {
+                -webkit-transform: scale(5);
+                transform: scale(5);
+            }
+        }
+
+        @keyframes ripple-out {
+            from {
+                -webkit-transform: scale(0);
+                transform: scale(0);
+            }
+
+            to {
+                -webkit-transform: scale(5);
+                transform: scale(5);
+            }
+        }
+
+        body {
+            display: -webkit-box;
+            display: flex;
+            -webkit-box-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            align-items: center;
+            background-color: #FDF1F2;
+        }
+
+        /* Reset the animation when clicking again! */
+        .like-button:focus {
+            pointer-events: none;
+            cursor: normal;
         }
     </style>
 </head>
 
 <body>
-    <div class="bg-dark" style="padding-top: 80px;">
-        <div class="container">
-            <div style="padding: 0 15%;">
-                <div class="text-light">
-                    <h4 class="pb-3 pt-5">MyCinemaVN - Nền Tảng Xem Phim Trực Tuyến Miễn Phí
-                    </h4>
-                    <p class="intro--text">MyCinemaVN là nền tảng xem phim trực tuyến miễn phí, cung cấp một không gian
-                        giải
-                        trí đỉnh cao cho hàng
-                        triệu người dùng với tiêu chí chất lượng, tiện lợi và phong phú. Được thành lập với sứ mệnh đem
-                        lại
-                        trải nghiệm giải trí hoàn toàn miễn phí, MyCinemaVN đã và đang trở thành điểm đến quen thuộc cho
-                        những
-                        người yêu thích phim ảnh từ khắp nơi.</p>
-
-                    <h4 class="pb-3 pt-5">Giao Diện Thân Thiện, Dễ Sử Dụng
-                    </h4>
-                    <p class="intro--text">MyCinemaVN thiết kế giao diện tối giản, thân thiện để bạn dễ dàng khám phá và
-                        tìm
-                        kiếm những bộ phim yêu thích. Chỉ với vài thao tác đơn giản, bạn có thể truy cập vào kho phim đa
-                        dạng của chúng tôi và thưởng thức những nội dung giải trí đỉnh cao, mọi lúc mọi nơi.</p>
-
-                    <h4 class="pb-3 pt-5">Kho Phim Phong Phú, Đáp Ứng Mọi Thể Loại
-                    </h4>
-                    <p class="intro--text">MyCinemaVN mang đến cho bạn hàng ngàn bộ phim thuộc nhiều thể loại, từ hành
-                        động,lãng
-                        mạn, khoa học viễn tưởng, hoạt hình, đến kinh dị và phiêu lưu. Không ngừng cập nhật, chúng tôi
-                        cam
-                        kết đem đến cho bạn những bộ phim mới nhất và chất lượng nhất.</p>
-                    <div class="intro--text">
-                        <p>Kho phim phong phú của MyCinemaVN bao gồm:</p>
-                        <ul>
-                            <li>Phim Bộ: Từ các series kinh điển đến các bộ phim truyền hình mới nhất, bạn có thể thưởng
-                                thức liên tục những tập phim hay.</li>
-                            <li>Phim Lẻ: Những bộ phim điện ảnh đình đám, từ phim bom tấn Hollywood, châu Á đến những bộ
-                                phim độc lập hấp dẫn.</li>
-                            <li>Phim Việt Nam: Đáp ứng nhu cầu của người yêu phim Việt, chúng tôi luôn cập nhật các bộ
-                                phim
-                                Việt Nam mới và nổi tiếng.</li>
-                        </ul>
-                    </div>
-
-
-                    <h4 class="pb-3 pt-5">Tính Năng Nổi Bật của MyCinemaVN
-                    </h4>
-                    <div class="intro--text">
-                        <ul>
-                            <li>Xem Phim Miễn Phí Hoàn Toàn: MyCinemaVN hoạt động với phương châm phục vụ cộng đồng, bạn
-                                sẽ
-                                không phải chi trả bất kỳ khoản phí nào để truy cập và xem phim.</li>
-                            <li>Cập Nhật Phim Nhanh Chóng: Đội ngũ của chúng tôi làm việc không ngừng nghỉ để cập nhật
-                                những
-                                bộ phim mới nhất, giúp bạn luôn đón đầu xu hướng.</li>
-                            <li>Xem Phim Mọi Lúc, Mọi Nơi: Hỗ trợ đa nền tảng từ máy tính, điện thoại đến các thiết bị
-                                thông
-                                minh khác, bạn có thể xem phim mọi lúc, mọi nơi.</li>
-                        </ul>
-                    </div>
-
-                    <h4 class="pb-3 pt-5">Cam Kết của MyCinemaVN
-                    </h4>
-                    <p class="intro--text">Chúng tôi cam kết bảo vệ quyền lợi người dùng với chất lượng dịch vụ tốt
-                        nhất.
-                        MyCinemaVN không ngừng phát triển và cải thiện để đem lại trải nghiệm xem phim hoàn hảo. An toàn
-                        và bảo
-                        mật của người dùng luôn là ưu tiên hàng đầu của chúng tôi, vì vậy chúng tôi đảm bảo thông tin cá
-                        nhân của bạn luôn được bảo mật tuyệt đối.</p>
+    <div class="love-button">
+        <button class="like-button">
+            <div class="like-wrapper">
+                <div class="ripple"></div>
+                <svg class="heart" width="24" height="24" viewBox="0 0 24 24">
+                    <path
+                        d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z">
+                    </path>
+                </svg>
+                <div class="particles" style="--total-particles: 6">
+                    <div class="particle" style="--i: 1; --color: #7642F0"></div>
+                    <div class="particle" style="--i: 2; --color: #AFD27F"></div>
+                    <div class="particle" style="--i: 3; --color: #DE8F4F"></div>
+                    <div class="particle" style="--i: 4; --color: #D0516B"></div>
+                    <div class="particle" style="--i: 5; --color: #5686F2"></div>
+                    <div class="particle" style="--i: 6; --color: #D53EF3"></div>
                 </div>
             </div>
-            <div style="width: 100%; height: 600px;"><iframe style="height: 600px; width: 600px;"
-                    src="https://www.w3schools.com" frameborder="0"></iframe></div>
-            <div class="body">
-                <div class="icon">
-                    <i class="bi bi-tencent-qq"></i>
-                </div>
-            </div>
-        </div>
+        </button>
     </div>
-</body>
-
-</html> -->
-<!DOCTYPE html>
-<html lang="vi">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <title>Móc Khóa</title>
-    <style>
-        .icon-container {
-            display: inline-block;
-        }
-
-        .icon {
-            display: inline-block;
-            font-size: 50px;
-            /* Kích thước icon */
-            animation: shake-tail 1s infinite;
-            transform-origin: center top;
-            /* Đặt trục quay ở phần đuôi */
-        }
-
-        @keyframes shake-tail {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            25% {
-                transform: rotate(10deg);
-            }
-
-            50% {
-                transform: rotate(0deg);
-            }
-
-            75% {
-                transform: rotate(-10deg);
-            }
-
-            100% {
-                transform: rotate(0deg);
-            }
-        }
-    </style>
-</head>
-
-<body>
-    <div class="icon-container">
-        <i class="bi bi-bell-fill icon"></i>
-    </div>
+    <script>
+        // Nope
+        // ...except to show the animation on load
+        let b = document.querySelector('button');
+        setTimeout(() => b.focus(), 100);
+        setTimeout(() => b.blur(), 1000);
+    </script>
 </body>
 
 </html>

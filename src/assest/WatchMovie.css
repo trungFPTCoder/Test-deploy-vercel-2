@@ -176,6 +176,7 @@
     height: 100%;
     object-fit: cover;
 }
+
 @media screen and (max-width: 768px) {
     .language-hover{
         width: 100%;
@@ -186,4 +187,15 @@
     .sharing--text{
         display: none;
     }
+}
+@media screen and (max-width: 1200px) and (min-width: 768px) {
+    .play-icon {
+        display: none;
+    }
+}
+
+
+.btn-followed {
+    background-color: pink !important;
+    color: black !important;
 }

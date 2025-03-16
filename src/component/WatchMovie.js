@@ -1,33 +1,66 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom';
-import { fetchMovieDetails } from '../service/MovieService';
+import { fetchAccount, fetchFavoMovie, fetchMovieDetails } from '../service/MovieService';
 import { useDispatch, useSelector } from 'react-redux';
-import { setMovieDetails } from './MovieStore';
+import { setAccount, setFavoMovie, setMovieDetails } from './MovieStore';
 import '../assest/WatchMovie.css';
 import LoadingComponent from './LoadingComponent';
 import { Helmet } from 'react-helmet-async';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMicrophone, faPlay } from '@fortawesome/free-solid-svg-icons';
+import { faHeartBroken, faMicrophone, faPlay, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { faClosedCaptioning } from '@fortawesome/free-regular-svg-icons';
+// import { faHeart } from '@fortawesome/free-regular-svg-icons';
+import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons';
+import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons';
+import bootstrap from '../../node_modules/bootstrap/dist/js/bootstrap.bundle.min';
 function WatchMovie() {
     const { slug } = useParams();
     const dispatch = useDispatch();
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(true)
+    let followMovie = () => {
 
+    }
+    const [follow, setFollow] = useState(followMovie());
     const movieDetails = useSelector((state) => state.movieDetails);
+    // thử nghiệm theo dõi phim
+    const accounts = useSelector((state) => state.account);
     useEffect(() => {
-        const loadMovieDetails = async () => {
+        const loadAccounts = async () => {
             setLoading(true);
+            const accountsData = await fetchAccount();
+            // console.log(favoMoviesData);
+            dispatch(setAccount(accountsData));
             const moviesDetailData = await fetchMovieDetails(slug);
             dispatch(setMovieDetails(moviesDetailData));
             setLoading(false);
         };
-        loadMovieDetails();
-    }, [dispatch, slug]);
+        loadAccounts();
+    }, [dispatch]);
+    //   
     if (loading) {
         return <div><LoadingComponent></LoadingComponent></div>
     }
+    // useEffect(() => {
+    //     const loadMovieDetails = async () => {
+    //         setLoading(true);
+    //         const moviesDetailData = await fetchMovieDetails(slug);
+    //         dispatch(setMovieDetails(moviesDetailData));
+    //         setLoading(false);
+    //     };
+    //     loadMovieDetails();
+    // }, [dispatch, slug]);
+    //thử nghiệm theo dõi phim
+    const username = sessionStorage.getItem('user');
+    const email = sessionStorage.getItem('email');
+    const accountUser = accounts.find((account) => account.FullName === username && account.email === email);
+    console.log(accountUser);
+    followMovie = () => {
+        // const followedMovies = favoMovies.
+        const followedMovies = accountUser.FavoriteMovie;
+        return followedMovies.some((movie) => movie.slug === slug);
+    }
+
     const formattedDate = new Date(movieDetails.created).toLocaleDateString('vi-VN', {
         day: '2-digit',
         month: '2-digit',
@@ -39,8 +72,32 @@ function WatchMovie() {
         const remainingMinutes = minutes % 60;
         return `${hours}h ${remainingMinutes}m`;
     };
-    // console.log(movieDetails.episodes);
 
+
+
+    // console.log(followMovie())
+    // 
+
+    const handleFollowClick = () => {
+        if (follow) {
+            // Show the modal to confirm the action
+            const modal = new bootstrap.Modal(document.getElementById('exampleModal'));
+            modal.show();
+        } else {
+            // Toggle the follow state
+            if (username === null && email === null) {
+                const modal = new bootstrap.Modal(document.getElementById('exampleModal1'));
+                modal.show();
+            }
+            else {
+                setFollow(!follow);
+            }
+        }
+    };
+
+    const confirmUnfollow = () => {
+        setFollow(false);
+    };
     return (
         <div className='bg-dark' >
             {/* background image */}
@@ -52,7 +109,7 @@ function WatchMovie() {
             <div className='container-fluid'>
                 {/* meta tag không đụng */}
                 <Helmet>
-                    <title>Xem phim {movieDetails.name}</title>
+                    <title>{`Xem phim ${movieDetails.name}`}</title>
                     <meta name="description" content={movieDetails.name} />
                     {/* <meta property="og:image" content="https://mycinemavn.vercel.app/images/logo.png"/> */}
                 </Helmet>
@@ -86,16 +143,25 @@ function WatchMovie() {
                                     </div>
                                 </div>
                                 <div className='d-flex flex-wrap mt-2'>
-                                    {movieDetails.category[2].list.map((item) => (
+                                    {/* {movieDetails.category[2]?.list?.map((item) => (
                                         <div className='category--movie mx-1 mb-2 p-1 px-2 rounded' key={item.id}>
                                             {item.name}
                                         </div>
-                                    ))}
+                                    ))} */}
+                                    {movieDetails.category && movieDetails.category[2] && movieDetails.category[2].list ? (
+                                        movieDetails.category[2].list.map((item) => (
+                                            <div className='category--movie mx-1 mb-2 p-1 px-2 rounded' key={item.id}>
+                                                {item.name}
+                                            </div>
+                                        ))
+                                    ) : (
+                                        <div>No categories available</div>
+                                    )}
                                 </div>
                                 <div className='mt-3'>
                                     <strong>Giới thiệu: </strong> <br />
                                     <small style={{ color: '#ddd' }}>{movieDetails.description}</small> <br />
-                                    <p className='mt-3' style={{ color: '#ddd' }}><strong className='text-light'>Quốc gia: </strong>{movieDetails.category[4].list[0].name}</p>
+                                    <p className='mt-3' style={{ color: '#ddd' }}><strong className='text-light'>Quốc gia: </strong>{movieDetails.category?.[4]?.list?.[0]?.name ? (movieDetails.category[4].list[0].name) : ('Đang cập nhật')}</p>
                                     <p className='mt-3' style={{ color: '#ddd' }}><strong className='text-light'>Đạo diễn: </strong>{movieDetails.director ? movieDetails.director : 'Đang cập nhật'}</p>
                                     <p className='mt-3' style={{ color: '#ddd' }}><strong className='text-light'>Diễn viên: </strong>{movieDetails.casts ? movieDetails.casts : 'Đang cập nhật'}</p>
                                     <p className='mt-3' style={{ color: '#ddd' }}><strong className='text-light'>Thời lượng: </strong>{convertTime(movieDetails.time) === '' ? convertTime(movieDetails.time) : 'Đang cập nhật'}</p>
@@ -105,13 +171,85 @@ function WatchMovie() {
                         <div className='col-md-8'>
                             <div className='card p-4 bg-dark'>
                                 <div className='d-flex'>
-                                    <Link to={`/watch/cinema/${slug}`} className='link-glow'>
-                                        <button className='glow-on-hover position-relative' disabled={movieDetails.episodes.length === 0}>
-                                            Xem phim
-                                            <FontAwesomeIcon icon={faPlay} className='position-absolute' style={{ right: '18%', top: '18px' }} />
-                                        </button>
-                                    </Link>
+                                    <div className='row' style={{ width: '70%' }}>
+                                        <div className="col-md-5">
+                                            <Link to={`/watch/cinema/${slug}`} className='link-glow'>
+                                                <button className='glow-on-hover position-relative' disabled={movieDetails.episodes?.length === 0}>
+                                                    Xem phim
+                                                    <FontAwesomeIcon icon={faPlay} className='position-absolute play-icon' style={{ right: '18%', top: '18px' }} />
+                                                </button>
+                                            </Link>
+                                        </div>
+                                        <div className="col-md-7">
+                                            <button className={`btn ${follow ? 'btn-followed btn-danger' : 'btn-outline-danger'} text-light mt-2`} onClick={handleFollowClick}>
+                                                {follow ?
+                                                    (
+                                                        <div>
+                                                            <FontAwesomeIcon icon={faHeartSolid} color='red'></FontAwesomeIcon> Đã theo dõi
+
+                                                        </div>
+                                                    ) :
+                                                    (
+                                                        <div>
+                                                            <FontAwesomeIcon icon={faHeartRegular} /> Theo dõi phim
+                                                        </div>
+                                                    )
+                                                }
+                                            </button>
+                                            <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div className="modal-dialog modal-dialog-centered">
+                                                    <div className="modal-content bg-dark text-light">
+                                                        <div className="modal-header" data-bs-theme="dark">
+                                                            <h1 className="modal-title fs-5" id="exampleModalLabel">Xác nhận</h1>
+                                                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div className="modal-body text-center">
+                                                            Bạn có chắc chắn muốn hủy theo dõi phim này không? <br></br>
+                                                            Bạn vẫn có thể theo dõi lại phim này sau khi hủy.
+                                                        </div>
+                                                        <div className="modal-footer">
+                                                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                                                            <button type="button" className="btn btn-danger" onClick={confirmUnfollow} data-bs-dismiss="modal">Xác nhận</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {/* modal for login before */}
+                                            <div className="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div className="modal-dialog modal-dialog-centered">
+                                                    <div className="modal-content bg-dark text-light">
+                                                        <div className="modal-header" data-bs-theme="dark">
+                                                            <h1 className="modal-title fs-5" id="exampleModalLabel">Yêu cầu đăng nhập</h1>
+                                                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div className="modal-body text-center">
+                                                            Vui lòng đăng nhập để theo dõi phim này.
+                                                        </div>
+                                                        <div className="modal-footer">
+                                                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                                                            <Link to={'/login'}><button type="button" className="btn btn-danger" data-bs-dismiss="modal">Đăng nhập</button></Link>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div className='sharing d-flex align-items-center justify-content-center'>
+                                        {/* <button className='btn btn-outline-danger text-light mx-2' onClick={() => setFollow(!follow)}>
+                                            {follow ?
+                                                (
+                                                    <div>
+                                                        <FontAwesomeIcon className='icon' icon={faHeart} /> Theo dõi phim
+                                                    </div>
+                                                ) :
+                                                (
+                                                    <div>
+                                                        <FontAwesomeIcon icon={faHeart} /> Đã theo dõi
+                                                    </div>
+                                                )
+                                            }
+
+                                        </button> */}
                                         <h6 className='sharing--text'>Chia sẻ: </h6> &emsp;
                                         <div className='facebook-share-container'>
                                             <button
@@ -208,28 +346,28 @@ function WatchMovie() {
                                                 </div>
                                             </div>
                                             {/* {movieDetails.category?.[1]?.list?.[0]?.name ? ( */}
-                                                <div className='mt-5'>
-                                                    <h4 className='mb-3'>Các tập phim: </h4>
-                                                    <div className=''>
-                                                        {movieDetails.episodes.map((episode, index) => (
-                                                            <div key={episode.id}>
-                                                                {index > 0 && <hr />} 
-                                                                <h6>{episode.server_name}</h6>
-                                                                <div className='row g-2 mt-2 mb-2'>
-                                                                    {episode.items.map((item) => (
-                                                                        <div key={item.id} className='col-4 col-md-2 mb-1'>
-                                                                            <Link to={`/watch/cinema/${slug}?tap=${item.name}&type=${episode.server_name}`} className='text-decoration-none text-light'>
-                                                                                <div className='category--movie p-2 px-2 rounded text-center'>
-                                                                                    Tập {item.name} &nbsp; <FontAwesomeIcon icon={faPlay}></FontAwesomeIcon>
-                                                                                </div>
-                                                                            </Link>
-                                                                        </div>
-                                                                    ))}
-                                                                </div>
+                                            <div className='mt-5'>
+                                                <h4 className='mb-3'>Các tập phim: </h4>
+                                                <div className=''>
+                                                    {movieDetails.episodes?.map((episode, index) => (
+                                                        <div key={episode.id}>
+                                                            {index > 0 && <hr />}
+                                                            <h6>{episode.server_name}</h6>
+                                                            <div className='row g-2 mt-2 mb-2'>
+                                                                {episode.items.map((item) => (
+                                                                    <div key={item.id} className='col-4 col-md-2 mb-1'>
+                                                                        <Link to={`/watch/cinema/${slug}?tap=${item.name}&type=${episode.server_name}`} className='text-decoration-none text-light'>
+                                                                            <div className='category--movie p-2 px-2 rounded text-center'>
+                                                                                Tập {item.name} &nbsp; <FontAwesomeIcon icon={faPlay}></FontAwesomeIcon>
+                                                                            </div>
+                                                                        </Link>
+                                                                    </div>
+                                                                ))}
                                                             </div>
-                                                        ))}
-                                                    </div>
+                                                        </div>
+                                                    ))}
                                                 </div>
+                                            </div>
                                             {/* ) : (
                                                 <div></div>
                                             )} */}

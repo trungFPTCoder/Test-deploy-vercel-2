@@ -131,7 +131,7 @@ function MovieList() {
         modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
         slidesPerView={1}
         pagination={{ clickable: true }}
-        // autoplay={{ delay: 4000 }}
+        autoplay={{ delay: 4000 }}
         onSlideChange={handleSlideChange}
         grabCursor={true}
       >

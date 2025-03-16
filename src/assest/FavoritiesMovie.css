@@ -1,0 +1,36 @@
+.tooltip-content-favo {
+    visibility: hidden;
+    opacity: 0;
+    background-color: orange;
+    color: #fff;
+    text-align: center;
+    padding: 5px 10px;
+    border-radius: 5px;
+    position: absolute;
+    top: 275px;
+    /* bottom: 0px; */
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: normal;
+    /* Cho phép nội dung tự động xuống dòng */
+    word-wrap: break-word;
+    /* Ngắt từ nếu quá dài */
+    z-index: 1000;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    width: 100%;
+}
+.tooltip-content-favo::after {
+    content: '';
+    position: absolute;
+    top: -15px; /* Đặt mũi tên ngay trên tooltip */
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent transparent orange transparent;
+  }
+  
+.tooltip-wrapper:hover .tooltip-content-favo {
+    visibility: visible;
+    opacity: 1;
+}

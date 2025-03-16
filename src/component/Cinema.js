@@ -6,7 +6,7 @@ import { fetchMovieDetails } from '../service/MovieService';
 import { Helmet } from 'react-helmet';
 import '../assest/Cinema.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronCircleLeft, faMicrophone, faPaperPlane, faPlay } from '@fortawesome/free-solid-svg-icons';
+import { faBackward, faChevronCircleLeft, faForward, faMicrophone, faPaperPlane, faPlay } from '@fortawesome/free-solid-svg-icons';
 import LoadingComponent from './LoadingComponent';
 import { faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { faClosedCaptioning } from '@fortawesome/free-regular-svg-icons';
@@ -20,7 +20,16 @@ function Cinema() {
   const [loading, setLoading] = useState(true);
   const [comment, setComment] = useState('');
   const [charCount, setCharCount] = useState(0);
-
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768)
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    window.addEventListener('resize', handleResize)
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
   useEffect(() => {
     const loadMovieDetails = async () => {
       setLoading(true);
@@ -35,7 +44,9 @@ function Cinema() {
 
   const searchParamsType = new URLSearchParams(location.search);
   let typeFromURL = searchParamsType.get('type');
-  // const firstEmbed = 
+  // thử nghiệm chuyển tập (19/02/2025)
+
+  // 
   let movieInfo = '';
   if (!tapFromURL) {
     const typeMovie = movieDetails.episodes?.find(typeMovie => typeMovie.server_name.includes(typeFromURL));
@@ -85,6 +96,10 @@ function Cinema() {
   const handleEpisodeSelect = () => {
     window.scrollTo(0, 0);
   }
+  const getEpisodeName = () => {
+    const episode = movieDetails.episodes.find(episode => episode.server_name.includes(typeFromURL));
+    return episode ? episode.items.slice(-1)[0]?.name : null;
+  }
 
   return (
     <div className='bg-dark'>
@@ -110,8 +125,29 @@ function Cinema() {
         {/* chiếu phim */}
         <div>
           <iframe src={movieInfo.embed} className='video' allowFullScreen></iframe>
+          <div>
+            {movieDetails.episodes?.[0].items?.[0].name.toLowerCase() === 'full' ? (
+              <>
+              </>
+            ) : (
+              <>
+                <div className={isMobile ? 'd-flex justify-content-center align-items-center function-zone p-3' : 'd-flex align-items-center function-zone p-3'}>
+                  <Link to={`/watch/cinema/${movieDetails.slug}?tap=${parseInt(tapFromURL) - 1}&type=${typeFromURL}`} onClick={handleEpisodeSelect} className='d-flex align-items-center text-decoration-none'>
+                    <button className='switch-episode-btn rounded-start' disabled={parseInt(tapFromURL) === 1}>
+                      <FontAwesomeIcon icon={faBackward}></FontAwesomeIcon> &nbsp; Tập trước
+                    </button>
+                  </Link>
+                  <Link to={`/watch/cinema/${movieDetails.slug}?tap=${parseInt(tapFromURL) + 1}&type=${typeFromURL}`} onClick={handleEpisodeSelect} className='d-flex align-items-center text-decoration-none'>
+                    <button className='switch-episode-btn border-start border-light rounded-end' disabled={parseInt(tapFromURL) === parseInt(getEpisodeName())}>
+                      Tập tiếp theo &nbsp; <FontAwesomeIcon icon={faForward}></FontAwesomeIcon>
+                    </button>
+                  </Link>
+                </div>
+              </>
+            )}
+          </div>
         </div>
-        <div className='mt-5 border-bottom' style={{ paddingBottom: '10px' }}>
+        <div className='mt-4 border-bottom' style={{ paddingBottom: '10px' }}>
           <div className='row desktop-cinema-view'>
             <div className='col-md-2'>
               <img src={movieDetails.thumb_url} className='w-100 rounded intro-img' alt={movieDetails.name}></img>
@@ -215,9 +251,9 @@ function Cinema() {
           {/* add new 17/02/2025 thử nghiệm  */}
           <div className='tablet-cinema-view'>
             <div className="movie-card" style={{ backgroundImage: `url(${movieDetails.thumb_url})` }}>
-              <div className="content pt-5">
-                <h2>{movieDetails.name}</h2>
-                <small className="text-warning">{movieDetails.original_name}</small>
+              <div className="content pt-4">
+                <h2 className='original-movie-name'>{movieDetails.name}</h2>
+                <small className="text-warning original-movie-name">{movieDetails.original_name}</small>
                 <div className="d-flex flex-wrap mt-2 text-light">
                   {movieDetails.category?.[1]?.list?.[0]?.name && (
                     <div className='border border-light border-1 mx-1 p-1 px-2 mb-2 rounded'>
@@ -252,7 +288,7 @@ function Cinema() {
                 <div className='border-2 border-bottom border-top border-light pb-2 pt-2 text-center'>
                   <Link to={`/watch/${movieDetails.slug}`} className='text-decoration-none text-warning h6'>{'<'} Xem thêm thông tin phim {'>'}</Link>
                 </div>
-                
+
                 <div className='d-flex align-items-center pt-2'>
                   <h6 className='text-light'>Chia sẻ phim {'-->'}</h6>
                   <div className='sharing d-flex' style={{ marginLeft: 'auto' }}>
@@ -311,6 +347,7 @@ function Cinema() {
         </div>
         {/* end add new */}
 
+
         {/* test ngon*/}
         <div className='mt-5 text-light'>
           <h4>Các bản chiếu</h4>
@@ -356,6 +393,7 @@ function Cinema() {
                 <div className='row g-2 mt-2 mb-2'>
                   {episode.items.map((item) => (
                     <div key={item.id} className='col-4 col-md-2 mb-1'>
+
                       {/* 24/12/2024 */}
                       {item.name.toLowerCase() === tapFromURL ? (
                         <Link to={`/watch/cinema/${slug}?tap=${item.name}&type=${episode.server_name}`} className='text-decoration-none text-light' onClick={handleEpisodeSelect}>
@@ -377,6 +415,7 @@ function Cinema() {
               </div>
             ))}
         </div>
+
         {/* ) : (
           <div></div>
         )} */}
@@ -404,7 +443,7 @@ function Cinema() {
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 }
 

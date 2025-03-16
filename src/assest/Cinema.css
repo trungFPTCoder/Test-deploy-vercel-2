@@ -202,6 +202,9 @@
     .desktop-cinema-view {
         display: none;
     }
+    .function-zone{
+        margin: 0 auto;
+    }
 }
 @media screen and (min-width: 1024px) {
     .tablet-cinema-view {
@@ -215,6 +218,35 @@
 .movie-description{
     display: -webkit-box;
     -webkit-line-clamp: 10;
+    /* line-clamp: 6; */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+/* new at 19/02/2025 */
+.function-zone{
+    background-color: #343232;
+    border-radius: 10px;
+}
+.switch-episode-btn{
+    background-color: unset;
+    box-shadow: none;
+    border: none;
+    padding: 5px 20px;
+}
+.switch-episode-btn{
+    color: white;
+}
+.switch-episode-btn:hover{
+    color: orange;
+    transition: 0.5s ease;
+}
+.switch-episode-btn:disabled{
+    color: gray;
+}
+.original-movie-name{
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
     /* line-clamp: 6; */
     -webkit-box-orient: vertical;
     overflow: hidden;

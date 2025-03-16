@@ -13,6 +13,7 @@ import ErrorPage from './component/ErrorPage';
 import NewHeader from './component/NewHeader';
 import Input from './component/Test/Input';
 import { HelmetProvider } from 'react-helmet-async';
+import ChatWithAI from './ChatWithAI/ChatWithAI';
 
 // import ErrorPage from './component/ErrorPage';
 
@@ -42,6 +43,7 @@ function App() {
             <NewHeader />
             <ErrorBoundary>
               <Routes>
+                <Route path='*' element={<ErrorPage />} />
                 <Route path='/' element={<MovieList />} />
                 <Route path='/danh-sach/:cate' element={<MovieCate />} />
                 <Route path='/danh-sach/phim-moi-cap-nhat' element={<NewMovie />} />
@@ -60,7 +62,7 @@ function App() {
                 {/* thử nghiệm personal page */}
                 <Route path='/personal' element={<PersonalPage />} />
                 {/* thử nghiệm gợi ý search */}
-                <Route path='test' element={<Input />} />
+                <Route path='/askMyAI' element={<ChatWithAI />} />
               </Routes>
             </ErrorBoundary>
             <Footer />

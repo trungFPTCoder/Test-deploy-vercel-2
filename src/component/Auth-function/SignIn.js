@@ -134,6 +134,7 @@ import { Helmet } from 'react-helmet';
 import { useDispatch, useSelector } from 'react-redux';
 import { addAccount, setAccount } from '../MovieStore';
 import { addAccountService, fetchAccount } from '../../service/MovieService';
+import axios from 'axios';
 
 function SignIn() {
     const [icon, setIcon] = useState(faEye);
@@ -227,26 +228,56 @@ function SignIn() {
                         title: "Tài khoản đã tồn tại"
                     });
                 } else {
-                    const addedUser = await addAccountService(newUser); // Add user to the backend
-                    dispatch(addAccount(addedUser)); // Dispatch action to add user to the Redux store
-                    const Toast = Swal.mixin({
-                        toast: true,
-                        position: "top-end",
-                        showConfirmButton: false,
-                        timer: 3000,
-                        timerProgressBar: true,
-                        didOpen: (toast) => {
-                            toast.onmouseenter = Swal.stopTimer;
-                            toast.onmouseleave = Swal.resumeTimer;
-                            document.querySelector(".swal2-container").style.zIndex = "9999";
-                            document.querySelector(".swal2-container").style.marginTop = "80px";
+                    // const addedUser = await addAccountService(newUser); // Add user to the backend
+                    // dispatch(addAccount(addedUser)); // Dispatch action to add user to the Redux store
+                    // const Toast = Swal.mixin({
+                    //     toast: true,
+                    //     position: "top-end",
+                    //     showConfirmButton: false,
+                    //     timer: 3000,
+                    //     timerProgressBar: true,
+                    //     didOpen: (toast) => {
+                    //         toast.onmouseenter = Swal.stopTimer;
+                    //         toast.onmouseleave = Swal.resumeTimer;
+                    //         document.querySelector(".swal2-container").style.zIndex = "9999";
+                    //         document.querySelector(".swal2-container").style.marginTop = "80px";
+                    //     }
+                    // });
+                    // Toast.fire({
+                    //     icon: "success",
+                    //     title: "Đăng ký thành công"
+                    // });
+                    // navigate('/login');
+                    try {
+                        const response = await axios.post('http://localhost:9000/signin', newUser);
+                        if (response.status === 201) {
+                            const Toast = Swal.mixin({
+                                toast: true,
+                                position: "top-end",
+                                showConfirmButton: false,
+                                timer: 3000,
+                                timerProgressBar: true,
+                                didOpen: (toast) => {
+                                    toast.onmouseenter = Swal.stopTimer;
+                                    toast.onmouseleave = Swal.resumeTimer;
+                                    document.querySelector(".swal2-container").style.zIndex = "9999";
+                                    document.querySelector(".swal2-container").style.marginTop = "80px";
+                                }
+                            });
+                            Toast.fire({
+                                icon: "success",
+                                title: "Đăng ký thành công"
+                            });
+                            navigate('/login');
                         }
-                    });
-                    Toast.fire({
-                        icon: "success",
-                        title: "Đăng ký thành công"
-                    });
-                    navigate('/login');
+                    } catch (error) {
+                        console.error('Failed to add user:', error);
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Đăng ký thất bại',
+                            text: 'Có lỗi xảy ra, vui lòng thử lại sau.',
+                        })
+                    }
                 }
             } catch (error) {
                 console.error('Failed to add user:', error);
@@ -283,12 +314,12 @@ function SignIn() {
                                 <label>Email</label>
                             </div>
                             <div className="inputbox">
-                                <i onClick={showPassword} style={{cursor:'pointer'}}><FontAwesomeIcon icon={icon} /></i>
+                                <i onClick={showPassword} style={{ cursor: 'pointer' }}><FontAwesomeIcon icon={icon} /></i>
                                 <input type="password" id='password' value={password} onChange={(e) => setPassword(e.target.value)} required />
                                 <label>Mật khẩu</label>
                             </div>
                             <div className="inputbox">
-                                <i onClick={showPasswordAgain} style={{cursor:'pointer'}}><FontAwesomeIcon icon={iconAgain} /></i>
+                                <i onClick={showPasswordAgain} style={{ cursor: 'pointer' }}><FontAwesomeIcon icon={iconAgain} /></i>
                                 <input type="password" id='passwordAgain' value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required />
                                 <label>Xác nhận mật khẩu</label>
                             </div>
