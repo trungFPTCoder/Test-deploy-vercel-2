@@ -16,6 +16,10 @@ function Introduction() {
     }
     return (
         <div className="bg-dark" style={{ paddingTop: '60px' }}>
+            <Helmet>
+                <title>Giới thiệu</title>
+                <meta name="description" content="Giới thiệu" />
+            </Helmet>
             <div className={isMobile ? "container-fluid pb-5" : "container pb-5"}>
                 <div style={isMobile ? { padding: '0 5%' }:{padding:'0 15%'}}>
                     <div className="text-light">
